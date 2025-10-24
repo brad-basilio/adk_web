@@ -78,8 +78,8 @@ const Contact = ({ services = [], generals = [] }) => {
         </svg>
       ),
       title: 'Phone',
-      details: getGeneralValue('phone_contact') ? getGeneralValue('phone_contact').split('\n') : ['+1 (555) 123-4567', '+1 (555) 987-6543'],
-      link: `tel:${getGeneralValue('phone_contact')?.replace(/\D/g, '') || '+15551234567'}`
+      details: getGeneralValue('phone_contact') ? getGeneralValue('phone_contact').split(',').map(p => p.trim()) : ['+1 (555) 123-4567', '+1 (555) 987-6543'],
+      link: `tel:${getGeneralValue('phone_contact')?.split(',')[0]?.replace(/\D/g, '') || '+15551234567'}`
     },
     {
       icon: (
@@ -88,8 +88,8 @@ const Contact = ({ services = [], generals = [] }) => {
         </svg>
       ),
       title: 'Email',
-      details: getGeneralValue('email_contact') ? getGeneralValue('email_contact').split('\n') : ['info@adktech.com', 'support@adktech.com'],
-      link: `mailto:${getGeneralValue('email_contact') || 'info@adktech.com'}`
+      details: getGeneralValue('email_contact') ? getGeneralValue('email_contact').split(',').map(e => e.trim()) : ['info@adktech.com', 'support@adktech.com'],
+      link: `mailto:${getGeneralValue('email_contact')?.split(',')[0]?.trim() || 'info@adktech.com'}`
     },
     {
       icon: (
@@ -98,7 +98,7 @@ const Contact = ({ services = [], generals = [] }) => {
         </svg>
       ),
       title: 'Office',
-      details: getGeneralValue('address') ? getGeneralValue('address').split('\n') : ['123 Tech Boulevard', 'Silicon Valley, CA 94025'],
+      details: getGeneralValue('address') ? getGeneralValue('address').split(',').map(a => a.trim()) : ['123 Tech Boulevard', 'Silicon Valley, CA 94025'],
       link: 'https://maps.google.com'
     },
     {
