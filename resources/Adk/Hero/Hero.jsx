@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Hero.css';
 
-const Hero = ({ scrollY, sliders = [] }) => {
+const Hero = ({ scrollY, sliders = [], indicators = [] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const parallaxY = scrollY * 0.3;
 
@@ -149,28 +149,27 @@ const Hero = ({ scrollY, sliders = [] }) => {
           </motion.div>
         </div>
 
-        <motion.div
-          className="hero-stats"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-        >
-          {[
-            { number: '10+', label: 'Years Experience' },
-            { number: '500+', label: 'Projects Completed' },
-            { number: '24/7', label: 'Support Available' }
-          ].map((stat, index) => (
-            <motion.div
-              key={index}
-              className="stat-item"
-              whileHover={{ scale: 1.05, y: -5 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="stat-number">{stat.number}</div>
-              <div className="stat-label">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
+        {indicators.length > 0 && (
+          <motion.div
+            className="hero-stats"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+          >
+            {indicators.map((indicator, index) => (
+              <motion.div
+                key={indicator.id || index}
+                className="stat-item"
+                whileHover={{ scale: 1.05, y: -5 }}
+                transition={{ duration: 0.3 }}
+              >
+               
+                <div className="stat-number">{indicator.name}</div>
+                <div className="stat-label">{indicator.description}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </div>
 
       <div className="slider-dots">

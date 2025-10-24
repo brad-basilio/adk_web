@@ -133,7 +133,7 @@ const Indicators = () => {
                         caption: "ID",
                         visible: false,
                     },
-                    {
+                  /*  {
                         dataField: "symbol",
                         caption: "Imagen",
                         width: "60px",
@@ -153,7 +153,7 @@ const Indicators = () => {
                                 />
                             );
                         },
-                    },
+                    }, */
                     {
                         dataField: "name",
                         caption: "Titulo",
@@ -234,7 +234,8 @@ const Indicators = () => {
             >
                 <div className="row" id="indicators-container">
                     <input ref={idRef} type="hidden" />
-                    <ImageFormGroup
+                  <div hidden>
+                      <ImageFormGroup
                         eRef={symbolRef}
                         label="Imagen"
                         aspect={1}
@@ -242,7 +243,8 @@ const Indicators = () => {
                         required
                         col="col-sm-4"
                     />
-                    <div className="col-md-8">
+                  </div>
+                    <div className="col-md-12">
                         <InputFormGroup eRef={nameRef} label="Título" />
                         {/*<InputFormGroup eRef={symbolRef} label='Símbolo' col='col-sm-4' rows={2} required />*/}
                         <TextareaFormGroup

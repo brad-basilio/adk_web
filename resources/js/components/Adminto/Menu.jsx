@@ -275,7 +275,7 @@ const Menu = ({
                                     href="/admin/indicators"
                                     icon="mdi mdi-checkbox-marked-outline"
                                 >
-                                   Banners
+                                   Indicadores
                                 </MenuItem>
                                 <MenuItem
                                     href="/admin/testimonies"

@@ -13,7 +13,7 @@ import CreateReactScript from './Utils/CreateReactScript';
 import Base from './Components/Tailwind/Base';
 import { createRoot } from 'react-dom/client';
 
-const Home = ({ services = [], generals = [], sliders = [] }) => {
+const Home = ({ services = [], generals = [], sliders = [], indicators = [] }) => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Home = ({ services = [], generals = [], sliders = [] }) => {
   return (
     <div>
       <Navbar scrollY={scrollY} />
-      <Hero scrollY={scrollY} sliders={sliders} />
+      <Hero scrollY={scrollY} sliders={sliders} indicators={indicators} />
       <About />
       <Services />
       <ADKAssist />
