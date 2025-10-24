@@ -58,9 +58,10 @@ const Staff = () => {
     const jobRef = useRef();
     const descriptionRef = useRef();
     const imageRef = useRef();
+    const isLoadingDataRef = useRef(false);
 
     const [characteristics, setCharacteristics] = useState([{ value: "" }]);
-    const [socials, setSocials] = useState([{ social: "", link: "" }]);
+    const [socials, setSocials] = useState([]);
     const [socialRefs, setSocialRefs] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [shouldUpdateSelects, setShouldUpdateSelects] = useState(false);
@@ -68,6 +69,7 @@ const Staff = () => {
     // useEffect para establecer los valores de los selects cuando cambian los socials
     useEffect(() => {
         if (shouldUpdateSelects && socials.length > 0) {
+            isLoadingDataRef.current = true;
             setTimeout(() => {
                 socials.forEach((social, index) => {
                     if (socialRefs[index]?.current && social.social) {
@@ -76,6 +78,10 @@ const Staff = () => {
                     }
                 });
                 setShouldUpdateSelects(false);
+                // Esperar un poco más antes de desactivar isLoadingDataRef
+                setTimeout(() => {
+                    isLoadingDataRef.current = false;
+                }, 100);
             }, 300);
         }
     }, [shouldUpdateSelects, socials, socialRefs]);
@@ -104,8 +110,16 @@ const Staff = () => {
         setSocialRefs([...socialRefs, React.createRef()]);
     };
     const updateSocialType = (index, value) => {
+        console.log('updateSocialType llamado:', index, value, 'isLoadingDataRef:', isLoadingDataRef.current);
+        console.log('Estado actual de socials:', socials);
+        if (isLoadingDataRef.current) {
+            console.log('Ignorando onChange porque estamos cargando datos');
+            return;
+        }
         const newSocials = [...socials];
+        console.log('Antes de actualizar:', newSocials[index]);
         newSocials[index].social = value;
+        console.log('Después de actualizar:', newSocials[index]);
         setSocials(newSocials);
     };
     const updateSocialLink = (index, value) => {
@@ -114,7 +128,6 @@ const Staff = () => {
         setSocials(newSocials);
     };
     const removeSocial = (index) => {
-        if (socials.length <= 1) return;
         const newSocials = socials.filter((_, i) => i !== index);
         const newRefs = socialRefs.filter((_, i) => i !== index);
         setSocials(newSocials);
@@ -157,8 +170,8 @@ const Staff = () => {
             // Activar el flag para que el useEffect actualice los selects
             setShouldUpdateSelects(true);
         } else {
-            setSocials([{ social: "", link: "" }]);
-            setSocialRefs([React.createRef()]);
+            setSocials([]);
+            setSocialRefs([]);
             setShouldUpdateSelects(false);
         }
 
@@ -168,6 +181,8 @@ const Staff = () => {
     // Enviar formulario
     const onModalSubmit = async (e) => {
         e.preventDefault();
+
+        console.log('=== SUBMIT - Estado actual de socials:', socials);
 
         const formData = new FormData();
         formData.append("name", nameRef.current.value);
@@ -199,6 +214,7 @@ const Staff = () => {
                 social: s.social,
                 link: s.link.trim()
             }));
+        console.log('=== SUBMIT - nonEmptySocials después del filtro:', nonEmptySocials);
         formData.append("socials", JSON.stringify(nonEmptySocials));
 
         // Enviar al backend
@@ -210,8 +226,8 @@ const Staff = () => {
         $(modalRef.current).modal("hide");
         
         setCharacteristics([{ value: "" }]);
-        setSocials([{ social: "", link: "" }]);
-        setSocialRefs([React.createRef()]);
+        setSocials([]);
+        setSocialRefs([]);
     };
 
     // Resto de métodos (delete, boolean change, etc.)
@@ -499,80 +515,81 @@ const Staff = () => {
                             </label>
                             
                             <div className="border rounded p-3" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-                                {socials.map((social, index) => {
-                                    if (!socialRefs[index]) {
-                                        socialRefs[index] = React.createRef();
-                                    }
-                                    const selectedSocial = predefinedSocials.find(s => s.id === social.social);
-                                    console.log(`Renderizando social ${index}:`, social, 'Link value:', social.link);
-                                    
-                                    return (
-                                        <div key={index} className="mb-3 pb-3 border-bottom">
-                                            <div className="d-flex justify-content-between align-items-center mb-2">
-                                                <small className="text-muted fw-bold">Red Social #{index + 1}</small>
-                                                <button
-                                                    type="button"
-                                                    className="btn btn-sm btn-outline-danger"
-                                                    onClick={() => removeSocial(index)}
-                                                    disabled={socials.length <= 1}
-                                                    title="Eliminar red social"
-                                                >
-                                                    <i className="fas fa-trash-alt"></i>
-                                                </button>
-                                            </div>
-                                            
-                                            <SelectFormGroup
-                                                eRef={socialRefs[index]}
-                                                label="Tipo de red social"
-                                                dropdownParent="#staff-modal-container"
-                                            >
-                                                <option value="">Seleccionar red social...</option>
-                                                {predefinedSocials.map((s) => {
-                                                    const IconComponent = s.icon;
-                                                    return (
-                                                        <option key={s.id} value={s.id}>
-                                                            {s.name}
-                                                        </option>
-                                                    );
-                                                })}
-                                            </SelectFormGroup>
-                                            
-                                            {selectedSocial && (
-                                                <div className="mb-2">
-                                                    <div className="alert alert-info py-2 px-3 mb-0 d-flex align-items-center">
-                                                        <selectedSocial.icon className="me-2" size={20} />
-                                                        <small className="mb-0">
-                                                            <strong>{selectedSocial.name}</strong> seleccionado
-                                                        </small>
-                                                    </div>
-                                                </div>
-                                            )}
-                                            
-                                            <div className="mt-2">
-                                                <label className="form-label mb-1">
-                                                    <small>{selectedSocial?.id === 'email' ? 'Correo electrónico' : 'Enlace / URL'}</small>
-                                                </label>
-                                                <input
-                                                    type={selectedSocial?.id === 'email' ? 'email' : 'text'}
-                                                    className="form-control"
-                                                    placeholder={
-                                                        selectedSocial?.id === 'email' 
-                                                            ? 'ejemplo@correo.com' 
-                                                            : `https://${social.social || 'ejemplo'}.com/tu-usuario`
-                                                    }
-                                                    value={social.link || ''}
-                                                    onChange={(e) => updateSocialLink(index, e.target.value)}
-                                                />
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                                
-                                {socials.length === 0 && (
+                                {socials.length === 0 ? (
                                     <div className="text-center text-muted py-4">
                                         <i className="fas fa-share-alt mb-2" style={{ fontSize: '2rem' }}></i>
                                         <p className="mb-0">No hay redes sociales agregadas</p>
+                                        <p className="mb-0"><small>Haz clic en "Agregar" para añadir una red social</small></p>
                                     </div>
+                                ) : (
+                                    socials.map((social, index) => {
+                                        if (!socialRefs[index]) {
+                                            socialRefs[index] = React.createRef();
+                                        }
+                                        const selectedSocial = predefinedSocials.find(s => s.id === social.social);
+                                        console.log(`Renderizando social ${index}:`, social, 'Link value:', social.link);
+                                        
+                                        return (
+                                            <div key={index} className="mb-3 pb-3 border-bottom">
+                                                <div className="d-flex justify-content-between align-items-center mb-2">
+                                                    <small className="text-muted fw-bold">Red Social #{index + 1}</small>
+                                                    <button
+                                                        type="button"
+                                                        className="btn btn-sm btn-outline-danger"
+                                                        onClick={() => removeSocial(index)}
+                                                        title="Eliminar red social"
+                                                    >
+                                                        <i className="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                                
+                                                <SelectFormGroup
+                                                    eRef={socialRefs[index]}
+                                                    label="Tipo de red social"
+                                                    dropdownParent="#staff-modal-container"
+                                                    onChange={(e) => updateSocialType(index, e.target.value)}
+                                                >
+                                                    <option value="">Seleccionar red social...</option>
+                                                    {predefinedSocials.map((s) => {
+                                                        const IconComponent = s.icon;
+                                                        return (
+                                                            <option key={s.id} value={s.id}>
+                                                                {s.name}
+                                                            </option>
+                                                        );
+                                                    })}
+                                                </SelectFormGroup>
+                                                
+                                                {selectedSocial && (
+                                                    <div className="mb-2">
+                                                        <div className="alert alert-info py-2 px-3 mb-0 d-flex align-items-center">
+                                                            <selectedSocial.icon className="me-2" size={20} />
+                                                            <small className="mb-0">
+                                                                <strong>{selectedSocial.name}</strong> seleccionado
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                
+                                                <div className="mt-2">
+                                                    <label className="form-label mb-1">
+                                                        <small>{selectedSocial?.id === 'email' ? 'Correo electrónico' : 'Enlace / URL'}</small>
+                                                    </label>
+                                                    <input
+                                                        type={selectedSocial?.id === 'email' ? 'email' : 'text'}
+                                                        className="form-control"
+                                                        placeholder={
+                                                            selectedSocial?.id === 'email' 
+                                                                ? 'ejemplo@correo.com' 
+                                                                : `https://${social.social || 'ejemplo'}.com/tu-usuario`
+                                                        }
+                                                        value={social.link || ''}
+                                                        onChange={(e) => updateSocialLink(index, e.target.value)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        );
+                                    })
                                 )}
                             </div>
                         </div>
