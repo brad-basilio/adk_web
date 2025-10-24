@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import './About.css';
 
-const About = () => {
+const About = ({ indicators = [] }) => {
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true
@@ -102,11 +102,7 @@ const About = () => {
     }
   ];
 
-  const features = [
-    { number: '10+', label: 'Years Experience' },
-    { number: '500+', label: 'Projects' },
-    { number: '24/7', label: 'Support' }
-  ];
+  // Features eliminados - ahora se usan los indicators dinámicos
 
   return (
     <section id="about" className="about section" ref={ref}>
@@ -153,24 +149,27 @@ const About = () => {
             </p>
           </motion.div>
 
-          <motion.div
-            className="features-minimal"
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="feature-minimal"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="feature-number-minimal">{feature.number}</div>
-                <div className="feature-label-minimal">{feature.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
+          {indicators.length > 0 && (
+            <motion.div
+              className="features-minimal"
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              {indicators.map((indicator, index) => (
+                <motion.div
+                  key={indicator.id || index}
+                  className="feature-minimal"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  
+                  <div className="feature-number-minimal">{indicator.name}</div>
+                  <div className="feature-label-minimal">{indicator.description}</div>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
         </div>
 
         <motion.div

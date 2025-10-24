@@ -29,7 +29,7 @@ const Home = ({ services = [], generals = [], sliders = [], indicators = [] }) =
     <div>
       <Navbar scrollY={scrollY} />
       <Hero scrollY={scrollY} sliders={sliders} indicators={indicators} />
-      <About />
+      <About indicators={indicators} />
       <Services />
       <ADKAssist />
       <Contact services={services} generals={generals} />
