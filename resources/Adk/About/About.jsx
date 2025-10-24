@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+  FaTiktok,
+  FaWhatsapp,
+  FaTelegram,
+  FaDiscord,
+  FaSnapchat,
+  FaPinterest,
+  FaReddit,
+  FaEnvelope
+} from 'react-icons/fa';
 import './About.css';
 
-const About = ({ indicators = [] }) => {
+const About = ({ indicators = [], staff = [] }) => {
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true
@@ -12,95 +27,73 @@ const About = ({ indicators = [] }) => {
   const [selectedMember, setSelectedMember] = useState(null);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
 
+  // Mapeo de redes sociales a iconos
+  const socialIcons = {
+    facebook: FaFacebook,
+    instagram: FaInstagram,
+    twitter: FaTwitter,
+    linkedin: FaLinkedin,
+    youtube: FaYoutube,
+    tiktok: FaTiktok,
+    whatsapp: FaWhatsapp,
+    telegram: FaTelegram,
+    discord: FaDiscord,
+    snapchat: FaSnapchat,
+    pinterest: FaPinterest,
+    reddit: FaReddit,
+    email: FaEnvelope
+  };
+
+  // Función para parsear las redes sociales del nuevo formato
+  const parseSocials = (socialsArray) => {
+    if (!socialsArray || !Array.isArray(socialsArray)) return [];
+
+    return socialsArray.map(item => {
+      if (!item || !item.social || !item.link) return null;
+      
+      const IconComponent = socialIcons[item.social];
+      if (!IconComponent) return null;
+
+      return {
+        type: item.social,
+        link: item.link,
+        icon: IconComponent,
+        name: item.social.charAt(0).toUpperCase() + item.social.slice(1)
+      };
+    }).filter(item => item !== null);
+  };
+
+  // Mapear staff de la BD al formato del componente
+  const teamMembers = staff.length > 0
+    ? staff.map(member => ({
+        name: member.name,
+        role: member.job,
+        image: `/api/staff/media/${member.image}`,
+        bio: member.description,
+        expertise: member.characteristics || [],
+        socials: parseSocials(member.socials)
+      }))
+    : [];
+
   const nextTeamSlide = () => {
+    if (teamMembers.length === 0) return;
     setCurrentTeamIndex((prev) => (prev + 1) % Math.ceil(teamMembers.length / 3));
   };
 
   const prevTeamSlide = () => {
+    if (teamMembers.length === 0) return;
     setCurrentTeamIndex((prev) =>
       prev === 0 ? Math.ceil(teamMembers.length / 3) - 1 : prev - 1
     );
   };
 
   const getVisibleTeamMembers = () => {
+    if (teamMembers.length === 0) return [];
     const startIndex = currentTeamIndex * 3;
     return teamMembers.slice(startIndex, startIndex + 3);
   };
 
-  const teamMembers = [
-    {
-      name: 'Sarah Johnson',
-      role: 'CEO & Founder',
-      image: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bio: 'Visionary leader with 15+ years of experience in technology innovation and business strategy.',
-      expertise: ['Leadership', 'Strategy', 'Innovation'],
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'sarah@adktech.com'
-      }
-    },
-    {
-      name: 'Michael Chen',
-      role: 'CTO',
-      image: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bio: 'Technology expert specializing in cloud architecture and cybersecurity solutions.',
-      expertise: ['Cloud Architecture', 'DevOps', 'Security'],
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'michael@adktech.com'
-      }
-    },
-    {
-      name: 'Emily Rodriguez',
-      role: 'Lead Security Consultant',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bio: 'Cybersecurity specialist with expertise in threat detection and incident response.',
-      expertise: ['Cybersecurity', 'Threat Analysis', 'Compliance'],
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'emily@adktech.com'
-      }
-    },
-    {
-      name: 'David Park',
-      role: 'Senior Developer',
-      image: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bio: 'Full-stack developer passionate about creating scalable and efficient solutions.',
-      expertise: ['Full-Stack', 'React', 'Node.js'],
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'david@adktech.com'
-      }
-    },
-    {
-      name: 'Lisa Thompson',
-      role: 'Project Manager',
-      image: 'https://images.pexels.com/photos/3763188/pexels-photo-3763188.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bio: 'Results-driven project manager ensuring seamless delivery of complex projects.',
-      expertise: ['Agile', 'Scrum', 'Project Planning'],
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'lisa@adktech.com'
-      }
-    },
-    {
-      name: 'James Wilson',
-      role: 'Tech Support Lead',
-      image: 'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=800',
-      bio: 'Customer-focused support specialist dedicated to solving technical challenges.',
-      expertise: ['Technical Support', 'Customer Success', 'Training'],
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        email: 'james@adktech.com'
-      }
-    }
-  ];
+
 
   // Features eliminados - ahora se usan los indicators dinámicos
 
@@ -172,12 +165,13 @@ const About = ({ indicators = [] }) => {
           )}
         </div>
 
-        <motion.div
-          className="team-section-modern"
-          initial={{ opacity: 0, y: 50 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
+        {teamMembers.length > 0 && (
+          <motion.div
+            className="team-section-modern"
+            initial={{ opacity: 0, y: 50 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
           <div className="team-header-modern">
             <div className="team-header-content">
               <motion.div className="team-number-modern">02</motion.div>
@@ -246,21 +240,20 @@ const About = ({ indicators = [] }) => {
                     </div>
 
                     <div className="team-social">
-                      <a href={member.social.linkedin} className="social-link" onClick={(e) => e.stopPropagation()}>
-                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                        </svg>
-                      </a>
-                      <a href={member.social.twitter} className="social-link" onClick={(e) => e.stopPropagation()}>
-                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M22.46 6c-.85.38-1.78.64-2.75.76 1-.6 1.76-1.55 2.12-2.68-.93.55-1.96.95-3.06 1.17A4.86 4.86 0 0 0 15.16 4a4.88 4.88 0 0 0-4.88 4.88c0 .38.04.75.13 1.1-4.06-.2-7.65-2.14-10.05-5.1-.42.73-.66 1.57-.66 2.48 0 1.69.86 3.18 2.17 4.05-.8-.02-1.55-.24-2.2-.6v.06c0 2.36 1.68 4.33 3.91 4.78-.41.11-.84.17-1.28.17-.31 0-.62-.03-.92-.08.63 1.95 2.44 3.37 4.6 3.41A9.8 9.8 0 0 1 1 19.54 13.8 13.8 0 0 0 8.5 22c9 0 13.93-7.46 13.93-13.93 0-.21 0-.42-.02-.63A9.94 9.94 0 0 0 24 5.39c-.89.4-1.85.67-2.86.75z"/>
-                        </svg>
-                      </a>
-                      <a href={`mailto:${member.social.email}`} className="social-link" onClick={(e) => e.stopPropagation()}>
-                        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                      </a>
+                      {member.socials && member.socials.slice(0, 3).map((social, idx) => {
+                        const IconComponent = social.icon;
+                        return (
+                          <a 
+                            key={idx}
+                            href={social.link} 
+                            className="social-link" 
+                            onClick={(e) => e.stopPropagation()}
+                            title={social.name}
+                          >
+                            <IconComponent size={18} />
+                          </a>
+                        );
+                      })}
                     </div>
                   </div>
 
@@ -282,6 +275,7 @@ const About = ({ indicators = [] }) => {
             ))}
           </div>
         </motion.div>
+        )}
       </div>
 
       {selectedMember && (
@@ -326,29 +320,22 @@ const About = ({ indicators = [] }) => {
                   </div>
                 </div>
 
-                <div className="modal-contact-section">
-                  <h4 className="modal-section-title">Connect</h4>
-                  <div className="modal-social-links">
-                    <a href={selectedMember.social.linkedin} className="modal-social-link">
-                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
-                      </svg>
-                      <span>LinkedIn</span>
-                    </a>
-                    <a href={selectedMember.social.twitter} className="modal-social-link">
-                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.46 6c-.85.38-1.78.64-2.75.76 1-.6 1.76-1.55 2.12-2.68-.93.55-1.96.95-3.06 1.17A4.86 4.86 0 0 0 15.16 4a4.88 4.88 0 0 0-4.88 4.88c0 .38.04.75.13 1.1-4.06-.2-7.65-2.14-10.05-5.1-.42.73-.66 1.57-.66 2.48 0 1.69.86 3.18 2.17 4.05-.8-.02-1.55-.24-2.2-.6v.06c0 2.36 1.68 4.33 3.91 4.78-.41.11-.84.17-1.28.17-.31 0-.62-.03-.92-.08.63 1.95 2.44 3.37 4.6 3.41A9.8 9.8 0 0 1 1 19.54 13.8 13.8 0 0 0 8.5 22c9 0 13.93-7.46 13.93-13.93 0-.21 0-.42-.02-.63A9.94 9.94 0 0 0 24 5.39c-.89.4-1.85.67-2.86.75z"/>
-                      </svg>
-                      <span>Twitter</span>
-                    </a>
-                    <a href={`mailto:${selectedMember.social.email}`} className="modal-social-link">
-                      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                      </svg>
-                      <span>Email</span>
-                    </a>
+                {selectedMember.socials && selectedMember.socials.length > 0 && (
+                  <div className="modal-contact-section">
+                    <h4 className="modal-section-title">Connect</h4>
+                    <div className="modal-social-links">
+                      {selectedMember.socials.map((social, idx) => {
+                        const IconComponent = social.icon;
+                        return (
+                          <a key={idx} href={social.link} className="modal-social-link">
+                            <IconComponent size={20} />
+                            <span>{social.name}</span>
+                          </a>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </motion.div>

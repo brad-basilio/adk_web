@@ -187,6 +187,12 @@ const Menu = ({
                                 >
                                     {t("admin.sidebar.services", "Servicios")}
                                 </MenuItem>
+                                 <MenuItem
+                                    href="/admin/staff"
+                                    icon="mdi mdi-account-heart"
+                                >
+                                    {t("admin.sidebar.staff", "Staff")}
+                                </MenuItem>
                            {/*     <MenuItem
                                     href="/admin/specialities"
                                     icon="mdi mdi-tag-faces"
@@ -205,12 +211,7 @@ const Menu = ({
                                         "Instalaciones"
                                     )}
                                 </MenuItem>
-                                <MenuItem
-                                    href="/admin/staff"
-                                    icon="mdi mdi-account-heart"
-                                >
-                                    {t("admin.sidebar.staff", "Staff")}
-                                </MenuItem> */}
+                                */}
                                 {/* <MenuItem
                                     href="/admin/sales"
                                     icon="mdi mdi-cart-outline"

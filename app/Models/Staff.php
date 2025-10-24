@@ -23,10 +23,30 @@ class Staff extends Model
         'socials',
         'lang_id'
     ];
+    
     protected $casts = [
-        'characteristics' => 'array',
-        'socials' => 'array'
+        'visible' => 'boolean',
+        'status' => 'boolean'
     ];
+
+    // Accessors para manejar JSON manualmente
+    public function getCharacteristicsAttribute($value)
+    {
+        if (is_null($value)) return [];
+        if (is_array($value)) return $value;
+        
+        $decoded = json_decode($value, true);
+        return json_last_error() === JSON_ERROR_NONE ? $decoded : [];
+    }
+
+    public function getSocialsAttribute($value)
+    {
+        if (is_null($value)) return [];
+        if (is_array($value)) return $value;
+        
+        $decoded = json_decode($value, true);
+        return json_last_error() === JSON_ERROR_NONE ? $decoded : [];
+    }
 
     public function lang()
     {

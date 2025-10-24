@@ -30,12 +30,21 @@ class StaffController extends BasicController
                 return !empty(trim($item));
             }));
         }
+        
+        // Procesar redes sociales (ahora son objetos con social y link)
         if ($request->has('socials')) {
             $socials = json_decode($request->socials, true);
             $body['socials'] = array_values(array_filter($socials, function ($item) {
-                return !empty(trim($item));
+                // Verificar que sea un array con 'social' y 'link'
+                return is_array($item) && 
+                       isset($item['social']) && 
+                       isset($item['link']) && 
+                       !empty(trim($item['social'])) && 
+                       !empty(trim($item['link']));
             }));
         }
+
+        
 
         return $body;
     }

@@ -8,12 +8,45 @@ import Modal from "../Components/Adminto/Modal";
 import Table from "../Components/Adminto/Table";
 import ImageFormGroup from "../Components/Adminto/form/ImageFormGroup";
 import InputFormGroup from "../Components/Adminto/form/InputFormGroup";
+import SelectFormGroup from "../Components/Adminto/form/SelectFormGroup";
 import DxButton from "../Components/dx/DxButton";
 import CreateReactScript from "../Utils/CreateReactScript";
 import ReactAppend from "../Utils/ReactAppend";
 import StaffRest from "../actions/Admin/StaffRest";
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+  FaTiktok,
+  FaWhatsapp,
+  FaTelegram,
+  FaDiscord,
+  FaSnapchat,
+  FaPinterest,
+  FaReddit,
+  FaEnvelope
+} from 'react-icons/fa';
 
 const staffRest = new StaffRest();
+
+// Redes sociales predefinidas
+const predefinedSocials = [
+  { id: 'facebook', name: 'Facebook', icon: FaFacebook },
+  { id: 'instagram', name: 'Instagram', icon: FaInstagram },
+  { id: 'twitter', name: 'Twitter/X', icon: FaTwitter },
+  { id: 'linkedin', name: 'LinkedIn', icon: FaLinkedin },
+  { id: 'youtube', name: 'YouTube', icon: FaYoutube },
+  { id: 'tiktok', name: 'TikTok', icon: FaTiktok },
+  { id: 'whatsapp', name: 'WhatsApp', icon: FaWhatsapp },
+  { id: 'telegram', name: 'Telegram', icon: FaTelegram },
+  { id: 'discord', name: 'Discord', icon: FaDiscord },
+  { id: 'snapchat', name: 'Snapchat', icon: FaSnapchat },
+  { id: 'pinterest', name: 'Pinterest', icon: FaPinterest },
+  { id: 'reddit', name: 'Reddit', icon: FaReddit },
+  { id: 'email', name: 'Email', icon: FaEnvelope }
+];
 
 const Staff = () => {
     const gridRef = useRef();
@@ -27,8 +60,25 @@ const Staff = () => {
     const imageRef = useRef();
 
     const [characteristics, setCharacteristics] = useState([{ value: "" }]);
-    const [socials, setSocials] = useState([{ value: "" }]);
+    const [socials, setSocials] = useState([{ social: "", link: "" }]);
+    const [socialRefs, setSocialRefs] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
+    const [shouldUpdateSelects, setShouldUpdateSelects] = useState(false);
+
+    // useEffect para establecer los valores de los selects cuando cambian los socials
+    useEffect(() => {
+        if (shouldUpdateSelects && socials.length > 0) {
+            setTimeout(() => {
+                socials.forEach((social, index) => {
+                    if (socialRefs[index]?.current && social.social) {
+                        const $select = $(socialRefs[index].current);
+                        $select.val(social.social).trigger('change');
+                    }
+                });
+                setShouldUpdateSelects(false);
+            }, 300);
+        }
+    }, [shouldUpdateSelects, socials, socialRefs]);
 
     // Manejo de características
     const addCharacteristic = () => {
@@ -50,17 +100,25 @@ const Staff = () => {
     };
     // Manejo de redes sociales
     const addSocial = () => {
-        setSocials([...socials, { value: "" }]);
+        setSocials([...socials, { social: "", link: "" }]);
+        setSocialRefs([...socialRefs, React.createRef()]);
     };
-    const updateSocial = (index, value) => {
+    const updateSocialType = (index, value) => {
         const newSocials = [...socials];
-        newSocials[index].value = value;
+        newSocials[index].social = value;
+        setSocials(newSocials);
+    };
+    const updateSocialLink = (index, value) => {
+        const newSocials = [...socials];
+        newSocials[index].link = value;
         setSocials(newSocials);
     };
     const removeSocial = (index) => {
         if (socials.length <= 1) return;
         const newSocials = socials.filter((_, i) => i !== index);
+        const newRefs = socialRefs.filter((_, i) => i !== index);
         setSocials(newSocials);
+        setSocialRefs(newRefs);
     };
 
     // Cargar datos al editar
@@ -87,9 +145,21 @@ const Staff = () => {
         }
         // Cargar redes sociales existentes
         if (data?.socials && data.socials.length > 0) {
-            setSocials(data.socials.map((item) => ({ value: item })));
+            console.log('Datos de socials desde DB:', data.socials);
+            const loadedSocials = data.socials.map((item) => ({
+                social: item.social || "",
+                link: item.link || ""
+            }));
+            console.log('Socials procesados:', loadedSocials);
+            const newRefs = loadedSocials.map(() => React.createRef());
+            setSocials(loadedSocials);
+            setSocialRefs(newRefs);
+            // Activar el flag para que el useEffect actualice los selects
+            setShouldUpdateSelects(true);
         } else {
-            setSocials([{ value: "" }]);
+            setSocials([{ social: "", link: "" }]);
+            setSocialRefs([React.createRef()]);
+            setShouldUpdateSelects(false);
         }
 
         $(modalRef.current).modal("show");
@@ -124,8 +194,11 @@ const Staff = () => {
         );
         // Agregar redes sociales (filtrar vacías)
         const nonEmptySocials = socials
-            .map((s) => s.value.trim())
-            .filter((s) => s.length > 0);
+            .filter((s) => s.social && s.link.trim())
+            .map((s) => ({
+                social: s.social,
+                link: s.link.trim()
+            }));
         formData.append("socials", JSON.stringify(nonEmptySocials));
 
         // Enviar al backend
@@ -135,8 +208,10 @@ const Staff = () => {
         // Limpiar y cerrar
         $(gridRef.current).dxDataGrid("instance").refresh();
         $(modalRef.current).modal("hide");
-        setGallery([]);
+        
         setCharacteristics([{ value: "" }]);
+        setSocials([{ social: "", link: "" }]);
+        setSocialRefs([React.createRef()]);
     };
 
     // Resto de métodos (delete, boolean change, etc.)
@@ -255,36 +330,31 @@ const Staff = () => {
                         dataField: "socials",
                         caption: "Redes sociales",
                         cellTemplate: (container, { data }) => {
-                            if (!data.socials) return;
-                            container.html(
-                                renderToString(
-                                    <ul
-                                        className="m-0 ps-3"
-                                        style={{ listStyle: "none" }}
-                                    >
-                                        {data.socials
-                                            .slice(0, 2)
-                                            .map((char, i) => (
-                                                <li
-                                                    key={i}
-                                                    className="text-truncate"
-                                                    style={{
-                                                        maxWidth: "250px",
-                                                    }}
-                                                >
-                                                    <small>• {char}</small>
-                                                </li>
-                                            ))}
-                                        {data.socials.length > 2 && (
-                                            <li>
-                                                <small className="text-muted">
-                                                    +{data.socials.length - 2}{" "}
-                                                    más...
-                                                </small>
-                                            </li>
-                                        )}
-                                    </ul>
-                                )
+                            if (!data.socials || data.socials.length === 0) {
+                                container.html('<small class="text-muted">Sin redes</small>');
+                                return;
+                            }
+                            
+                            const socialsArray = Array.isArray(data.socials) ? data.socials : [];
+                            const socialsToShow = socialsArray.slice(0, 3);
+                            
+                            ReactAppend(
+                                container,
+                                <div className="d-flex align-items-center">
+                                    {socialsToShow.map((item, i) => {
+                                        const social = predefinedSocials.find(s => s.id === item.social);
+                                        if (!social) return null;
+                                        const IconComponent = social.icon;
+                                        return (
+                                            <span key={i} className="me-2" title={social.name}>
+                                                <IconComponent size={16} />
+                                            </span>
+                                        );
+                                    })}
+                                    {socialsArray.length > 3 && (
+                                        <small className="text-muted">+{socialsArray.length - 3}</small>
+                                    )}
+                                </div>
                             );
                         },
                     },
@@ -345,7 +415,7 @@ const Staff = () => {
             >
                 <input ref={idRef} type="hidden" />
 
-                <div className="row">
+                <div className="row" id="staff-modal-container">
                     <div className="col-md-6">
                         <InputFormGroup
                             eRef={nameRef}
@@ -415,37 +485,96 @@ const Staff = () => {
                             label="Imagen principal"
                             aspect={1}
                         />
+                        
                         <div className="mb-3">
-                            <label className="form-label">Redes sociales</label>
-                            {socials.map((social, index) => (
-                                <div key={index} className="input-group mb-2">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Ej: https://web.facebook.com/nopainperu"
-                                        value={social.value}
-                                        onChange={(e) =>
-                                            updateSocial(index, e.target.value)
-                                        }
-                                    />
-                                    <button
-                                        type="button"
-                                        className="btn btn-outline-danger"
-                                        onClick={() => removeSocial(index)}
-                                        disabled={socials.length <= 1}
-                                    >
-                                        <i className="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            ))}
-                            <button
-                                type="button"
-                                className="btn btn-sm btn-outline-primary"
-                                onClick={addSocial}
-                            >
-                                <i className="fas fa-plus me-1"></i> Agregar red
-                                social
-                            </button>
+                            <label className="form-label d-flex justify-content-between align-items-center">
+                                <span>Redes sociales</span>
+                                <button
+                                    type="button"
+                                    className="btn btn-sm btn-outline-primary"
+                                    onClick={addSocial}
+                                >
+                                    <i className="fas fa-plus me-1"></i> Agregar
+                                </button>
+                            </label>
+                            
+                            <div className="border rounded p-3" style={{ maxHeight: '400px', overflowY: 'auto' }}>
+                                {socials.map((social, index) => {
+                                    if (!socialRefs[index]) {
+                                        socialRefs[index] = React.createRef();
+                                    }
+                                    const selectedSocial = predefinedSocials.find(s => s.id === social.social);
+                                    console.log(`Renderizando social ${index}:`, social, 'Link value:', social.link);
+                                    
+                                    return (
+                                        <div key={index} className="mb-3 pb-3 border-bottom">
+                                            <div className="d-flex justify-content-between align-items-center mb-2">
+                                                <small className="text-muted fw-bold">Red Social #{index + 1}</small>
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-sm btn-outline-danger"
+                                                    onClick={() => removeSocial(index)}
+                                                    disabled={socials.length <= 1}
+                                                    title="Eliminar red social"
+                                                >
+                                                    <i className="fas fa-trash-alt"></i>
+                                                </button>
+                                            </div>
+                                            
+                                            <SelectFormGroup
+                                                eRef={socialRefs[index]}
+                                                label="Tipo de red social"
+                                                dropdownParent="#staff-modal-container"
+                                            >
+                                                <option value="">Seleccionar red social...</option>
+                                                {predefinedSocials.map((s) => {
+                                                    const IconComponent = s.icon;
+                                                    return (
+                                                        <option key={s.id} value={s.id}>
+                                                            {s.name}
+                                                        </option>
+                                                    );
+                                                })}
+                                            </SelectFormGroup>
+                                            
+                                            {selectedSocial && (
+                                                <div className="mb-2">
+                                                    <div className="alert alert-info py-2 px-3 mb-0 d-flex align-items-center">
+                                                        <selectedSocial.icon className="me-2" size={20} />
+                                                        <small className="mb-0">
+                                                            <strong>{selectedSocial.name}</strong> seleccionado
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            )}
+                                            
+                                            <div className="mt-2">
+                                                <label className="form-label mb-1">
+                                                    <small>{selectedSocial?.id === 'email' ? 'Correo electrónico' : 'Enlace / URL'}</small>
+                                                </label>
+                                                <input
+                                                    type={selectedSocial?.id === 'email' ? 'email' : 'text'}
+                                                    className="form-control"
+                                                    placeholder={
+                                                        selectedSocial?.id === 'email' 
+                                                            ? 'ejemplo@correo.com' 
+                                                            : `https://${social.social || 'ejemplo'}.com/tu-usuario`
+                                                    }
+                                                    value={social.link || ''}
+                                                    onChange={(e) => updateSocialLink(index, e.target.value)}
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                                
+                                {socials.length === 0 && (
+                                    <div className="text-center text-muted py-4">
+                                        <i className="fas fa-share-alt mb-2" style={{ fontSize: '2rem' }}></i>
+                                        <p className="mb-0">No hay redes sociales agregadas</p>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
