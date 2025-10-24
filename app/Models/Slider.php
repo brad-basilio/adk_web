@@ -15,6 +15,7 @@ class Slider extends Model
 
     protected $fillable = [
         'name',
+        'tag',
         'description',
         'image',
         'button_text',

@@ -23,10 +23,9 @@ const Sliders = () => {
     // Form elements ref
     const idRef = useRef();
     const nameRef = useRef();
+    const tagRef = useRef();
     const descriptionRef = useRef();
     const bgImageRef = useRef();
-    const buttonTextRef = useRef();
-    //const buttonLinkRef = useRef();
 
     const [isEditing, setIsEditing] = useState(false);
 
@@ -36,12 +35,10 @@ const Sliders = () => {
 
         idRef.current.value = data?.id ?? "";
         nameRef.current.value = data?.name ?? "";
+        tagRef.current.value = data?.tag ?? "";
         descriptionRef.current.value = data?.description ?? "";
         // Configurar imagen existente si estamos editando
         bgImageRef.image.src = `/api/sliders/media/${data?.image ?? "undefined"}`;
-        
-        buttonTextRef.current.value = data?.button_text ?? "";
-       // buttonLinkRef.current.value = data?.button_link ?? "";
 
         $(modalRef.current).modal("show");
     };
@@ -52,9 +49,10 @@ const Sliders = () => {
         const request = {
             id: idRef.current.value || undefined,
             name: nameRef.current.value,
+            tag: tagRef.current.value,
             description: descriptionRef.current.value,
-            button_text: buttonTextRef.current.value,
-           button_link: "",//buttonLinkRef.current.value,
+            button_text: "",
+            button_link: "",
         };
 
         const formData = new FormData();
@@ -269,34 +267,28 @@ const Sliders = () => {
                         eRef={bgImageRef}
                         label="Selecciona una imagen"
                         col="col-12"
-                      
                         required
-                       />
-                   
+                    />
 
                     <TextareaFormGroup
                         eRef={nameRef}
-                        label="Titulo"
+                        label="Título (usa *palabra* para resaltar)"
                         col="col-12"
                         rows={2}
                         required
                     />
                     <InputFormGroup
-                        eRef={buttonTextRef}
-                        label="Subtítulo"
+                        eRef={tagRef}
+                        label="Etiqueta superior (TAG)"
                         col="col-sm-12"
+                        placeholder="INNOVATIVE TECHNOLOGY SOLUTIONS"
                     />
                     <TextareaFormGroup
                         eRef={descriptionRef}
                         label="Descripción"
+                        col="col-12"
                         rows={3}
                     />
-                    
-                    {/*<InputFormGroup
-                        eRef={buttonLinkRef}
-                        label="URL botón primario"
-                        col="col-sm-6"
-                    /> */}
                 </div>
             </Modal>
         </>

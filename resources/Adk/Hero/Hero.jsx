@@ -2,33 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Hero.css';
 
-const Hero = ({ scrollY }) => {
+const Hero = ({ scrollY, sliders = [] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const parallaxY = scrollY * 0.3;
 
-  const slides = [
-    {
-      image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1920',
-      tag: 'INNOVATIVE TECHNOLOGY SOLUTIONS',
-      title: 'Welcome to',
-      titleHighlight: 'ADK Technology',
-      description: 'Empowering businesses with cutting-edge technology solutions. We deliver innovation, security, and excellence in every project.'
-    },
-    {
-      image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1920',
-      tag: 'DIGITAL TRANSFORMATION',
-      title: 'Transform Your',
-      titleHighlight: 'Business Digital',
-      description: 'Accelerate your digital journey with our comprehensive technology solutions and expert guidance for sustainable growth.'
-    },
-    {
-      image: 'https://images.pexels.com/photos/1148820/pexels-photo-1148820.jpeg?auto=compress&cs=tinysrgb&w=1920',
-      tag: 'SECURE & RELIABLE',
-      title: 'Enterprise-Grade',
-      titleHighlight: 'Technology Solutions',
-      description: 'Build secure, scalable, and reliable systems with our advanced infrastructure and cybersecurity expertise.'
+  // Función para parsear el título y extraer texto normal y highlight
+  const parseTitle = (title) => {
+    if (!title) return { normal: '', highlight: '' };
+    
+    const parts = title.split('*');
+    if (parts.length >= 3) {
+      // Formato: "texto normal *highlight*" o "*highlight* texto normal"
+      if (title.startsWith('*')) {
+        return {
+          normal: parts[2] || '',
+          highlight: parts[1] || ''
+        };
+      } else {
+        return {
+          normal: parts[0] || '',
+          highlight: parts[1] || ''
+        };
+      }
     }
+    // Si no hay asteriscos, todo es texto normal
+    return { normal: title, highlight: '' };
+  };
+
+  // Usar sliders de la base de datos o fallback a los hardcoded
+  const defaultSlides = [
   ];
+
+  // Mapear sliders de la BD al formato del componente
+  const slides = sliders.length > 0 
+    ? sliders.map(slider => {
+        const parsedTitle = parseTitle(slider.name);
+        return {
+          image: `/api/sliders/media/${slider.image}`,
+          tag: slider.tag || '',
+          title: parsedTitle.normal,
+          titleHighlight: parsedTitle.highlight,
+          description: slider.description || ''
+        };
+      })
+    : defaultSlides;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -43,6 +60,11 @@ const Hero = ({ scrollY }) => {
   };
 
   const currentSlideData = slides[currentSlide];
+
+  // Si no hay slides, no renderizar nada
+  if (sliders.length === 0) {
+    return null;
+  }
 
   return (
     <section id="home" className="hero">
