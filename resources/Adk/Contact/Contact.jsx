@@ -48,15 +48,8 @@ const Contact = ({ services = [], generals = [] }) => {
       setSending(false);
 
       if (result) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Message Sent!',
-          text: 'Your message has been sent successfully. We will get back to you soon.',
-          confirmButtonColor: '#0066ff'
-        });
-
-        // Limpiar formulario
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+        // Redirect to thank you page
+        window.location.href = "/thanks";
       }
     } catch (error) {
       setSending(false);
