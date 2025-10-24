@@ -20,6 +20,7 @@ class MessageController extends BasicController
             'name.string' => 'El nombre debe ser una cadena de texto.',
             'email.email' => 'El correo electrónico debe tener el formato user@domain.com.',
             'email.max' => 'El correo electrónico no debe exceder los 320 caracteres.',
+            'phone.string' => 'El teléfono debe ser una cadena de texto.',
             'subject.required' => 'El asunto es obligatorio.',
             'subject.string' => 'El asunto debe ser una cadena de texto.',
             'description.required' => 'El mensaje es obligatorio.',
@@ -30,6 +31,7 @@ class MessageController extends BasicController
         $validatedData = $request->validate([
             'name' => 'required|string',
             'email' => 'nullable|email|max:320',
+            'phone' => 'nullable|string',
             'subject' => 'required|string',
             'description' => 'required|string',
             'service_id' => 'nullable|exists:services,id',

@@ -37,7 +37,8 @@ const Contact = ({ services = [], generals = [] }) => {
     const request = {
       name: formData.name,
       email: formData.email,
-      subject: formData.phone,
+      phone: formData.phone,
+      subject: formData.subject,
       description: formData.message,
       service_id: null,
     };

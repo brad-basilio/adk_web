@@ -30,6 +30,7 @@ class MessageContactNotification extends Notification
             'nombre' => 'Nombre del remitente',
             'email' => 'Correo electrónico del remitente',
             'telefono' => 'Teléfono del remitente',
+            'asunto' => 'Asunto del mensaje',
             'descripcion' => 'Descripción del mensaje',
             'fecha_contacto' => 'Fecha de contacto',
             'year' => 'Año actual',
@@ -49,7 +50,8 @@ class MessageContactNotification extends Notification
             ? \App\Helpers\Text::replaceData($template->description, [
                 'nombre' => $this->message->name,
                 'email' => $this->message->email,
-                'telefono' => $this->message->phone ?? $this->message->subject ?? 'No especificado',
+                'telefono' => $this->message->phone ?? 'No especificado',
+                'asunto' => $this->message->subject ?? 'No especificado',
                 'descripcion' => $this->message->description,
                 'nombre_servicio' => $this->message->service_id ? $this->message->service->title : 'No especificado',
                 'year' => date('Y'),

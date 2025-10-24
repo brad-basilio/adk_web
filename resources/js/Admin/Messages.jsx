@@ -97,14 +97,18 @@ const Messages = () => {
                         caption: "Correo",
                     },
                     {
-                        dataField: "service.title",
-                        caption: "Servicio",
+                        dataField: "phone",
+                        caption: "Teléfono",
+                    },
+                    {
+                        dataField: "subject",
+                        caption: "Asunto",
                         cellTemplate: (container, { data }) => {
                             ReactAppend(
                                 container,
                                 <span>
-                                    {data.service?.title || 
-                                        <i className="text-muted">- Consulta General -</i>
+                                    {data.subject || 
+                                        <i className="text-muted">- Sin asunto -</i>
                                     }
                                 </span>
                             );
@@ -185,13 +189,13 @@ const Messages = () => {
                 </p>
                 <p>
                     <b>Telefono</b>:
-                    <span className="ms-1">{dataLoaded?.subject}</span>
+                    <span className="ms-1">{dataLoaded?.phone}</span>
                 </p>
                 <p>
-                    <b>Servicio</b>:
+                    <b>Asunto</b>:
                     <span className="ms-1">
-                        {dataLoaded?.service?.title || (
-                            <i className="text-muted">- Consulta General -</i>
+                        {dataLoaded?.subject || (
+                            <i className="text-muted">- Sin asunto -</i>
                         )}
                     </span>
                 </p>
