@@ -24,7 +24,8 @@ const Services = ({ brands }) => {
     const idRef = useRef();
     const titleRef = useRef();
     const descriptionRef = useRef();
-    //const imageRef = useRef();
+    const benefitsRef = useRef();
+    const imageRef = useRef();
     const iconRef = useRef();
     //const colorRef = useRef();
     //const linkRef = useRef();
@@ -77,7 +78,8 @@ const Services = ({ brands }) => {
         idRef.current.value = data?.id || "";
         titleRef.current.value = data?.title || "";
         descriptionRef.current.value = data?.description || "";
-       // imageRef.current.value = null;
+        benefitsRef.current.value = data?.benefits || "";
+        imageRef.current.value = null;
         iconRef.current.value = null;
         
         // Manejo del color (transparente o con valor)
@@ -95,9 +97,9 @@ const Services = ({ brands }) => {
             colorRef.current.dataset.prevColor = "#000000";
         } */
         
-      /*  if (data?.image) {
+        if (data?.image) {
             imageRef.image.src = `/api/service/media/${data.image}`;
-        } */
+        }
         
         if (data?.icon) {
             iconRef.image.src = `/api/service/media/${data.icon}`;
@@ -135,6 +137,7 @@ const Services = ({ brands }) => {
         const formData = new FormData();
         formData.append("title", titleRef.current.value);
         formData.append("description", descriptionRef.current.value);
+        formData.append("benefits", benefitsRef.current.value);
         
         // Si el color es transparente, enviar valor especial, de lo contrario enviar el color seleccionado
         //formData.append("color", itemData?.transparent_color ? "transparent" : colorRef.current.value);
@@ -146,9 +149,9 @@ const Services = ({ brands }) => {
         }
 
         // Agregar imagen principal si existe
-      /*  if (imageRef.current.files[0]) {
+        if (imageRef.current.files[0]) {
             formData.append("image", imageRef.current.files[0]);
-        }*/
+        }
 
         // Agregar icono si existe
         if (iconRef.current.files[0]) {
@@ -286,8 +289,33 @@ const Services = ({ brands }) => {
                             );
                         },
                     },
-                   
-                   
+                    {
+                        dataField: "image",
+                        caption: "Imagen",
+                        width: "100px",
+                        cellTemplate: (container, { data }) => {
+                            if (data.image) {
+                                ReactAppend(
+                                    container,
+                                    <img
+                                        src={`/api/service/media/${data.image}`}
+                                        style={{
+                                            width: "80px",
+                                            height: "45px",
+                                            objectFit: "cover",
+                                            borderRadius: "4px",
+                                        }}
+                                        onError={(e) =>
+                                            (e.target.src =
+                                                "/images/default-thumbnail.jpg")
+                                        }
+                                    />
+                                );
+                            } else {
+                                container.html('<span class="text-muted">Sin imagen</span>');
+                            }
+                        },
+                    },
                     {
                         dataField: "icon",
                         caption: "Icono",
@@ -431,7 +459,7 @@ const Services = ({ brands }) => {
                 <input ref={idRef} type="hidden" />
 
                 <div className="row">
-                    <div className="col-md-8">
+                    <div className="col-md-6">
                         <InputFormGroup
                             eRef={titleRef}
                             label="Título del servicio"
@@ -443,77 +471,31 @@ const Services = ({ brands }) => {
                             <textarea
                                 ref={descriptionRef}
                                 className="form-control"
-                                rows={4}
+                                rows={3}
                                 required
                             />
                         </div>
 
-                      {/*  <div className="mb-3">
-                            <label className="form-label">Color del servicio</label>
-                            <div className="d-flex align-items-center">
-                                <input
-                                    ref={colorRef}
-                                    type="color"
-                                    className="form-control form-control-color me-2"
-                                    defaultValue="#000000"
-                                    title="Selecciona un color"
-                                    disabled={itemData?.transparent_color}
-                                    onChange={(e) => {
-                                        // Actualizar el estado para que se refleje en el overlay
-                                        setItemData({
-                                            ...itemData,
-                                            color: e.target.value
-                                        });
-                                    }}
-                                />
-                                <div className="form-check">
-                                    <input
-                                        className="form-check-input"
-                                        type="checkbox"
-                                        id="transparentColorCheck"
-                                        checked={itemData?.transparent_color}
-                                        onChange={(e) => {
-                                            const prevColor = colorRef.current.value;
-                                            if (e.target.checked) {
-                                                colorRef.current.dataset.prevColor = prevColor;
-                                                colorRef.current.value = "";
-                                                
-                                                // Actualizar el estado para reflejar que es transparente
-                                                setItemData({
-                                                    ...itemData,
-                                                    transparent_color: true,
-                                                    color: "transparent"
-                                                });
-                                            } else {
-                                                const restoredColor = colorRef.current.dataset.prevColor || "#000000";
-                                                colorRef.current.value = restoredColor;
-                                                
-                                                // Actualizar el estado para reflejar el color restaurado
-                                                setItemData({
-                                                    ...itemData,
-                                                    transparent_color: false,
-                                                    color: restoredColor
-                                                });
-                                            }
-                                        }}
-                                    />
-                                    <label className="form-check-label" htmlFor="transparentColorCheck">
-                                        Sin color (transparente)
-                                    </label>
-                                </div>
-                            </div>
-                        </div> */}
+                        <div className="mb-3">
+                            <label className="form-label">Beneficios / Por qué elegir este servicio</label>
+                            <textarea
+                                ref={benefitsRef}
+                                className="form-control"
+                                rows={4}
+                                placeholder="Describe los beneficios y ventajas de este servicio..."
+                            />
+                        </div>
 
-                      {/*  <div className="mb-3">
+                        <div className="mb-3">
                             <label className="form-label">
-                                Características
+                                Características / Features
                             </label>
                             {characteristics.map((char, index) => (
                                 <div key={index} className="input-group mb-2">
                                     <input
                                         type="text"
                                         className="form-control"
-                                        placeholder="Ej: Duración de la sesión - 45 a 60 minutos"
+                                        placeholder="Ej: Technical Troubleshooting"
                                         value={char.value}
                                         onChange={(e) =>
                                             updateCharacteristic(
@@ -542,70 +524,21 @@ const Services = ({ brands }) => {
                                 <i className="fas fa-plus me-1"></i> Agregar
                                 característica
                             </button>
-                        </div> */}
-                        {/*  <InputFormGroup
-                            type="url"
-                            eRef={linkRef}
-                            label="Link"
-                        />*/}
+                        </div>
                     </div>
 
-                    <div className="col-md-4">
-                       {/* <ImageFormGroup
+                    <div className="col-md-6">
+                        <ImageFormGroup
                             eRef={imageRef}
                             label="Imagen principal"
                             aspect={16 / 9}
-                            overlayColor={itemData?.transparent_color ? null : colorRef?.current?.value}
-                            showColorOverlay={true}
-                        /> */}
+                        />
 
                         <ImageFormGroup
                             eRef={iconRef}
                             label="Icono del servicio"
                             aspect={1 / 1}
                         />
-
-                 {/*       <div className="mb-3">
-                            <label className="form-label">
-                                Galería de imágenes
-                            </label>
-                            <input
-                                type="file"
-                                ref={galleryRef}
-                                multiple
-                                accept="image/*"
-                                onChange={handleGalleryChange}
-                                className="form-control"
-                            />
-
-                            <div className="d-flex flex-wrap gap-2 mt-2">
-                                {gallery.map((image, index) => (
-                                    <div
-                                        key={index}
-                                        className="position-relative"
-                                        style={{
-                                            width: "100px",
-                                            height: "100px",
-                                        }}
-                                    >
-                                        <img
-                                            src={image.url}
-                                            alt="Preview"
-                                            className="img-thumbnail h-100 w-100 object-fit-cover"
-                                        />
-                                        <button
-                                            type="button"
-                                            className="btn btn-danger btn-xs position-absolute top-0 end-0"
-                                            onClick={() =>
-                                                removeGalleryImage(index)
-                                            }
-                                        >
-                                            ×
-                                        </button>
-                                    </div>
-                                ))}
-                            </div>
-                        </div> */}
                     </div>
                 </div>
             </Modal>

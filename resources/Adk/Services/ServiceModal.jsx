@@ -56,12 +56,18 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
 
             <div className="modal-header">
               <motion.div
-                className="modal-icon"
+                className="modal-icon !p-2"
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
                 transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
               >
-                {service.icon}
+                {service.icon ? (
+                  <img src={`/api/service/media/${service.icon}`} alt={`${service.title} icon`} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                ) : (
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7V11C2 16.55 5.84 21.74 11 23C16.16 21.74 20 16.55 20 11V7L12 2Z" fill="currentColor"/>
+                  </svg>
+                )}
               </motion.div>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
@@ -79,7 +85,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
               >
-                <img src={service.image} alt={service.title} />
+                <img src={`/api/service/media/${service.image}`} alt={service.title} />
                 <div className="modal-image-overlay"></div>
               </motion.div>
 
@@ -102,7 +108,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                   >
                     <h3>Key Features</h3>
                     <div className="modal-features-grid">
-                      {service.features.map((feature, idx) => (
+                      {(service.characteristics || []).map((feature, idx) => (
                         <motion.div
                           key={idx}
                           className="modal-feature"

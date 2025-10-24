@@ -50,6 +50,11 @@ class ServiceController extends BasicController
             }));
         }
 
+        // Procesar benefits (ya viene como string, solo asegurarse que existe)
+        if (!$request->has('benefits')) {
+            $body['benefits'] = null;
+        }
+
         return $body;
     }
 
