@@ -102,8 +102,8 @@ const ADKAssist = () => {
   // Manejar scroll con wheel event y throttle
   useEffect(() => {
     const handleWheel = (e) => {
-      // Solo bloquear si el mockup está visible Y no estamos en la última imagen
-      if (!mockupInView || currentScreen >= appScreens.length - 1) return;
+      // Solo activar cuando el mockup está visible
+      if (!mockupInView) return;
 
       // Si estamos en transición, ignorar el scroll
       if (isTransitioning) {
@@ -114,37 +114,36 @@ const ADKAssist = () => {
 
       const delta = e.deltaY;
 
-      // Si estamos viendo las imágenes
       if (delta > 0) {
         // Scroll hacia abajo
         if (currentScreen < appScreens.length - 1) {
+          // Aún hay imágenes por ver, bloquear scroll y avanzar
           e.preventDefault();
           e.stopPropagation();
           
           setIsTransitioning(true);
           setCurrentScreen(prev => prev + 1);
           
-          // Liberar después de 800ms (duración de la transición)
           setTimeout(() => {
             setIsTransitioning(false);
           }, 800);
         }
-        // Si llegamos a la última imagen, NO prevenir - permitir scroll normal
+        // Si estamos en la última imagen (9), permitir scroll normal hacia abajo
       } else {
         // Scroll hacia arriba
         if (currentScreen > 0) {
+          // Hay imágenes anteriores, bloquear scroll y retroceder
           e.preventDefault();
           e.stopPropagation();
           
           setIsTransitioning(true);
           setCurrentScreen(prev => prev - 1);
           
-          // Liberar después de 800ms
           setTimeout(() => {
             setIsTransitioning(false);
           }, 800);
         }
-        // Si estamos en la primera imagen, permitir scroll normal hacia arriba
+        // Si estamos en la primera imagen (0), permitir scroll normal hacia arriba
       }
     };
 
