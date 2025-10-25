@@ -13,7 +13,7 @@ import CreateReactScript from './Utils/CreateReactScript';
 import Base from './Components/Tailwind/Base';
 import { createRoot } from 'react-dom/client';
 
-const Home = ({ services = [], generals = [], sliders = [], indicators = [], staff = [] }) => {
+const Home = ({ services = [], generals = [], sliders = [], indicators = [], staff = [], socials = [] }) => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Home = ({ services = [], generals = [], sliders = [], indicators = [], sta
       <Services services={services} />
       <ADKAssist />
       <Contact services={services} generals={generals} />
-      <Footer />
+      <Footer socials={socials} />
     </div>
   );
 }

@@ -1,9 +1,67 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import {
+  FaFacebook,
+  FaTwitter,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+  FaTiktok,
+  FaWhatsapp,
+  FaTelegram,
+  FaDiscord,
+  FaSnapchat,
+  FaPinterest,
+  FaReddit
+} from 'react-icons/fa';
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ socials = [] }) => {
   const currentYear = new Date().getFullYear();
+
+  // Mapeo de redes sociales a iconos
+  const socialIcons = {
+    facebook: FaFacebook,
+    instagram: FaInstagram,
+    twitter: FaTwitter,
+    linkedin: FaLinkedin,
+    youtube: FaYoutube,
+    tiktok: FaTiktok,
+    whatsapp: FaWhatsapp,
+    telegram: FaTelegram,
+    discord: FaDiscord,
+    snapchat: FaSnapchat,
+    pinterest: FaPinterest,
+    reddit: FaReddit
+  };
+
+  // Función para mapear las redes sociales desde la BD
+  const parseSocials = (socialsArray) => {
+    if (!socialsArray || !Array.isArray(socialsArray)) return [];
+
+    return socialsArray
+      .filter(item => item && item.icon && item.link)
+      .map(item => {
+        // Buscar la clave del icono (ej: 'fab fa-facebook' -> 'facebook')
+        const socialKey = Object.keys(socialIcons).find(key => 
+          item.icon.includes(key) || item.description?.toLowerCase().includes(key)
+        );
+        
+        if (!socialKey) return null;
+        
+        const IconComponent = socialIcons[socialKey];
+        if (!IconComponent) return null;
+
+        return {
+          name: item.name || item.description || socialKey.charAt(0).toUpperCase() + socialKey.slice(1),
+          icon: IconComponent,
+          href: item.link
+        };
+      })
+      .filter(item => item !== null);
+  };
+
+  const socialLinks = parseSocials(socials);
 
   const footerLinks = {
     company: [
@@ -25,13 +83,6 @@ const Footer = () => {
       { name: 'Terms of Service', href: '#' }
     ]
   };
-
-  const socialLinks = [
-    { name: 'LinkedIn', icon: '💼', href: '#' },
-    { name: 'Twitter', icon: '🐦', href: '#' },
-    { name: 'Facebook', icon: '📘', href: '#' },
-    { name: 'Instagram', icon: '📷', href: '#' }
-  ];
 
   const handleLinkClick = (e, href) => {
     if (href.startsWith('#')) {
@@ -55,26 +106,35 @@ const Footer = () => {
             transition={{ duration: 0.6 }}
           >
             <div className="footer-logo">
-              <span className="logo-text">ADK</span>
-              <span className="logo-tech">Technology</span>
+              <img
+                src="/assets/img/logo.png"
+                alt="ADK Technology Logo"
+                width="100px"
+                className="h-14 !w-auto max-w-[100px]"
+              />
             </div>
             <p className="footer-description">
               Empowering businesses with cutting-edge technology solutions
               for over 10 years. Innovation, security, and excellence in every project.
             </p>
             <div className="social-links">
-              {socialLinks.map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  className="social-link"
-                  whileHover={{ scale: 1.2, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                  aria-label={social.name}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
+              {socialLinks.map((social, index) => {
+                const IconComponent = social.icon;
+                return (
+                  <motion.a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-link"
+                    whileHover={{ scale: 1.2, rotate: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    aria-label={social.name}
+                  >
+                    <IconComponent size={20} />
+                  </motion.a>
+                );
+              })}
             </div>
           </motion.div>
 
