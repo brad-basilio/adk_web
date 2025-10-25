@@ -553,3 +553,113 @@
     font-size: 1rem;
   }
 }
+
+/* Policy content styling */
+.modal-policy-content {
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.modal-policy-content h1,
+.modal-policy-content h2,
+.modal-policy-content h3,
+.modal-policy-content h4,
+.modal-policy-content h5,
+.modal-policy-content h6 {
+  color: #fff;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.modal-policy-content h1 {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #0066ff, #00ccff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.modal-policy-content h2 {
+  font-size: 1.75rem;
+  color: #00ccff;
+}
+
+.modal-policy-content h3 {
+  font-size: 1.5rem;
+  color: #66d9ff;
+}
+
+.modal-policy-content p {
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.modal-policy-content ul,
+.modal-policy-content ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.modal-policy-content li {
+  margin-bottom: 0.5rem;
+}
+
+.modal-policy-content a {
+  color: #00ccff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.modal-policy-content a:hover {
+  color: #66d9ff;
+  text-decoration: underline;
+}
+
+.modal-policy-content strong,
+.modal-policy-content b {
+  color: #fff;
+  font-weight: 600;
+}
+
+.modal-policy-content code {
+  background: rgba(0, 102, 255, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  color: #00ccff;
+}
+
+.modal-policy-content blockquote {
+  border-left: 4px solid #0066ff;
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+.modal-policy-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.modal-policy-content th,
+.modal-policy-content td {
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  text-align: left;
+}
+
+.modal-policy-content th {
+  background: rgba(0, 102, 255, 0.1);
+  color: #fff;
+  font-weight: 600;
+}
+
+.modal-policy-content td {
+  color: rgba(255, 255, 255, 0.85);
+}
+

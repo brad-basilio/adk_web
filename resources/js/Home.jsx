@@ -33,7 +33,7 @@ const Home = ({ services = [], generals = [], sliders = [], indicators = [], sta
       <Services services={services} />
       <ADKAssist />
       <Contact services={services} generals={generals} />
-      <Footer socials={socials} />
+      <Footer socials={socials} services={services} generals={generals} />
     </div>
   );
 }

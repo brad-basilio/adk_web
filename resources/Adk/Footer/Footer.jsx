@@ -1,5 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaFacebook,
   FaTwitter,
@@ -14,10 +14,15 @@ import {
   FaPinterest,
   FaReddit
 } from 'react-icons/fa';
+import ServiceModal from '../Services/ServiceModal';
 import './Footer.css';
 
-const Footer = ({ socials = [] }) => {
+const Footer = ({ socials = [], services = [], generals = [] }) => {
   const currentYear = new Date().getFullYear();
+  const [selectedService, setSelectedService] = useState(null);
+  const [serviceModalOpen, setServiceModalOpen] = useState(false);
+  const [selectedPolicy, setSelectedPolicy] = useState(null);
+  const [policyModalOpen, setPolicyModalOpen] = useState(false);
 
   // Mapeo de redes sociales a iconos
   const socialIcons = {
@@ -63,26 +68,55 @@ const Footer = ({ socials = [] }) => {
 
   const socialLinks = parseSocials(socials);
 
-  const footerLinks = {
-    company: [
-      { name: 'About Us', href: '#about' },
-      { name: 'Services', href: '#services' },
-      { name: 'Careers', href: '#' },
-      { name: 'Blog', href: '#' }
-    ],
-    services: [
-      { name: 'Tech Support', href: '#services' },
-      { name: 'Cyber Security', href: '#services' },
-      { name: 'Smart Home', href: '#services' },
-      { name: 'ADK Assist', href: '#adk-assist' }
-    ],
-    connect: [
-      { name: 'Contact Us', href: '#contact' },
-      { name: 'Support', href: '#' },
-      { name: 'Privacy Policy', href: '#' },
-      { name: 'Terms of Service', href: '#' }
-    ]
+  // Obtener datos de generals
+  const getGeneralValue = (correlative) => {
+    const general = generals?.find(g => g.correlative === correlative);
+    return general?.description || '';
   };
+
+  // Links del Company (mismo que Navbar)
+  const companyLinks = [
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Services', href: '#services' },
+    { name: 'ADK Assist', href: '#adk-assist' },
+    { name: 'Contact', href: '#contact' }
+  ];
+
+  // Links de servicios dinámicos (limitados a 4)
+  const serviceLinks = services.slice(0, 4).map(service => ({
+    name: service.title,
+    service: service,
+    onClick: () => {
+      setSelectedService(service);
+      setServiceModalOpen(true);
+    }
+  }));
+
+  // Links de Connect con políticas
+  const connectLinks = [
+    { name: 'Contact Us', href: '#contact' },
+    { 
+      name: 'Privacy Policy', 
+      onClick: () => {
+        setSelectedPolicy({
+          title: 'Privacy Policy',
+          content: getGeneralValue('privacy_policy')
+        });
+        setPolicyModalOpen(true);
+      }
+    },
+    { 
+      name: 'Terms of Service', 
+      onClick: () => {
+        setSelectedPolicy({
+          title: 'Terms & Conditions',
+          content: getGeneralValue('terms_conditions')
+        });
+        setPolicyModalOpen(true);
+      }
+    }
+  ];
 
   const handleLinkClick = (e, href) => {
     if (href.startsWith('#')) {
@@ -148,7 +182,7 @@ const Footer = ({ socials = [] }) => {
             <div className="footer-column">
               <h4 className="footer-title">Company</h4>
               <ul className="footer-list">
-                {footerLinks.company.map((link, index) => (
+                {companyLinks.map((link, index) => (
                   <li key={index}>
                     <a
                       href={link.href}
@@ -165,15 +199,14 @@ const Footer = ({ socials = [] }) => {
             <div className="footer-column">
               <h4 className="footer-title">Services</h4>
               <ul className="footer-list">
-                {footerLinks.services.map((link, index) => (
+                {serviceLinks.map((link, index) => (
                   <li key={index}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link.href)}
+                    <button
+                      onClick={link.onClick}
                       className="footer-link"
                     >
                       {link.name}
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -182,15 +215,24 @@ const Footer = ({ socials = [] }) => {
             <div className="footer-column">
               <h4 className="footer-title">Connect</h4>
               <ul className="footer-list">
-                {footerLinks.connect.map((link, index) => (
+                {connectLinks.map((link, index) => (
                   <li key={index}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleLinkClick(e, link.href)}
-                      className="footer-link"
-                    >
-                      {link.name}
-                    </a>
+                    {link.href ? (
+                      <a
+                        href={link.href}
+                        onClick={(e) => handleLinkClick(e, link.href)}
+                        className="footer-link"
+                      >
+                        {link.name}
+                      </a>
+                    ) : (
+                      <button
+                        onClick={link.onClick}
+                        className="footer-link"
+                      >
+                        {link.name}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -217,6 +259,87 @@ const Footer = ({ socials = [] }) => {
       <div className="footer-background">
         <div className="footer-grid"></div>
       </div>
+
+      {/* Modal de servicio */}
+      <ServiceModal
+        service={selectedService}
+        isOpen={serviceModalOpen}
+        onClose={() => setServiceModalOpen(false)}
+      />
+
+      {/* Modal de políticas */}
+      <AnimatePresence>
+        {policyModalOpen && selectedPolicy && (
+          <>
+            <motion.div
+              className="modal-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setPolicyModalOpen(false)}
+            />
+            <motion.div
+              className="service-modal"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{
+                type: "spring",
+                damping: 25,
+                stiffness: 300
+              }}
+            >
+              <button className="modal-close" onClick={() => setPolicyModalOpen(false)}>
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+
+              <div className="modal-header">
+                <motion.div
+                  className="modal-icon"
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={{ scale: 1, rotate: 0 }}
+                  transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M14 2V8H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 13H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M16 17H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M10 9H9H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </motion.div>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  {selectedPolicy.title}
+                </motion.h2>
+              </div>
+
+              <div className="modal-content-grid" style={{ display: 'block' }}>
+                <div className="modal-scrollable">
+                  <div className="modal-info-section">
+                    <motion.div
+                      className="modal-section"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                    >
+                      <div 
+                        className="modal-policy-content"
+                        dangerouslySetInnerHTML={{ __html: selectedPolicy.content }}
+                      />
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </footer>
   );
 };
