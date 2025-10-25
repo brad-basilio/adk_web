@@ -5,6 +5,7 @@ import '../css/app.css';
 import Hero from '../Adk/Hero/Hero';
 import About from '../Adk/About/About';
 import Services from '../Adk/Services/Services';
+import Testimonials from '../Adk/Testimonials/Testimonials';
 import ADKAssist from '../Adk/ADKAssist/ADKAssist';
 import Contact from '../Adk/Contact/Contact';
 import Footer from '../Adk/Footer/Footer';
@@ -13,7 +14,7 @@ import CreateReactScript from './Utils/CreateReactScript';
 import Base from './Components/Tailwind/Base';
 import { createRoot } from 'react-dom/client';
 
-const Home = ({ services = [], generals = [], sliders = [], indicators = [], staff = [], socials = [] }) => {
+const Home = ({ services = [], generals = [], sliders = [], indicators = [], staff = [], socials = [], testimonies = [] }) => {
   const [scrollY, setScrollY] = useState(0);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const Home = ({ services = [], generals = [], sliders = [], indicators = [], sta
       <Hero scrollY={scrollY} sliders={sliders} indicators={indicators} />
       <About indicators={indicators} staff={staff} />
       <Services services={services} />
+      <Testimonials testimonies={testimonies} />
       <ADKAssist />
       <Contact services={services} generals={generals} />
       <Footer socials={socials} services={services} generals={generals} />
