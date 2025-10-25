@@ -180,7 +180,7 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <div className="footer-column">
-              <h4 className="footer-title">Company</h4>
+              <h4 className="footer-title !font-bold">Company</h4>
               <ul className="footer-list">
                 {companyLinks.map((link, index) => (
                   <li key={index}>
@@ -197,7 +197,7 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
             </div>
 
             <div className="footer-column">
-              <h4 className="footer-title">Services</h4>
+              <h4 className="footer-title !font-bold">Services</h4>
               <ul className="footer-list">
                 {serviceLinks.map((link, index) => (
                   <li key={index}>
@@ -213,7 +213,7 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
             </div>
 
             <div className="footer-column">
-              <h4 className="footer-title">Connect</h4>
+              <h4 className="footer-title !font-bold">Connect</h4>
               <ul className="footer-list">
                 {connectLinks.map((link, index) => (
                   <li key={index}>

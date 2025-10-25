@@ -117,7 +117,7 @@ const About = ({ indicators = [], staff = [] }) => {
         >
           <motion.div className="about-number">01</motion.div>
           <div>
-            <h2 className="section-title-minimal">About Us</h2>
+            <h2 className="section-title-minimal !font-bold">About Us</h2>
             <p className="section-subtitle-minimal">Trusted Technology Partner</p>
           </div>
         </motion.div>
@@ -176,7 +176,7 @@ const About = ({ indicators = [], staff = [] }) => {
             <div className="team-header-content">
               <motion.div className="team-number-modern">02</motion.div>
               <div>
-                <h3 className="team-title-modern">Meet Our Team</h3>
+                <h3 className="team-title-modern !font-bold">Meet Our Team</h3>
                 <p className="team-subtitle-modern">Experts driving innovation forward</p>
               </div>
             </div>

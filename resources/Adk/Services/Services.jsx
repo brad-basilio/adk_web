@@ -51,7 +51,7 @@ const Services = ({ services = [] }) => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="section-title">Our Services</h2>
+          <h2 className="section-title !font-bold">Our Services</h2>
           <p className="section-subtitle">Delivering cutting-edge technology solutions tailored to your business needs</p>
         </motion.div>
 

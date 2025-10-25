@@ -122,7 +122,7 @@ const Contact = ({ services = [], generals = [] }) => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="section-title">Get In Touch</h2>
+          <h2 className="section-title !font-bold">Get In Touch</h2>
           <p className="section-subtitle">Let's discuss how we can help transform your business with our technology solutions</p>
         </motion.div>
 
@@ -163,7 +163,7 @@ const Contact = ({ services = [], generals = [] }) => {
               transition={{ duration: 0.8, delay: 0.5 }}
             >
               <div className="cta-content">
-                <h3>Ready to Start Your Project?</h3>
+                <h3 className="!font-bold">Ready to Start Your Project?</h3>
                 <p>Our team is available 24/7 to answer your questions and provide support. Let's build something amazing together.</p>
                 <div className="cta-badges">
                   <div className="badge">

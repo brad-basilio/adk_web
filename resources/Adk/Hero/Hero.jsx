@@ -104,7 +104,7 @@ const Hero = ({ scrollY, sliders = [], indicators = [] }) => {
           <AnimatePresence mode="wait">
             <motion.h1
               key={`title-${currentSlide}`}
-              className="hero-title"
+              className="hero-title !font-bold"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}

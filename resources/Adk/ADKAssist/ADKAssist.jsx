@@ -102,7 +102,7 @@ const ADKAssist = () => {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="section-title gold-title">ADK Assist</h2>
+          <h2 className="section-title gold-title !font-bold">ADK Assist</h2>
           <p className="section-subtitle gold-subtitle">Your Personal Tech Support Companion</p>
         </motion.div>
 
