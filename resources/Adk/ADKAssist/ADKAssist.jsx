@@ -1,32 +1,165 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import './ADKAssist.css';
 
 const ADKAssist = () => {
+  const sectionRef = useRef(null);
+  const mockupRef = useRef(null);
   const [ref, inView] = useInView({
     threshold: 0.1,
     triggerOnce: false
   });
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
+  const [mockupInView, setMockupInView] = useState(false);
+  const [currentScreen, setCurrentScreen] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const phoneY = useTransform(scrollYProgress, [0, 0.5, 1], [200, 0, -200]);
-  const phoneRotate = useTransform(scrollYProgress, [0, 0.5, 1], [-15, 0, 15]);
-  const phoneScale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.7, 1, 1, 0.7]);
+  // Configuración de las pantallas de la app
+  const appScreens = [
+    {
+      id: 1,
+      image: '/assets/adkassist/1.webp',
+      title: 'Access Your Assistance in Seconds',
+      subtitle: 'Secure login screen against a city backdrop.'
+    },
+    {
+      id: 2,
+      image: '/assets/adkassist/2.webp',
+      title: 'Your Devices at a Glance',
+      subtitle: 'Home screen showing your profile, location, and registered devices.'
+    },
+    {
+      id: 3,
+      image: '/assets/adkassist/3.webp',
+      title: 'Manage and Create Support Tickets Quickly',
+      subtitle: 'Tickets screen with filters and list of existing support tickets.'
+    },
+    {
+      id: 4,
+      image: '/assets/adkassist/4.webp',
+      title: 'Create a Support Ticket Quickly and Easily',
+      subtitle: 'Screen for creating a new support ticket with all necessary fields.'
+    },
+    {
+      id: 5,
+      image: '/assets/adkassist/5.webp',
+      title: 'Complete Technical Details of the Problem',
+      subtitle: 'Ticket Details screen with problem description and device specs.'
+    },
+    {
+      id: 6,
+      image: '/assets/adkassist/6.webp',
+      title: 'Complete Ticket Notification History',
+      subtitle: 'Notifications screen showing ticket updates and appointments.'
+    },
+    {
+      id: 7,
+      image: '/assets/adkassist/7.webp',
+      title: 'Real-Time Ticket Notifications',
+      subtitle: 'Pop-up notification with assigned technician and status updates.'
+    },
+    {
+      id: 8,
+      image: '/assets/adkassist/8.webp',
+      title: 'Your Profile and Contact',
+      subtitle: 'Profile screen with personal information and contact details.'
+    },
+    {
+      id: 9,
+      image: '/assets/adkassist/9.webp',
+      title: 'Total Control over your Session',
+      subtitle: 'Profile screen with logout confirmation dialog.'
+    },
+    {
+      id: 10,
+      image: '/assets/adkassist/10.webp',
+      title: 'Elegant Design and Dark Mode',
+      subtitle: 'Home screen in Dark Mode highlighting user profile and devices.'
+    }
+  ];
 
-  const layer1Y = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const layer2Y = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const layer3Y = useTransform(scrollYProgress, [0, 1], [0, -300]);
+  // Detectar cuando el mockup está completamente visible
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setMockupInView(entry.isIntersecting && entry.intersectionRatio >= 0.8);
+      },
+      { threshold: 0.8 } // 80% del mockup debe estar visible
+    );
 
-  const featuresLeftY = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  const featuresRightY = useTransform(scrollYProgress, [0, 1], [-100, 100]);
+    if (mockupRef.current) {
+      observer.observe(mockupRef.current);
+    }
 
-  const orb1X = useTransform(scrollYProgress, [0, 1], [-100, 100]);
-  const orb2X = useTransform(scrollYProgress, [0, 1], [100, -100]);
+    return () => {
+      if (mockupRef.current) {
+        observer.unobserve(mockupRef.current);
+      }
+    };
+  }, []);
+
+  // Manejar scroll con wheel event y throttle
+  useEffect(() => {
+    const handleWheel = (e) => {
+      // Solo bloquear si el mockup está visible Y no estamos en la última imagen
+      if (!mockupInView || currentScreen >= appScreens.length - 1) return;
+
+      // Si estamos en transición, ignorar el scroll
+      if (isTransitioning) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+
+      const delta = e.deltaY;
+
+      // Si estamos viendo las imágenes
+      if (delta > 0) {
+        // Scroll hacia abajo
+        if (currentScreen < appScreens.length - 1) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          setIsTransitioning(true);
+          setCurrentScreen(prev => prev + 1);
+          
+          // Liberar después de 800ms (duración de la transición)
+          setTimeout(() => {
+            setIsTransitioning(false);
+          }, 800);
+        }
+        // Si llegamos a la última imagen, NO prevenir - permitir scroll normal
+      } else {
+        // Scroll hacia arriba
+        if (currentScreen > 0) {
+          e.preventDefault();
+          e.stopPropagation();
+          
+          setIsTransitioning(true);
+          setCurrentScreen(prev => prev - 1);
+          
+          // Liberar después de 800ms
+          setTimeout(() => {
+            setIsTransitioning(false);
+          }, 800);
+        }
+        // Si estamos en la primera imagen, permitir scroll normal hacia arriba
+      }
+    };
+
+    const section = sectionRef.current;
+    if (section) {
+      section.addEventListener('wheel', handleWheel, { passive: false });
+      return () => section.removeEventListener('wheel', handleWheel);
+    }
+  }, [mockupInView, currentScreen, isTransitioning, appScreens.length]);
+
+  // Combinar refs
+  const combinedRef = (node) => {
+    sectionRef.current = node;
+    ref(node);
+  };
 
   const features = [
     {
@@ -71,28 +204,17 @@ const ADKAssist = () => {
   const rightFeatures = features.filter(f => f.position === 'right');
 
   return (
-    <section id="adk-assist" className="adk-assist section" ref={ref}>
+    <section 
+      id="adk-assist" 
+      className="adk-assist section" 
+      ref={combinedRef}
+    >
       <div className="assist-background">
-        <motion.div
-          className="gold-orb orb-1"
-          style={{ x: orb1X }}
-        />
-        <motion.div
-          className="gold-orb orb-2"
-          style={{ x: orb2X }}
-        />
-        <motion.div
-          className="parallax-layer layer-1"
-          style={{ y: layer1Y }}
-        />
-        <motion.div
-          className="parallax-layer layer-2"
-          style={{ y: layer2Y }}
-        />
-        <motion.div
-          className="parallax-layer layer-3"
-          style={{ y: layer3Y }}
-        />
+        <div className="gold-orb orb-1" />
+        <div className="gold-orb orb-2" />
+        <div className="parallax-layer layer-1" />
+        <div className="parallax-layer layer-2" />
+        <div className="parallax-layer layer-3" />
       </div>
 
       <div className="container">
@@ -107,10 +229,7 @@ const ADKAssist = () => {
         </motion.div>
 
         <div className="assist-parallax-scene">
-          <motion.div
-            className="features-column features-left"
-            style={{ y: featuresLeftY }}
-          >
+          <div className="features-column features-left">
             {leftFeatures.map((feature, index) => (
               <motion.div
                 key={index}
@@ -127,102 +246,47 @@ const ADKAssist = () => {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="phone-mockup-parallax"
-            style={{
-              y: phoneY,
-              rotateY: phoneRotate,
-              scale: phoneScale
-            }}
-          >
+          <div className="phone-mockup-parallax" ref={mockupRef}>
             <div className="phone-frame">
               <div className="phone-notch"></div>
               <div className="phone-screen">
-                <div className="app-header">
+                {/* Solo las imágenes cambian */}
+                {appScreens.map((screen, index) => (
                   <motion.div
-                    className="app-logo"
-                    animate={{
-                      textShadow: [
-                        "0 0 10px rgba(212, 175, 55, 0.5)",
-                        "0 0 20px rgba(212, 175, 55, 0.8)",
-                        "0 0 10px rgba(212, 175, 55, 0.5)"
-                      ]
+                    key={screen.id}
+                    className="app-screen-image"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      zIndex: currentScreen === index ? 2 : 1
                     }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    ADK
-                  </motion.div>
-                  <div className="app-title">Assist</div>
-                </div>
-                <div className="app-content">
-                  <motion.div
-                    className="status-card"
+                    initial={{ opacity: 0 }}
                     animate={{
-                      boxShadow: [
-                        "0 0 20px rgba(212, 175, 55, 0.2)",
-                        "0 0 40px rgba(212, 175, 55, 0.4)",
-                        "0 0 20px rgba(212, 175, 55, 0.2)"
-                      ]
+                      opacity: currentScreen === index ? 1 : 0,
+                      scale: currentScreen === index ? 1 : 0.95
                     }}
-                    transition={{ duration: 3, repeat: Infinity }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.25, 0.1, 0.25, 1]
+                    }}
                   >
-                    <motion.div
-                      className="status-icon"
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-                    >
-                      ✓
-                    </motion.div>
-                    <div className="status-text">All Systems Operational</div>
+                    <img 
+                      src={screen.image} 
+                      alt={screen.title}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        borderRadius: '32px'
+                      }}
+                    />
                   </motion.div>
-                  <div className="quick-actions">
-                    <motion.div
-                      className="action-btn"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      New Ticket
-                    </motion.div>
-                    <motion.div
-                      className="action-btn"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      Live Chat
-                    </motion.div>
-                  </div>
-                  <div className="recent-activity">
-                    {[
-                      { text: 'Ticket #1234 Resolved', delay: 0 },
-                      { text: 'Security Scan Complete', delay: 0.2 },
-                      { text: 'System Update Available', delay: 0.4 }
-                    ].map((item, idx) => (
-                      <motion.div
-                        key={idx}
-                        className="activity-item"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={inView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: item.delay, duration: 0.5 }}
-                      >
-                        <motion.div
-                          className="activity-dot"
-                          animate={{
-                            scale: [1, 1.3, 1],
-                            opacity: [0.7, 1, 0.7]
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: idx * 0.3
-                          }}
-                        />
-                        <div className="activity-text">{item.text}</div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
+                ))}
               </div>
               <div className="phone-button"></div>
             </div>
@@ -235,12 +299,9 @@ const ADKAssist = () => {
               }}
               transition={{ duration: 4, repeat: Infinity }}
             />
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="features-column features-right"
-            style={{ y: featuresRightY }}
-          >
+          <div className="features-column features-right">
             {rightFeatures.map((feature, index) => (
               <motion.div
                 key={index}
@@ -257,7 +318,37 @@ const ADKAssist = () => {
                 </div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
+        </div>
+
+        {/* Información de la pantalla actual */}
+        <div className="screen-info-section" style={{ marginTop: '2rem' }}>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentScreen}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="screen-info-content"
+            >
+              <h3 className="screen-title">{appScreens[currentScreen].title}</h3>
+              <p className="screen-subtitle">{appScreens[currentScreen].subtitle}</p>
+              <div className="screen-indicator">
+                {appScreens.map((_, idx) => (
+                  <motion.div
+                    key={idx}
+                    className={`indicator-dot ${idx === currentScreen ? 'active' : ''}`}
+                    animate={{
+                      scale: idx === currentScreen ? 1.5 : 1,
+                      opacity: idx === currentScreen ? 1 : 0.4
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         <motion.div
@@ -287,31 +378,6 @@ const ADKAssist = () => {
           </motion.a>
         </motion.div>
       </div>
-
-      <motion.div
-        className="floating-particles"
-        style={{ y: layer2Y }}
-      >
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </motion.div>
     </section>
   );
 };
