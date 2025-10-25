@@ -9,6 +9,7 @@ const Navbar = ({ scrollY }) => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Services', href: '#services' },
+    { name: 'Testimonials', href: '#testimonials' },
     { name: 'ADK Assist', href: '#adk-assist' },
     { name: 'Contact', href: '#contact' }
   ];
