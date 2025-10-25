@@ -319,21 +319,19 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
                 </motion.h2>
               </div>
 
-              <div className="modal-content-grid" style={{ display: 'block' }}>
-                <div className="modal-scrollable">
-                  <div className="modal-info-section">
-                    <motion.div
-                      className="modal-section"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                    >
-                      <div 
-                        className="modal-policy-content"
-                        dangerouslySetInnerHTML={{ __html: selectedPolicy.content }}
-                      />
-                    </motion.div>
-                  </div>
+              <div className="modal-scrollable">
+                <div className="modal-info-section">
+                  <motion.div
+                    className="modal-section"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <div 
+                      className="modal-policy-content"
+                      dangerouslySetInnerHTML={{ __html: selectedPolicy.content }}
+                    />
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
