@@ -205,8 +205,12 @@ const ADKAssist = () => {
                   className="showcase-mockup"
                   initial={{ 
                     scale: 0.85,
-                    x: index % 2 === 0 ? -250 : 250,
-                    y: index % 3 === 0 ? 100 : index % 3 === 1 ? -100 : 0,
+                    x: typeof window !== 'undefined' && window.innerWidth <= 968 
+                      ? 0 
+                      : index % 2 === 0 ? -250 : 250,
+                    y: typeof window !== 'undefined' && window.innerWidth <= 968 
+                      ? 0 
+                      : index % 3 === 0 ? 100 : index % 3 === 1 ? -100 : 0,
                     opacity: 0.3
                   }}
                   whileInView={{
@@ -219,8 +223,12 @@ const ADKAssist = () => {
                   }}
                   exit={{
                     scale: 0.85,
-                    x: index % 2 === 0 ? 250 : -250,
-                    y: index % 3 === 0 ? -100 : index % 3 === 1 ? 100 : 0,
+                    x: typeof window !== 'undefined' && window.innerWidth <= 968 
+                      ? 0 
+                      : index % 2 === 0 ? 250 : -250,
+                    y: typeof window !== 'undefined' && window.innerWidth <= 968 
+                      ? 0 
+                      : index % 3 === 0 ? -100 : index % 3 === 1 ? 100 : 0,
                     opacity: 0.3
                   }}
                   viewport={{ once: false, amount: 0.3, margin: "-120px" }}
@@ -270,14 +278,22 @@ const ADKAssist = () => {
                   className="showcase-info"
                   initial={{ 
                     opacity: 0, 
-                    x: index % 2 === 0 ? 120 : -120,
-                    y: 40
+                    x: typeof window !== 'undefined' && window.innerWidth <= 968 
+                      ? 0 
+                      : index % 2 === 0 ? 120 : -120,
+                    y: typeof window !== 'undefined' && window.innerWidth <= 968 
+                      ? 20 
+                      : 40
                   }}
                   whileInView={{ opacity: 1, x: 0, y: 0 }}
                   exit={{
                     opacity: 0,
-                    x: index % 2 === 0 ? -120 : 120,
-                    y: -40
+                    x: typeof window !== 'undefined' && window.innerWidth <= 968 
+                      ? 0 
+                      : index % 2 === 0 ? -120 : 120,
+                    y: typeof window !== 'undefined' && window.innerWidth <= 968 
+                      ? -20 
+                      : -40
                   }}
                   viewport={{ once: false, amount: 0.4, margin: "-100px" }}
                   transition={{ 
