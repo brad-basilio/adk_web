@@ -79,7 +79,7 @@ const Services = ({ services = [] }) => {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
-                    whileHover={{ y: -10 }}
+                    whileHover={{ y: 0 }}
                     onClick={() => handleCardClick(service.originalIndex)}
                   >
                     <div className="service-card-image">

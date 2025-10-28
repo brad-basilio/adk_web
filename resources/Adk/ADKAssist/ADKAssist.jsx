@@ -333,7 +333,9 @@ const ADKAssist = () => {
           viewport={{ once: true }}
         >
           <motion.a
-            href="#"
+            href="https://apps.apple.com/pe/app/adk-assist-v2-0/id6753195828?l=en-GB"
+            target="_blank"
+            rel="noopener noreferrer"
             className="app-store-button"
             whileHover={{
               scale: 1.05,

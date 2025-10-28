@@ -211,7 +211,7 @@ const About = ({ indicators = [], staff = [] }) => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 * index }}
-                whileHover={{ y: -10 }}
+                whileHover={{ y: 0 }}
                 onClick={() => setSelectedMember(member)}
               >
                 <div className="team-card-inner">
@@ -309,33 +309,35 @@ const About = ({ indicators = [], staff = [] }) => {
                 <h3 className="modal-name">{selectedMember.name}</h3>
                 <p className="modal-role">{selectedMember.role}</p>
 
-                <p className="modal-bio">{selectedMember.bio}</p>
+                <div className="modal-scrollable-content">
+                  <p className="modal-bio">{selectedMember.bio}</p>
 
-                <div className="modal-expertise-section">
-                  <h4 className="modal-section-title">Expertise</h4>
-                  <div className="modal-expertise-grid">
-                    {selectedMember.expertise.map((skill, idx) => (
-                      <span key={idx} className="modal-expertise-tag">{skill}</span>
-                    ))}
-                  </div>
-                </div>
-
-                {selectedMember.socials && selectedMember.socials.length > 0 && (
-                  <div className="modal-contact-section">
-                    <h4 className="modal-section-title">Connect</h4>
-                    <div className="modal-social-links">
-                      {selectedMember.socials.map((social, idx) => {
-                        const IconComponent = social.icon;
-                        return (
-                          <a key={idx} href={social.link} className="modal-social-link">
-                            <IconComponent size={20} />
-                            <span>{social.name}</span>
-                          </a>
-                        );
-                      })}
+                  <div className="modal-expertise-section">
+                    <h4 className="modal-section-title">Expertise</h4>
+                    <div className="modal-expertise-grid">
+                      {selectedMember.expertise.map((skill, idx) => (
+                        <span key={idx} className="modal-expertise-tag">{skill}</span>
+                      ))}
                     </div>
                   </div>
-                )}
+
+                  {selectedMember.socials && selectedMember.socials.length > 0 && (
+                    <div className="modal-contact-section">
+                      <h4 className="modal-section-title">Connect</h4>
+                      <div className="modal-social-links">
+                        {selectedMember.socials.map((social, idx) => {
+                          const IconComponent = social.icon;
+                          return (
+                            <a key={idx} href={social.link} className="modal-social-link" target="_blank" rel="noopener noreferrer">
+                              <IconComponent size={20} />
+                              <span>{social.name}</span>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </motion.div>
