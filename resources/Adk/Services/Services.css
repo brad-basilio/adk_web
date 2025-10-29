@@ -100,12 +100,16 @@
   flex: 1;
   overflow: hidden;
   position: relative;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .carousel-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
+  touch-action: pan-y;
 }
 
 .service-card {
@@ -376,12 +380,35 @@
   }
 
   .carousel-container {
-    flex-direction: column;
     gap: 1.5rem;
   }
 
   .carousel-btn {
-    display: none;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 10;
+  }
+
+  .carousel-btn.prev {
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carousel-btn.next {
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .carousel-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .services-carousel {
+    padding: 0 1rem;
   }
 
   .carousel-grid {
@@ -428,6 +455,20 @@
 }
 
 @media (max-width: 480px) {
+  .carousel-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .carousel-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .services-carousel {
+    padding: 0 0.5rem;
+  }
+
   .service-card-btn {
     font-size: 0.95rem;
     padding: 0.875rem 1.25rem;

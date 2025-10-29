@@ -13,6 +13,47 @@ const Services = ({ services = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedService, setSelectedService] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+
+  // Distancia mínima para considerar un swipe
+  const minSwipeDistance = 50;
+
+  // Detectar si es mobile
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      handleNext();
+    } else if (isRightSwipe) {
+      handlePrev();
+    }
+  };
 
 
 
@@ -35,7 +76,8 @@ const Services = ({ services = [] }) => {
 
   const getVisibleCards = () => {
     const cards = [];
-    for (let i = 0; i < 2; i++) {
+    const cardsToShow = isMobile ? 1 : 2;
+    for (let i = 0; i < cardsToShow; i++) {
       const index = (currentIndex + i) % services.length;
       cards.push({ ...services[index], originalIndex: index });
     }
@@ -62,7 +104,12 @@ const Services = ({ services = [] }) => {
             </svg>
           </button>
 
-          <div className="services-carousel">
+          <div 
+            className="services-carousel"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentIndex}
