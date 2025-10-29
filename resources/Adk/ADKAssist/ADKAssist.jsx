@@ -11,6 +11,30 @@ const ADKAssist = () => {
   });
 
   const [showRequestModal, setShowRequestModal] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar si es mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 968);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Auto-slide para mobile
+  useEffect(() => {
+    if (!isMobile) return;
+    
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % appScreens.length);
+    }, 4000);
+    
+    return () => clearInterval(interval);
+  }, [isMobile]);
 
   // Configuración de las pantallas de la app - TODAS SIN EFECTO 3D (planas)
   const appScreens = [
@@ -191,129 +215,183 @@ const ADKAssist = () => {
           <p className="section-subtitle gold-subtitle">Your Personal Tech Support Companion</p>
         </motion.div>
 
-        {/* Scrollytelling - Una sección por cada pantalla */}
-        <div className="app-showcase-scrollytelling">
-          {appScreens.map((screen, index) => (
-            <motion.div
-              key={screen.id}
-              className="showcase-screen-section"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: false, amount: 0.5 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="showcase-content">
-                {/* Mockup 3D */}
-                <motion.div
-                  className="showcase-mockup"
-                  initial={{ 
-                    scale: 0.85,
-                    x: typeof window !== 'undefined' && window.innerWidth <= 968 
-                      ? 0 
-                      : index % 2 === 0 ? -250 : 250,
-                    y: typeof window !== 'undefined' && window.innerWidth <= 968 
-                      ? 0 
-                      : index % 3 === 0 ? 100 : index % 3 === 1 ? -100 : 0,
-                    opacity: 0.3
-                  }}
-                  whileInView={{
-                    rotateY: screen.animation.rotateY,
-                    rotateX: screen.animation.rotateX,
-                    scale: screen.animation.scale,
-                    x: screen.animation.x,
-                    y: screen.animation.y,
-                    opacity: 1
-                  }}
-                  exit={{
-                    scale: 0.85,
-                    x: typeof window !== 'undefined' && window.innerWidth <= 968 
-                      ? 0 
-                      : index % 2 === 0 ? 250 : -250,
-                    y: typeof window !== 'undefined' && window.innerWidth <= 968 
-                      ? 0 
-                      : index % 3 === 0 ? -100 : index % 3 === 1 ? 100 : 0,
-                    opacity: 0.3
-                  }}
-                  viewport={{ once: false, amount: 0.3, margin: "-120px" }}
-                  transition={{
-                    duration: 1.1,
-                    ease: [0.22, 1, 0.36, 1],
-                    scale: { duration: 1, ease: "easeOut" },
-                    rotateY: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-                    rotateX: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-                    x: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
-                    y: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
-                    opacity: { duration: 0.8, ease: "easeInOut" }
-                  }}
-                >
-                  <div className="phone-mockup-3d">
-                    <div className="phone-reflection"></div>
-                    
-                    <div className="phone-frame-3d">
-                      <div className="phone-bezel">
-                        <div className="bezel-highlight"></div>
+        {/* Desktop: Scrollytelling - Una sección por cada pantalla */}
+        {!isMobile && (
+          <div className="app-showcase-scrollytelling">
+            {appScreens.map((screen, index) => (
+              <motion.div
+                key={screen.id}
+                className="showcase-screen-section"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: false, amount: 0.5 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="showcase-content">
+                  {/* Mockup 3D */}
+                  <motion.div
+                    className="showcase-mockup"
+                    initial={{ 
+                      scale: 0.85,
+                      x: index % 2 === 0 ? -250 : 250,
+                      y: index % 3 === 0 ? 100 : index % 3 === 1 ? -100 : 0,
+                      opacity: 0.3
+                    }}
+                    whileInView={{
+                      rotateY: screen.animation.rotateY,
+                      rotateX: screen.animation.rotateX,
+                      scale: screen.animation.scale,
+                      x: screen.animation.x,
+                      y: screen.animation.y,
+                      opacity: 1
+                    }}
+                    exit={{
+                      scale: 0.85,
+                      x: index % 2 === 0 ? 250 : -250,
+                      y: index % 3 === 0 ? -100 : index % 3 === 1 ? 100 : 0,
+                      opacity: 0.3
+                    }}
+                    viewport={{ once: false, amount: 0.3, margin: "-120px" }}
+                    transition={{
+                      duration: 1.1,
+                      ease: [0.22, 1, 0.36, 1],
+                      scale: { duration: 1, ease: "easeOut" },
+                      rotateY: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+                      rotateX: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
+                      x: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+                      y: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
+                      opacity: { duration: 0.8, ease: "easeInOut" }
+                    }}
+                  >
+                    <div className="phone-mockup-3d">
+                      <div className="phone-reflection"></div>
+                      
+                      <div className="phone-frame-3d">
+                        <div className="phone-bezel">
+                          <div className="bezel-highlight"></div>
+                        </div>
+                        
+                        <div className="phone-notch-3d"></div>
+                        
+                        <div className="phone-screen-3d">
+                          <div className="screen-glare"></div>
+                          <img 
+                            src={screen.image} 
+                            alt={screen.title}
+                            className="screen-image-3d"
+                          />
+                        </div>
+                        
+                        <div className="phone-power-button"></div>
+                        <div className="phone-volume-buttons">
+                          <div className="volume-up"></div>
+                          <div className="volume-down"></div>
+                        </div>
                       </div>
-                      
-                      <div className="phone-notch-3d"></div>
-                      
-                      <div className="phone-screen-3d">
-                        <div className="screen-glare"></div>
+
+                      <div className="phone-shadow-3d"></div>
+                    </div>
+                  </motion.div>
+
+                  {/* Información de la feature */}
+                  <motion.div
+                    className="showcase-info"
+                    initial={{ 
+                      opacity: 0, 
+                      x: index % 2 === 0 ? 120 : -120,
+                      y: 40
+                    }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    exit={{
+                      opacity: 0,
+                      x: index % 2 === 0 ? -120 : 120,
+                      y: -40
+                    }}
+                    viewport={{ once: false, amount: 0.4, margin: "-100px" }}
+                    transition={{ 
+                      duration: 1, 
+                      delay: 0.15,
+                      ease: [0.22, 1, 0.36, 1]
+                    }}
+                  >
+                    <span className="feature-number-big">0{index + 1}</span>
+                    <h3 className="feature-title-showcase">{screen.title}</h3>
+                    <h4 className="feature-subtitle-showcase">{screen.subtitle}</h4>
+                    <p className="feature-description-showcase">{screen.description}</p>
+                  </motion.div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Mobile: Carrusel Compacto */}
+        {isMobile && (
+          <div className="mobile-carousel-container">
+            <div className="carousel-wrapper">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  className="carousel-slide"
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {/* Phone Mockup */}
+                  <div className="mobile-phone-mockup">
+                    <div className="phone-frame-mobile">
+                      <div className="phone-notch-mobile"></div>
+                      <div className="phone-screen-mobile">
                         <img 
-                          src={screen.image} 
-                          alt={screen.title}
-                          className="screen-image-3d"
+                          src={appScreens[currentSlide].image} 
+                          alt={appScreens[currentSlide].title}
+                          className="screen-image-mobile"
                         />
                       </div>
-                      
-                      <div className="phone-power-button"></div>
-                      <div className="phone-volume-buttons">
-                        <div className="volume-up"></div>
-                        <div className="volume-down"></div>
-                      </div>
                     </div>
+                  </div>
 
-                    <div className="phone-shadow-3d"></div>
+                  {/* Info Compacta */}
+                  <div className="mobile-slide-info">
+                    <span className="mobile-slide-number">0{currentSlide + 1}</span>
+                    <h3 className="mobile-slide-title">{appScreens[currentSlide].title}</h3>
+                    <h4 className="mobile-slide-subtitle">{appScreens[currentSlide].subtitle}</h4>
+                    <p className="mobile-slide-description">{appScreens[currentSlide].description}</p>
                   </div>
                 </motion.div>
+              </AnimatePresence>
 
-                {/* Información de la feature */}
-                <motion.div
-                  className="showcase-info"
-                  initial={{ 
-                    opacity: 0, 
-                    x: typeof window !== 'undefined' && window.innerWidth <= 968 
-                      ? 0 
-                      : index % 2 === 0 ? 120 : -120,
-                    y: typeof window !== 'undefined' && window.innerWidth <= 968 
-                      ? 20 
-                      : 40
-                  }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
-                  exit={{
-                    opacity: 0,
-                    x: typeof window !== 'undefined' && window.innerWidth <= 968 
-                      ? 0 
-                      : index % 2 === 0 ? -120 : 120,
-                    y: typeof window !== 'undefined' && window.innerWidth <= 968 
-                      ? -20 
-                      : -40
-                  }}
-                  viewport={{ once: false, amount: 0.4, margin: "-100px" }}
-                  transition={{ 
-                    duration: 1, 
-                    delay: 0.15,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                >
-                  <span className="feature-number-big">0{index + 1}</span>
-                  <h3 className="feature-title-showcase">{screen.title}</h3>
-                  <h4 className="feature-subtitle-showcase">{screen.subtitle}</h4>
-                  <p className="feature-description-showcase">{screen.description}</p>
-                </motion.div>
+              {/* Navigation Dots */}
+              <div className="carousel-dots">
+                {appScreens.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
+                    onClick={() => setCurrentSlide(index)}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
               </div>
-            </motion.div>
-          ))}
-        </div>
+
+              {/* Navigation Arrows */}
+              <button 
+                className="carousel-arrow carousel-arrow-left"
+                onClick={() => setCurrentSlide((prev) => (prev - 1 + appScreens.length) % appScreens.length)}
+                aria-label="Previous slide"
+              >
+                ‹
+              </button>
+              <button 
+                className="carousel-arrow carousel-arrow-right"
+                onClick={() => setCurrentSlide((prev) => (prev + 1) % appScreens.length)}
+                aria-label="Next slide"
+              >
+                ›
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Features Grid Final */}
         <div className="features-grid-final">
