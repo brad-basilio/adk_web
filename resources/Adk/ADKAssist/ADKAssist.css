@@ -977,6 +977,12 @@
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+  cursor: grab;
+  user-select: none;
+}
+
+.carousel-slide:active {
+  cursor: grabbing;
 }
 
 /* Mobile Phone Mockup - Compacto */
@@ -985,6 +991,7 @@
   width: 280px;
   height: 560px;
   flex-shrink: 0;
+  pointer-events: none;
 }
 
 .phone-frame-mobile {
@@ -1025,6 +1032,8 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  pointer-events: none;
+  user-select: none;
 }
 
 /* Mobile Slide Info - Compacta */
@@ -1138,6 +1147,94 @@
   right: -20px;
 }
 
+/* ========================================
+   FEATURES SWIPER (MOBILE)
+   ======================================== */
+
+.features-swiper-container {
+  display: none; /* Oculto por defecto en desktop */
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+  padding: 0 1rem;
+}
+
+.features-swiper-slide {
+  width: 100%;
+  background: linear-gradient(145deg, rgba(212, 175, 55, 0.05) 0%, rgba(0, 0, 0, 0.3) 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+}
+
+.features-swiper-slide:active {
+  cursor: grabbing;
+}
+
+.features-swiper-slide .assist-feature {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 1rem;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 100%;
+}
+
+.features-swiper-slide .feature-icon-circle {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.features-swiper-slide .feature-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.features-swiper-slide .feature-description {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Features Navigation Dots - Centrados abajo */
+.features-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.5rem;
+}
+
+.feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.feature-dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--color-gold);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+
+.feature-dot:hover {
+  background: rgba(212, 175, 55, 0.6);
+  transform: scale(1.2);
+}
+
 @media (max-width: 1200px) {
   .showcase-content {
     gap: 4rem;
@@ -1212,6 +1309,16 @@
   .app-showcase-scrollytelling {
     display: none;
   }
+
+  /* Ocultar features grid desktop en mobile */
+  .features-grid {
+    display: none;
+  }
+
+  /* Mostrar features swiper en mobile */
+  .features-swiper-container {
+    display: block !important;
+  }
 }
 
 
@@ -1249,6 +1356,24 @@
 
   .carousel-arrow-right {
     right: -17px;
+  }
+
+  /* Features swiper adjustments */
+  .features-swiper-slide {
+    padding: 1.5rem;
+    min-height: 220px;
+  }
+
+  .features-swiper-slide .feature-icon-circle {
+    font-size: 2.5rem;
+  }
+
+  .features-swiper-slide .feature-title {
+    font-size: 1.3rem;
+  }
+
+  .features-swiper-slide .feature-description {
+    font-size: 0.95rem;
   }
 
   .showcase-screen-section {
@@ -1406,5 +1531,23 @@
 
   .carousel-arrow-right {
     right: -15px;
+  }
+
+  /* Features swiper smaller screens */
+  .features-swiper-slide {
+    padding: 1.25rem;
+    min-height: 200px;
+  }
+
+  .features-swiper-slide .feature-icon-circle {
+    font-size: 2.25rem;
+  }
+
+  .features-swiper-slide .feature-title {
+    font-size: 1.15rem;
+  }
+
+  .features-swiper-slide .feature-description {
+    font-size: 0.875rem;
   }
 }

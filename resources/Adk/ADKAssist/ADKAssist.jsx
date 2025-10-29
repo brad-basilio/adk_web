@@ -12,6 +12,7 @@ const ADKAssist = () => {
 
   const [showRequestModal, setShowRequestModal] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentFeatureSlide, setCurrentFeatureSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   // Detectar si es mobile
@@ -25,7 +26,7 @@ const ADKAssist = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Auto-slide para mobile
+  // Auto-slide para mobile (solo para app screens)
   useEffect(() => {
     if (!isMobile) return;
     
@@ -35,6 +36,30 @@ const ADKAssist = () => {
     
     return () => clearInterval(interval);
   }, [isMobile]);
+
+  // Handlers para swipe de app screens
+  const handleAppScreenSwipe = (event, info) => {
+    const threshold = 50;
+    if (info.offset.x > threshold) {
+      // Swipe derecha - slide anterior
+      setCurrentSlide((prev) => (prev - 1 + appScreens.length) % appScreens.length);
+    } else if (info.offset.x < -threshold) {
+      // Swipe izquierda - slide siguiente
+      setCurrentSlide((prev) => (prev + 1) % appScreens.length);
+    }
+  };
+
+  // Handlers para swipe de features
+  const handleFeatureSwipe = (event, info) => {
+    const threshold = 50;
+    if (info.offset.x > threshold) {
+      // Swipe derecha - feature anterior
+      setCurrentFeatureSlide((prev) => (prev - 1 + features.length) % features.length);
+    } else if (info.offset.x < -threshold) {
+      // Swipe izquierda - feature siguiente
+      setCurrentFeatureSlide((prev) => (prev + 1) % features.length);
+    }
+  };
 
   // Configuración de las pantallas de la app - TODAS SIN EFECTO 3D (planas)
   const appScreens = [
@@ -337,6 +362,10 @@ const ADKAssist = () => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -100 }}
                   transition={{ duration: 0.5 }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={handleAppScreenSwipe}
                 >
                   {/* Phone Mockup */}
                   <div className="mobile-phone-mockup">
@@ -347,6 +376,7 @@ const ADKAssist = () => {
                           src={appScreens[currentSlide].image} 
                           alt={appScreens[currentSlide].title}
                           className="screen-image-mobile"
+                          draggable={false}
                         />
                       </div>
                     </div>
@@ -395,31 +425,74 @@ const ADKAssist = () => {
 
         {/* Features Grid Final */}
         <div className="features-grid-final">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="features-grid"
-          >
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="assist-feature"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05, y: -5 }}
-              >
-                <div className="feature-icon-circle">{feature.icon}</div>
-                <div className="feature-content">
-                  <h4 className="feature-title">{feature.title}</h4>
-                  <p className="feature-description">{feature.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          {/* Desktop: Grid normal */}
+          {!isMobile && (
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="features-grid"
+            >
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  className="assist-feature"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                >
+                  <div className="feature-icon-circle">{feature.icon}</div>
+                  <div className="feature-content">
+                    <h4 className="feature-title">{feature.title}</h4>
+                    <p className="feature-description">{feature.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+
+          {/* Mobile: Swiper de Features */}
+          {isMobile && (
+            <div className="features-swiper-container">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentFeatureSlide}
+                  className="features-swiper-slide"
+                  initial={{ opacity: 0, x: 100 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -100 }}
+                  transition={{ duration: 0.4 }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={handleFeatureSwipe}
+                >
+                  <div className="assist-feature">
+                    <div className="feature-icon-circle">{features[currentFeatureSlide].icon}</div>
+                    <div className="feature-content">
+                      <h4 className="feature-title">{features[currentFeatureSlide].title}</h4>
+                      <p className="feature-description">{features[currentFeatureSlide].description}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Navigation Dots - Solo abajo */}
+              <div className="features-dots">
+                {features.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`feature-dot ${index === currentFeatureSlide ? 'active' : ''}`}
+                    onClick={() => setCurrentFeatureSlide(index)}
+                    aria-label={`Go to feature ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
 
         <motion.div
