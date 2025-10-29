@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Classes\dxResponse;
 use App\Models\Aboutus;
 use App\Models\Appointment;
+use App\Models\AppRequest;
 use App\Models\Complaint;
 use App\Models\dxDataGrid;
 use App\Models\General;
@@ -166,6 +167,7 @@ class BasicController extends Controller
     $properties = [
       'session' => Auth::user(),
       'messagesCount' => Message::where('status', true)->where('seen', false)->count(),
+      'appRequestsCount' => AppRequest::where('status', true)->where('seen', false)->count(),
       'citasCount' => Appointment::where('status', true)->where('seen', false)->count(),
       'languagesSystem' => Lang::where('status', true)->where('visible', true)->get(),
       'reclamosCount' => Complaint::where('estado', '=', 'pendiente')->count(),

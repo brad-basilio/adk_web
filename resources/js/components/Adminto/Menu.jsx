@@ -11,6 +11,7 @@ const Menu = ({
     hasRole,
     salesCount,
     messagesCount,
+    appRequestsCount,
     citasCount,
     reclamosCount,
 }) => {
@@ -162,6 +163,9 @@ const Menu = ({
                                     href="/admin/app-requests"
                                     icon="mdi mdi-cellphone-message"
                                 >
+                                      <span className="badge bg-primary float-end">
+                                        {appRequestsCount}
+                                    </span>
                                     {t("admin.sidebar.app_requests", "App Requests")}
                                 </MenuItem>
                            {/*     <MenuItem
