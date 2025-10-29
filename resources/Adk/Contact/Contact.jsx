@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import Swal from 'sweetalert2';
 import MessagesRest from '../../js/actions/MessagesRest';
 import './Contact.css';
@@ -133,7 +137,7 @@ const Contact = ({ services = [], generals = [] }) => {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="contact-cards">
+            <div className="contact-cards contact-cards-desktop">
               {contactInfo.map((info, index) => (
                 <motion.a
                   key={index}
@@ -156,8 +160,45 @@ const Contact = ({ services = [], generals = [] }) => {
               ))}
             </div>
 
+            {/* Mobile Swiper */}
+            <div className="contact-cards-mobile">
+              <Swiper
+                modules={[Autoplay, Pagination]}
+                spaceBetween={20}
+                slidesPerView={1}
+                loop={true}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                  dynamicBullets: true,
+                }}
+                className="contact-cards-swiper"
+              >
+                {contactInfo.map((info, index) => (
+                  <SwiperSlide key={index}>
+                    <a
+                      href={info.link || '#'}
+                      className="contact-card"
+                      onClick={!info.link ? (e) => e.preventDefault() : undefined}
+                    >
+                      <div className="contact-card-icon">{info.icon}</div>
+                      <div className="contact-card-content">
+                        <h4 className="contact-card-title">{info.title}</h4>
+                        {info.details.map((detail, idx) => (
+                          <p key={idx} className="contact-card-detail">{detail}</p>
+                        ))}
+                      </div>
+                    </a>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+
             <motion.div
-              className="contact-cta-box"
+              className="contact-cta-box !hidden lg:!inline"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.5 }}
