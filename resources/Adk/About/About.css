@@ -2,6 +2,7 @@
   background: var(--color-black);
   position: relative;
   padding: var(--spacing-xl) 0;
+  overflow-x: hidden;
 }
 
 .about-background-minimal {
@@ -160,11 +161,68 @@
   background: linear-gradient(180deg, var(--color-blue) 0%, transparent 100%);
 }
 
-.features-minimal {
+.indicators-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.features-desktop {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   justify-content: center;
+}
+
+.features-mobile {
+  display: none;
+  width: 100%;
+  overflow: hidden;
+}
+
+.indicators-swiper {
+  width: 100%;
+  padding: 2rem 0 3rem 0;
+  overflow: visible !important;
+}
+
+.indicators-swiper .swiper-wrapper {
+  align-items: center;
+}
+
+.indicators-swiper .swiper-slide {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.indicators-swiper .feature-minimal {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Swiper pagination styles */
+.indicators-swiper .swiper-pagination {
+  bottom: 0;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.indicators-swiper .swiper-pagination-bullet {
+  background: rgba(0, 102, 255, 0.3);
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.indicators-swiper .swiper-pagination-bullet-active {
+  background: var(--color-blue);
+  width: 24px;
+  border-radius: 5px;
 }
 
 .feature-minimal {
@@ -730,8 +788,16 @@
 
 @media (max-width: 968px) {
   .about-main-content {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  .features-desktop {
+    display: none !important;
+  }
+
+  .features-mobile {
+    display: block !important;
   }
 
   .about-header-minimal,
@@ -744,6 +810,16 @@
   .about-number,
   .team-number-modern {
     font-size: 4rem;
+  }
+
+  .section-title-minimal {
+    font-size: 2.5rem;
+  }
+
+  .main-paragraph {
+    font-size: 1rem;
+    line-height: 1.8;
+    padding-left: 1rem;
   }
 
   .team-grid-modern {
@@ -777,8 +853,35 @@
 }
 
 @media (max-width: 768px) {
+  .about-main-content {
+    gap: 2rem;
+  }
+
+  .about-number,
+  .team-number-modern {
+    font-size: 3rem;
+  }
+
+  .section-title-minimal {
+    font-size: 2rem;
+  }
+
   .main-paragraph {
+    font-size: 0.95rem;
     padding-left: 1rem;
+    line-height: 1.6;
+  }
+
+  .feature-minimal {
+    padding: 1.5rem;
+  }
+
+  .feature-number-minimal {
+    font-size: 2rem;
+  }
+
+  .feature-label-minimal {
+    font-size: 0.85rem;
   }
 
   .team-header-modern {
@@ -820,6 +923,57 @@
 }
 
 @media (max-width: 480px) {
+  .about {
+    padding: 3rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .about-number,
+  .team-number-modern {
+    font-size: 2.5rem;
+  }
+
+  .section-title-minimal {
+    font-size: 1.75rem;
+  }
+
+  .section-subtitle-minimal {
+    font-size: 0.85rem;
+  }
+
+  .about-main-content {
+    gap: 1.5rem;
+  }
+
+  .main-paragraph {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding-left: 0.75rem;
+  }
+
+  .main-paragraph::before {
+    width: 2px;
+  }
+
+  .feature-minimal {
+    padding: 1.25rem;
+  }
+
+  .feature-number-minimal {
+    font-size: 1.75rem;
+  }
+
+  .feature-label-minimal {
+    font-size: 0.8rem;
+  }
+
+  .indicators-swiper {
+    padding: 1rem 0 2rem 0;
+  }
+
   .team-content-modern {
     padding: 1.5rem;
   }

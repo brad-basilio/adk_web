@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import {
   FaFacebook,
   FaTwitter,
@@ -26,6 +30,19 @@ const About = ({ indicators = [], staff = [] }) => {
 
   const [selectedMember, setSelectedMember] = useState(null);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar si es mobile
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Mapeo de redes sociales a iconos
   const socialIcons = {
@@ -77,20 +94,23 @@ const About = ({ indicators = [], staff = [] }) => {
 
   const nextTeamSlide = () => {
     if (teamMembers.length === 0) return;
-    setCurrentTeamIndex((prev) => (prev + 1) % Math.ceil(teamMembers.length / 3));
+    const itemsPerPage = isMobile ? 1 : 3;
+    setCurrentTeamIndex((prev) => (prev + 1) % Math.ceil(teamMembers.length / itemsPerPage));
   };
 
   const prevTeamSlide = () => {
     if (teamMembers.length === 0) return;
+    const itemsPerPage = isMobile ? 1 : 3;
     setCurrentTeamIndex((prev) =>
-      prev === 0 ? Math.ceil(teamMembers.length / 3) - 1 : prev - 1
+      prev === 0 ? Math.ceil(teamMembers.length / itemsPerPage) - 1 : prev - 1
     );
   };
 
   const getVisibleTeamMembers = () => {
     if (teamMembers.length === 0) return [];
-    const startIndex = currentTeamIndex * 3;
-    return teamMembers.slice(startIndex, startIndex + 3);
+    const itemsPerPage = isMobile ? 1 : 3;
+    const startIndex = currentTeamIndex * itemsPerPage;
+    return teamMembers.slice(startIndex, startIndex + itemsPerPage);
   };
 
 
@@ -130,38 +150,63 @@ const About = ({ indicators = [], staff = [] }) => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <p className="main-paragraph">
-              Our company is a trusted provider of technology solutions with over 10 years
-              of experience in the industry. At ADK Tech, we take pride in our expertise in
-              identifying and selecting exceptional talent to meet our clients' unique needs.
+              Our company is a trusted provider of technology solutions with over 10 years of experience in the industry.
             </p>
             <p className="main-paragraph">
-              We are dedicated to providing swift and efficient solutions without compromising
-              the quality of our work. This commitment drives us to deliver innovative and
-              tailored solutions that equip our clients with the necessary tools to
-              successfully achieve their business objectives.
+             At ADK Tech, we take pride in our expertise in identifying and selecting exceptional talent to meet our clients’ unique needs. We are dedicated to providing swift and efficient solutions without compromising the quality of our work.
+            </p>
+            <p className="main-paragraph">
+              Understanding that each client has specific requirements, our top priority is delving deep into comprehending their particular needs. This commitment drives us to deliver innovative and tailored solutions that not only meet their expectations but also equip them with the necessary tools to successfully achieve their business objectives. At ADK Tech, we aim not just to find talent but also to build long-term relationships, actively collaborating to ensure that each step contributes to the growth and prosperity of our clients’ enterprises. With a focus on excellence and innovation, we strive to be your reliable partner in talent search and development, contributing to the ongoing success of your organization.
             </p>
           </motion.div>
 
           {indicators.length > 0 && (
-            <motion.div
-              className="features-minimal"
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              {indicators.map((indicator, index) => (
-                <motion.div
-                  key={indicator.id || index}
-                  className="feature-minimal"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
+            <div className="indicators-container">
+              {/* Desktop version */}
+              <div className="features-desktop">
+                {indicators.map((indicator, index) => (
+                  <motion.div
+                    key={indicator.id || index}
+                    className="feature-minimal"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.4 + (index * 0.1) }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="feature-number-minimal">{indicator.name}</div>
+                    <div className="feature-label-minimal">{indicator.description}</div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Mobile version with Swiper */}
+              <div className="features-mobile">
+                <Swiper
+                  modules={[Autoplay, Pagination]}
+                  spaceBetween={30}
+                  slidesPerView={1}
+                  loop={true}
+                  autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                  }}
+                  pagination={{
+                    clickable: true,
+                    dynamicBullets: true,
+                  }}
+                  className="indicators-swiper"
                 >
-                  
-                  <div className="feature-number-minimal">{indicator.name}</div>
-                  <div className="feature-label-minimal">{indicator.description}</div>
-                </motion.div>
-              ))}
-            </motion.div>
+                  {indicators.map((indicator, index) => (
+                    <SwiperSlide key={indicator.id || index}>
+                      <div className="feature-minimal">
+                        <div className="feature-number-minimal">{indicator.name}</div>
+                        <div className="feature-label-minimal">{indicator.description}</div>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </div>
+            </div>
           )}
         </div>
 
@@ -265,7 +310,7 @@ const About = ({ indicators = [], staff = [] }) => {
           </div>
 
           <div className="team-carousel-indicators">
-            {Array.from({ length: Math.ceil(teamMembers.length / 3) }).map((_, idx) => (
+            {Array.from({ length: Math.ceil(teamMembers.length / (isMobile ? 1 : 3)) }).map((_, idx) => (
               <button
                 key={idx}
                 className={`team-indicator ${idx === currentTeamIndex ? 'active' : ''}`}
