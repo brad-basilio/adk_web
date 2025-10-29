@@ -331,15 +331,15 @@
       "resources/js/components/TrackingPixels.jsx"
     ]
   },
-  "_WeCupSection-DCKCqZGr.js": {
-    "file": "assets/WeCupSection-DCKCqZGr.js",
+  "_WeCupSection-BEcopbxc.js": {
+    "file": "assets/WeCupSection-BEcopbxc.js",
     "name": "WeCupSection",
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
-      "_classes-to-selector-xL7iv4F5.js",
+      "_classes-to-selector-Bdz-0P2c.js",
       "resources/js/components/Tailwind/Instructions/WeCupSection.jsx"
     ],
     "css": [
@@ -385,11 +385,11 @@
       "_createLucideIcon-B31oCQao.js"
     ]
   },
-  "_classes-to-selector-xL7iv4F5.js": {
-    "file": "assets/classes-to-selector-xL7iv4F5.js",
+  "_classes-to-selector-Bdz-0P2c.js": {
+    "file": "assets/classes-to-selector-Bdz-0P2c.js",
     "name": "classes-to-selector",
     "imports": [
-      "_swiper-react-BLXWsB6t.js"
+      "_swiper-react-CtN20FF_.js"
     ]
   },
   "_clock-CYDzTGD9.js": {
@@ -469,6 +469,14 @@
       "____vite-browser-external_commonjs-proxy-DjIx6Adb.js"
     ]
   },
+  "_pagination-Cq6JAbWk.js": {
+    "file": "assets/pagination-Cq6JAbWk.js",
+    "name": "pagination",
+    "imports": [
+      "_classes-to-selector-Bdz-0P2c.js",
+      "_swiper-react-CtN20FF_.js"
+    ]
+  },
   "_phone-DVOwdTS_.js": {
     "file": "assets/phone-DVOwdTS_.js",
     "name": "phone",
@@ -506,8 +514,8 @@
     "file": "swiper.css",
     "src": "_swiper-!~{03t}~.js"
   },
-  "_swiper-react-BLXWsB6t.js": {
-    "file": "assets/swiper-react-BLXWsB6t.js",
+  "_swiper-react-CtN20FF_.js": {
+    "file": "assets/swiper-react-CtN20FF_.js",
     "name": "swiper-react",
     "imports": [
       "resources/js/components/TrackingPixels.jsx"
@@ -600,7 +608,7 @@
     "isEntry": true
   },
   "resources/js/About.jsx": {
-    "file": "assets/About-Dta7DSeI.js",
+    "file": "assets/About-J4QB_Bag.js",
     "name": "About",
     "src": "resources/js/About.jsx",
     "isEntry": true,
@@ -614,7 +622,7 @@
       "_FeaturesSection-BfA4Mi2q.js",
       "_main-D1ujSG59.js",
       "resources/js/components/Blog/Results.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "resources/js/components/About/Strengths.jsx",
@@ -2135,7 +2143,7 @@
     ]
   },
   "resources/js/CatalogProducts.jsx": {
-    "file": "assets/CatalogProducts-DTIyeIMz.js",
+    "file": "assets/CatalogProducts-D9BI9Bl3.js",
     "name": "CatalogProducts",
     "src": "resources/js/CatalogProducts.jsx",
     "isEntry": true,
@@ -2149,7 +2157,7 @@
       "_FeaturesSection-BfA4Mi2q.js",
       "_main-D1ujSG59.js",
       "resources/js/components/Blog/Results.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
       "_GeneralRest-DRwja8Cw.js",
@@ -2331,7 +2339,7 @@
     ]
   },
   "resources/js/DetailProduct.jsx": {
-    "file": "assets/DetailProduct-buNOF0u5.js",
+    "file": "assets/DetailProduct-CtFyjs07.js",
     "name": "DetailProduct",
     "src": "resources/js/DetailProduct.jsx",
     "isEntry": true,
@@ -2344,9 +2352,9 @@
       "_Header-N1mrdv6A.js",
       "_main-D1ujSG59.js",
       "resources/js/components/Blog/Results.jsx",
-      "_WeCupSection-DCKCqZGr.js",
+      "_WeCupSection-BEcopbxc.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "resources/js/components/About/Strengths.jsx",
       "_Footer-CZmvcSaS.js",
@@ -2359,7 +2367,7 @@
       "_useTranslation-BOupZ7-X.js",
       "_proxy-Ci5QcTMU.js",
       "_index-CMaWESfh.js",
-      "_classes-to-selector-xL7iv4F5.js",
+      "_classes-to-selector-Bdz-0P2c.js",
       "resources/js/components/Tailwind/Instructions/WeCupSection.jsx",
       "_index-DkSDNEBT.js",
       "_index-CZSDX33M.js",
@@ -2408,7 +2416,7 @@
     ]
   },
   "resources/js/FisioTerapiaPage.jsx": {
-    "file": "assets/FisioTerapiaPage-LTjsjNqt.js",
+    "file": "assets/FisioTerapiaPage-CkKtizHR.js",
     "name": "FisioTerapiaPage",
     "src": "resources/js/FisioTerapiaPage.jsx",
     "isEntry": true,
@@ -2421,7 +2429,7 @@
       "_Header-N1mrdv6A.js",
       "_Footer-CZmvcSaS.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "resources/js/components/About/Strengths.jsx",
       "_TextWithHighlight-BxIlP8cV.js",
@@ -2479,7 +2487,7 @@
     ]
   },
   "resources/js/Home.jsx": {
-    "file": "assets/Home-CTX-rEFr.js",
+    "file": "assets/Home-BuyRBSzU.js",
     "name": "Home",
     "src": "resources/js/Home.jsx",
     "isEntry": true,
@@ -2489,6 +2497,11 @@
       "_index-CMaWESfh.js",
       "_proxy-Ci5QcTMU.js",
       "_index-CMwZT9j_.js",
+      "_swiper-react-CtN20FF_.js",
+      "_classes-to-selector-Bdz-0P2c.js",
+      "_pagination-Cq6JAbWk.js",
+      "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
+      "resources/js/components/About/Strengths.jsx",
       "_sweetalert2.all-C96erxsa.js",
       "_MessagesRest-Bj9T1DOB.js",
       "_CreateReactScript-BEktg6JA.js",
@@ -2545,7 +2558,7 @@
     ]
   },
   "resources/js/InstalacionesPage.jsx": {
-    "file": "assets/InstalacionesPage-YHsoKSyW.js",
+    "file": "assets/InstalacionesPage-CUgMUAb0.js",
     "name": "InstalacionesPage",
     "src": "resources/js/InstalacionesPage.jsx",
     "isEntry": true,
@@ -2558,7 +2571,7 @@
       "_Header-N1mrdv6A.js",
       "_Footer-CZmvcSaS.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "_TextWithHighlight-BxIlP8cV.js",
       "_ModalAppointment-vC00dVmp.js",
@@ -2589,7 +2602,7 @@
     ]
   },
   "resources/js/Instructions.jsx": {
-    "file": "assets/Instructions-Bu97DSOC.js",
+    "file": "assets/Instructions-BDQ1VM2I.js",
     "name": "Instructions",
     "src": "resources/js/Instructions.jsx",
     "isEntry": true,
@@ -2602,9 +2615,9 @@
       "_Header-N1mrdv6A.js",
       "_main-D1ujSG59.js",
       "resources/js/components/Blog/Results.jsx",
-      "_WeCupSection-DCKCqZGr.js",
+      "_WeCupSection-BEcopbxc.js",
       "resources/js/components/Tailwind/DetailProduct/Detail.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "resources/js/components/About/Strengths.jsx",
       "_Footer-CZmvcSaS.js",
@@ -2617,7 +2630,7 @@
       "_useTranslation-BOupZ7-X.js",
       "_proxy-Ci5QcTMU.js",
       "_index-CMaWESfh.js",
-      "_classes-to-selector-xL7iv4F5.js",
+      "_classes-to-selector-Bdz-0P2c.js",
       "resources/js/components/Tailwind/Instructions/WeCupSection.jsx",
       "_index-DkSDNEBT.js",
       "_index-CZSDX33M.js",
@@ -2903,7 +2916,7 @@
     ]
   },
   "resources/js/ServiciosPage.jsx": {
-    "file": "assets/ServiciosPage-BlsrvZG0.js",
+    "file": "assets/ServiciosPage-BN2fOxxl.js",
     "name": "ServiciosPage",
     "src": "resources/js/ServiciosPage.jsx",
     "isEntry": true,
@@ -2921,10 +2934,11 @@
       "_useTranslation-BOupZ7-X.js",
       "_proxy-Ci5QcTMU.js",
       "_index-CMaWESfh.js",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "resources/js/components/About/Strengths.jsx",
-      "_classes-to-selector-xL7iv4F5.js",
+      "_classes-to-selector-Bdz-0P2c.js",
+      "_pagination-Cq6JAbWk.js",
       "_chevron-down-3nLSzNgz.js",
       "_createLucideIcon-B31oCQao.js",
       "_index-CbrplguO.js",
@@ -3244,14 +3258,14 @@
     ]
   },
   "resources/js/components/About/Strengths.jsx": {
-    "file": "assets/Strengths-Bk1cIAmv.js",
+    "file": "assets/Strengths-9ZkY84Lu.js",
     "name": "Strengths",
     "src": "resources/js/components/About/Strengths.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js"
+      "_swiper-react-CtN20FF_.js"
     ],
     "css": [
       "Strengths.css",
@@ -3342,7 +3356,7 @@
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-BM6_LCjb.js",
+    "file": "assets/Modal-COKCz9DG.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -3390,7 +3404,7 @@
     ]
   },
   "resources/js/components/Adminto/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-COKCz9DG.js",
+    "file": "assets/CheckboxFormGroup-BM6_LCjb.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/Adminto/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -3410,7 +3424,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-COKCz9DG.js",
+    "file": "assets/InputFormGroup-BM6_LCjb.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -3420,7 +3434,7 @@
     ]
   },
   "resources/js/components/Adminto/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-COKCz9DG.js",
+    "file": "assets/PasswordFormGroup-BM6_LCjb.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/Adminto/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -3430,7 +3444,7 @@
     ]
   },
   "resources/js/components/Adminto/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-COKCz9DG.js",
+    "file": "assets/QuillFormGroup-BM6_LCjb.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/Adminto/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -3440,7 +3454,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-DGjR4AiH.js",
+    "file": "assets/SelectAPIFormGroup-CIDz38r0.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/Adminto/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -3452,7 +3466,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-COKCz9DG.js",
+    "file": "assets/SelectFormGroup-BM6_LCjb.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -3709,7 +3723,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-COKCz9DG.js",
+    "file": "assets/DataGrid-BM6_LCjb.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -3731,14 +3745,14 @@
     ]
   },
   "resources/js/components/Home/Banner.jsx": {
-    "file": "assets/Banner-DuFaQ7_H.js",
+    "file": "assets/Banner-COk6TxYR.js",
     "name": "Banner",
     "src": "resources/js/components/Home/Banner.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Home/CallToAction.jsx",
       "resources/js/components/About/Strengths.jsx"
     ],
@@ -3800,7 +3814,7 @@
     ]
   },
   "resources/js/components/Home/Popups.jsx": {
-    "file": "assets/Popups-Bn-fPXiP.js",
+    "file": "assets/Popups-6EeXFV9w.js",
     "name": "Popups",
     "src": "resources/js/components/Home/Popups.jsx",
     "isEntry": true,
@@ -3808,7 +3822,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "_index-DkSDNEBT.js",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Home/Supplies.jsx",
       "_index-CbrplguO.js",
       "_index-CZSDX33M.js"
@@ -3818,7 +3832,7 @@
     ]
   },
   "resources/js/components/Home/Routine.jsx": {
-    "file": "assets/Routine-BcvTqPHo.js",
+    "file": "assets/Routine-DnZPna27.js",
     "name": "Routine",
     "src": "resources/js/components/Home/Routine.jsx",
     "isEntry": true,
@@ -3827,7 +3841,7 @@
       "resources/js/components/Home/CallToAction.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/components/Home/Supplies.jsx",
-      "_swiper-react-BLXWsB6t.js"
+      "_swiper-react-CtN20FF_.js"
     ],
     "css": [
       "swiper.css"
@@ -3844,28 +3858,28 @@
     ]
   },
   "resources/js/components/Home/Supplies.jsx": {
-    "file": "assets/Supplies-IYyj39Cv.js",
+    "file": "assets/Supplies-edtcCSj6.js",
     "name": "Supplies",
     "src": "resources/js/components/Home/Supplies.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js"
+      "_swiper-react-CtN20FF_.js"
     ],
     "css": [
       "swiper.css"
     ]
   },
   "resources/js/components/Home/Testimonies.jsx": {
-    "file": "assets/Testimonies-Bz75ogDr.js",
+    "file": "assets/Testimonies-Bdqptu9Y.js",
     "name": "Testimonies",
     "src": "resources/js/components/Home/Testimonies.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Home/Supplies.jsx"
     ],
     "css": [
@@ -3873,13 +3887,13 @@
     ]
   },
   "resources/js/components/Home/TestimonioSection.jsx": {
-    "file": "assets/TestimonioSection-Dsb3H_5w.js",
+    "file": "assets/TestimonioSection-kikilkxx.js",
     "name": "TestimonioSection",
     "src": "resources/js/components/Home/TestimonioSection.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "resources/js/components/About/Strengths.jsx",
       "resources/js/components/TrackingPixels.jsx"
@@ -3889,13 +3903,13 @@
     ]
   },
   "resources/js/components/Home/TratamientoSection.jsx": {
-    "file": "assets/TratamientoSection-DH54bkqS.js",
+    "file": "assets/TratamientoSection-D1qf9QHC.js",
     "name": "TratamientoSection",
     "src": "resources/js/components/Home/TratamientoSection.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/components/Blog/Filter.jsx",
@@ -3953,7 +3967,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-COKCz9DG.js",
+    "file": "assets/Modal-BM6_LCjb.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -4076,7 +4090,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-BM6_LCjb.js",
+    "file": "assets/DataGrid-COKCz9DG.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -4147,14 +4161,14 @@
     ]
   },
   "resources/js/components/Tailwind/Instructions/WeCupSection.jsx": {
-    "file": "assets/WeCupSection-B1gHP80_.js",
+    "file": "assets/WeCupSection-CY78KXHQ.js",
     "name": "WeCupSection",
     "src": "resources/js/components/Tailwind/Instructions/WeCupSection.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js"
+      "_swiper-react-CtN20FF_.js"
     ],
     "css": [
       "WeCupSection.css",
@@ -4162,14 +4176,14 @@
     ]
   },
   "resources/js/components/Tailwind/Instructions/WeDiskSection.jsx": {
-    "file": "assets/WeDiskSection-CREUdoP6.js",
+    "file": "assets/WeDiskSection-GfXna9gN.js",
     "name": "WeDiskSection",
     "src": "resources/js/components/Tailwind/Instructions/WeDiskSection.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Instructions/WeCupSection.jsx"
     ],
     "css": [
@@ -4197,14 +4211,14 @@
     ]
   },
   "resources/js/components/Tailwind/Products/ProductCarousel.jsx": {
-    "file": "assets/ProductCarousel-CJDwWFNq.js",
+    "file": "assets/ProductCarousel-DkJOPDy3.js",
     "name": "ProductCarousel",
     "src": "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js"
+      "_swiper-react-CtN20FF_.js"
     ],
     "css": [
       "ProductCarousel.css",
@@ -4268,14 +4282,14 @@
     ]
   },
   "resources/js/components/Tailwind/Welcome/InstagramSection.jsx": {
-    "file": "assets/InstagramSection-C3USuXmv.js",
+    "file": "assets/InstagramSection-edN7swXq.js",
     "name": "InstagramSection",
     "src": "resources/js/components/Tailwind/Welcome/InstagramSection.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx"
     ],
     "css": [
@@ -4321,14 +4335,14 @@
     ]
   },
   "resources/js/components/Tailwind/Welcome/WeLoversSections.jsx": {
-    "file": "assets/WeLoversSections-D_7aFnUC.js",
+    "file": "assets/WeLoversSections-CqFjWgQf.js",
     "name": "WeLoversSections",
     "src": "resources/js/components/Tailwind/Welcome/WeLoversSections.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_swiper-react-BLXWsB6t.js",
+      "_swiper-react-CtN20FF_.js",
       "resources/js/components/Tailwind/Products/ProductCarousel.jsx",
       "resources/js/components/About/Strengths.jsx",
       "_main-D1ujSG59.js",
@@ -4514,7 +4528,7 @@
     "isEntry": true
   },
   "resources/js/components/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-BM6_LCjb.js",
+    "file": "assets/CheckboxFormGroup-COKCz9DG.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -4524,7 +4538,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-BM6_LCjb.js",
+    "file": "assets/InputFormGroup-COKCz9DG.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4534,7 +4548,7 @@
     ]
   },
   "resources/js/components/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-BM6_LCjb.js",
+    "file": "assets/PasswordFormGroup-COKCz9DG.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -4544,7 +4558,7 @@
     ]
   },
   "resources/js/components/form/QuillFormGroup.jsx": {
-    "file": "assets/QuillFormGroup-BM6_LCjb.js",
+    "file": "assets/QuillFormGroup-COKCz9DG.js",
     "name": "QuillFormGroup",
     "src": "resources/js/components/form/QuillFormGroup.jsx",
     "isEntry": true,
@@ -4554,7 +4568,7 @@
     ]
   },
   "resources/js/components/form/SelectAPIFormGroup.jsx": {
-    "file": "assets/SelectAPIFormGroup-CIDz38r0.js",
+    "file": "assets/SelectAPIFormGroup-DGjR4AiH.js",
     "name": "SelectAPIFormGroup",
     "src": "resources/js/components/form/SelectAPIFormGroup.jsx",
     "isEntry": true,
@@ -4566,7 +4580,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-BM6_LCjb.js",
+    "file": "assets/SelectFormGroup-COKCz9DG.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,
