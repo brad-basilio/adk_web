@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AboutusController as AdminAboutusController;
 use App\Http\Controllers\Admin\IndicatorController as AdminIndicatorController;
 use App\Http\Controllers\Admin\MessageController as AdminMessageController;
+use App\Http\Controllers\Admin\AppRequestController as AdminAppRequestController;
 use App\Http\Controllers\Admin\AppointmentController as AdminAppointmentController;
 use App\Http\Controllers\Admin\SliderController as AdminSliderController;
 use App\Http\Controllers\Admin\TestimonyController as AdminTestimonyController;
@@ -68,6 +69,7 @@ use App\Http\Controllers\ItemImageController;
 use App\Http\Controllers\LandingHomeController;
 use App\Http\Controllers\MailingController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\AppRequestController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\ServiceController;
@@ -142,6 +144,7 @@ Route::post('/items/paginate', [ItemController::class, 'paginate']);
 Route::post('/supplies/paginate', [SupplyController::class, 'paginate']);
 
 Route::post('/messages', [MessageController::class, 'save']);
+Route::post('/app-requests', [AppRequestController::class, 'save']);
 Route::post('/appointments', [MessageController::class, 'save']);
 Route::post('/subscriptions', [SubscriptionController::class, 'save']);
 
@@ -258,6 +261,12 @@ Route::middleware('auth')->group(function () {
         Route::patch('/messages/status', [AdminMessageController::class, 'status']);
         Route::patch('/messages/{field}', [AdminMessageController::class, 'boolean']);
         Route::delete('/messages/{id}', [AdminMessageController::class, 'delete']);
+
+        Route::post('/app-requests', [AdminAppRequestController::class, 'save']);
+        Route::post('/app-requests/paginate', [AdminAppRequestController::class, 'paginate']);
+        Route::patch('/app-requests/status', [AdminAppRequestController::class, 'status']);
+        Route::patch('/app-requests/{field}', [AdminAppRequestController::class, 'boolean']);
+        Route::delete('/app-requests/{id}', [AdminAppRequestController::class, 'delete']);
 
         Route::post('/appointments', [AdminAppointmentController::class, 'save']);
         Route::post('/appointments/paginate', [AdminAppointmentController::class, 'paginate']);

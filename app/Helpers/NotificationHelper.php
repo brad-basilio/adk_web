@@ -196,4 +196,43 @@ class NotificationHelper
             throw $e;
         }
     }
+
+    /**
+     * Envía notificación específica de solicitud de app
+     */
+    public static function sendAppRequestNotification($appRequest)
+    {
+        try {
+            Log::info('NotificationHelper - Iniciando envío de notificaciones de app request', [
+                'app_request_id' => $appRequest->id ?? 'unknown',
+                'client_email' => $appRequest->email ?? 'no_email',
+                'name' => $appRequest->name ?? 'unknown'
+            ]);
+
+            // Enviar al cliente
+            if ($appRequest->email) {
+                Log::info('NotificationHelper - Enviando notificación de app request al cliente');
+                $clientNotification = new \App\Notifications\AppRequestNotification($appRequest, $appRequest->email);
+                Notification::route('mail', $appRequest->email)->notify($clientNotification);
+                Log::info('NotificationHelper - Notificación de app request enviada al cliente exitosamente');
+            }
+            
+            // Enviar al administrador
+            $corporateEmail = self::getCorporateEmail();
+            if ($corporateEmail) {
+                Log::info('NotificationHelper - Enviando notificación de app request al administrador');
+                $adminNotification = new \App\Notifications\AdminAppRequestNotification($appRequest, $corporateEmail);
+                Notification::route('mail', $corporateEmail)->notify($adminNotification);
+                Log::info('NotificationHelper - Notificación de app request enviada al administrador exitosamente');
+            }
+            
+            Log::info('NotificationHelper - Todas las notificaciones de app request enviadas exitosamente');
+        } catch (\Exception $e) {
+            Log::error('NotificationHelper - Error enviando notificaciones de app request', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            throw $e;
+        }
+    }
 }

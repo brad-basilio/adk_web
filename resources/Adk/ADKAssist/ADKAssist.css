@@ -869,6 +869,88 @@
   letter-spacing: 1px;
 }
 
+/* Store Buttons Container */
+.store-buttons-container {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Request Info Button */
+.request-info-button {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 3rem;
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.1) 0%, rgba(0, 102, 255, 0.05) 100%);
+  border: 3px solid rgba(0, 102, 255, 0.4);
+  border-radius: 20px;
+  color: #0066ff;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.request-info-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(0, 102, 255, 0.15);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.request-info-button:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.request-info-button:hover {
+  border-color: #0066ff;
+  background: linear-gradient(135deg, rgba(0, 102, 255, 0.2) 0%, rgba(0, 102, 255, 0.1) 100%);
+}
+
+.request-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.request-icon svg {
+  width: 36px;
+  height: 36px;
+  transition: transform var(--transition-normal);
+}
+
+.request-info-button:hover .request-icon svg {
+  transform: scale(1.1);
+}
+
+.request-text {
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.request-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.request-name {
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-family: var(--font-tech);
+  letter-spacing: 1px;
+}
+
 @media (max-width: 1200px) {
   .showcase-content {
     gap: 4rem;
@@ -997,6 +1079,56 @@
 
   .store-name {
     font-size: 1.2rem;
+  }
+
+  .store-buttons-container {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .request-info-button {
+    padding: 1rem 2rem;
+    gap: 1rem;
+  }
+
+  .request-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .request-name {
+    font-size: 1.1rem;
+  }
+
+  .app-request-modal {
+    padding: 2rem 1.5rem;
+    margin: 0.5rem;
+    max-height: 95vh;
+  }
+
+  .modal-close-button {
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+  }
+
+  .modal-header h3 {
+    font-size: 1.5rem;
+  }
+
+  .modal-header p {
+    font-size: 0.9rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .submit-button {
+    font-size: 1rem;
+    padding: 0.875rem 1.5rem;
   }
 }
 }

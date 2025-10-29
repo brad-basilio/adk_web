@@ -1,0 +1,408 @@
+/* App Request Modal Styles - Replicating ServiceModal.css */
+
+.app-request-modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh;
+  background: linear-gradient(145deg, rgba(10, 15, 25, 0.98) 0%, rgba(0, 20, 40, 0.98) 100%);
+  border: 2px solid rgba(0, 102, 255, 0.25);
+  border-radius: 32px;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow:
+    0 40px 120px rgba(0, 102, 255, 0.3),
+    0 0 100px rgba(0, 102, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.app-request-modal-container .modal-header {
+  padding: 4rem 4rem 2rem;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(180deg, rgba(0, 102, 255, 0.05) 0%, transparent 100%);
+}
+
+.app-request-modal-container .modal-icon {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-blue-light) 100%);
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+  box-shadow:
+    0 20px 60px rgba(0, 102, 255, 0.4),
+    0 0 80px rgba(0, 102, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.app-request-modal-container .modal-icon::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, var(--color-blue), var(--color-blue-light));
+  border-radius: 26px;
+  z-index: -1;
+  opacity: 0.5;
+  filter: blur(20px);
+}
+
+.app-request-modal-container .modal-icon svg {
+  width: 50px;
+  height: 50px;
+  color: white;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.app-request-modal-container .modal-header h2 {
+  font-family: var(--font-tech);
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--color-white) 0%, var(--color-blue-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 1rem 0;
+  letter-spacing: -1px;
+  text-shadow: 0 0 40px rgba(0, 102, 255, 0.3);
+}
+
+.modal-subtitle {
+  font-size: 1.1rem;
+  color: var(--color-gray-lighter);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.modal-scrollable {
+  overflow-y: auto !important;
+  overflow-x: hidden;
+  flex: 1 1 auto;
+  overscroll-behavior: contain;
+  padding-bottom: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-scrollable::-webkit-scrollbar {
+  width: 10px;
+}
+
+.modal-scrollable::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.modal-scrollable::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-blue) 0%, var(--color-blue-light) 100%);
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+}
+
+.modal-scrollable::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-blue-light) 0%, var(--color-blue) 100%);
+}
+
+.app-request-modal-container .modal-info-section {
+  padding: 2rem 3rem 0;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  flex: 1 1 auto;
+  min-height: min-content;
+}
+
+/* Form Styles */
+.app-request-form-new {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-section h3 {
+  font-family: var(--font-tech);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin: 0;
+  position: relative;
+  padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form-section h3::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-blue) 0%, transparent 100%);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-group-new {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-group-new label {
+  color: var(--color-blue-light);
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-group-new input,
+.form-group-new textarea {
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 102, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  color: white;
+  font-size: 1rem;
+  transition: all var(--transition-normal);
+  font-family: inherit;
+}
+
+.form-group-new input::placeholder,
+.form-group-new textarea::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.form-group-new input:focus,
+.form-group-new textarea:focus {
+  outline: none;
+  border-color: var(--color-blue);
+  background: rgba(0, 102, 255, 0.05);
+  box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+}
+
+.form-group-new textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.app-request-modal-container .modal-footer {
+  padding: 2rem 3rem 3rem;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 102, 255, 0.05) 100%);
+  border-top: 1px solid rgba(0, 102, 255, 0.2);
+  margin-top: 2rem;
+}
+
+.app-request-modal-container .modal-cta-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, var(--color-blue) 0%, var(--color-blue-light) 100%);
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-family: var(--font-tech);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow:
+    0 12px 36px rgba(0, 102, 255, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.app-request-modal-container .modal-cta-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.app-request-modal-container .modal-cta-button:hover::before {
+  width: 500px;
+  height: 500px;
+}
+
+.app-request-modal-container .modal-cta-button:hover {
+  box-shadow:
+    0 20px 60px rgba(0, 102, 255, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.app-request-modal-container .modal-cta-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.app-request-modal-container .modal-cta-button svg {
+  width: 24px;
+  height: 24px;
+  transition: transform var(--transition-normal);
+  position: relative;
+  z-index: 1;
+}
+
+.app-request-modal-container .modal-cta-button span {
+  position: relative;
+  z-index: 1;
+}
+
+.app-request-modal-container .modal-cta-button:hover svg {
+  transform: translateX(8px);
+}
+
+.spinner-new {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin-new 0.8s linear infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes spin-new {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-request-modal-container {
+    width: 95%;
+    max-height: 95vh;
+    border-radius: 24px;
+  }
+
+  .app-request-modal-container .modal-header {
+    padding: 3rem 2rem 1.5rem;
+  }
+
+  .app-request-modal-container .modal-icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .app-request-modal-container .modal-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .app-request-modal-container .modal-header h2 {
+    font-size: 2.25rem;
+  }
+
+  .modal-subtitle {
+    font-size: 1rem;
+  }
+
+  .app-request-modal-container .modal-info-section {
+    padding: 1.5rem 2rem 2rem;
+  }
+
+  .form-section h3 {
+    font-size: 1.3rem;
+  }
+
+  .app-request-modal-container .modal-cta-button {
+    font-size: 1.1rem;
+    padding: 1.25rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-request-modal-container .modal-header {
+    padding: 2.5rem 1.5rem 1rem;
+  }
+
+  .app-request-modal-container .modal-icon {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1.5rem;
+  }
+
+  .app-request-modal-container .modal-icon svg {
+    width: 35px;
+    height: 35px;
+  }
+
+  .app-request-modal-container .modal-header h2 {
+    font-size: 1.85rem;
+  }
+
+  .modal-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .app-request-modal-container .modal-info-section {
+    padding: 1.5rem;
+  }
+
+  .form-section h3 {
+    font-size: 1.2rem;
+  }
+
+  .app-request-form-new {
+    gap: 2rem;
+  }
+
+  .form-section {
+    gap: 1.25rem;
+  }
+
+  .form-row {
+    gap: 1.25rem;
+  }
+
+  .form-group-new input,
+  .form-group-new textarea {
+    padding: 0.875rem 1rem;
+  }
+
+  .app-request-modal-container .modal-cta-button {
+    font-size: 1rem;
+  }
+}

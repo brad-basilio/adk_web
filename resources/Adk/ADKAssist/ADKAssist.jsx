@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import AppRequestModal from './AppRequestModal';
 import './ADKAssist.css';
 
 const ADKAssist = () => {
@@ -8,6 +9,8 @@ const ADKAssist = () => {
     threshold: 0.1,
     triggerOnce: false
   });
+
+  const [showRequestModal, setShowRequestModal] = useState(false);
 
   // Configuración de las pantallas de la app - TODAS SIN EFECTO 3D (planas)
   const appScreens = [
@@ -348,29 +351,57 @@ const ADKAssist = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <motion.a
-            href="https://apps.apple.com/pe/app/adk-assist-v2-0/id6753195828?l=en-GB"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="app-store-button"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 20px 60px rgba(212, 175, 55, 0.5)"
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="store-icon">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36">
-                <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
-              </svg>
-            </div>
-            <div className="store-text">
-              <div className="store-label">Download on the</div>
-              <div className="store-name">App Store</div>
-            </div>
-          </motion.a>
+          <div className="store-buttons-container">
+            <motion.a
+              href="https://apps.apple.com/pe/app/adk-assist-v2-0/id6753195828?l=en-GB"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="app-store-button"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 20px 60px rgba(212, 175, 55, 0.5)"
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="store-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36">
+                  <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+                </svg>
+              </div>
+              <div className="store-text">
+                <div className="store-label">Download on the</div>
+                <div className="store-name">App Store</div>
+              </div>
+            </motion.a>
+
+            <motion.button
+              onClick={() => setShowRequestModal(true)}
+              className="request-info-button"
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 20px 60px rgba(212, 175, 55, 0.3)"
+              }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="request-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+                  <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"/>
+                </svg>
+              </div>
+              <div className="request-text">
+                <div className="request-label">Need More Info?</div>
+                <div className="request-name">Contact Us</div>
+              </div>
+            </motion.button>
+          </div>
         </motion.div>
       </div>
+
+      {/* Request Info Modal */}
+      <AppRequestModal 
+        isOpen={showRequestModal}
+        onClose={() => setShowRequestModal(false)}
+      />
     </section>
   );
 };
