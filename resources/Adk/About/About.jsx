@@ -285,7 +285,7 @@ const About = ({ indicators = [], staff = [] }) => {
                     </div>
 
                     <div className="team-social">
-                      {member.socials && member.socials.slice(0, 3).map((social, idx) => {
+                      {member.socials && member.socials.map((social, idx) => {
                         const IconComponent = social.icon;
                         return (
                           <a 

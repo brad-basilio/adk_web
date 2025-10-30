@@ -20,7 +20,7 @@
   transform: translate(-50%, -50%) !important;
   width: 90%;
   max-width: 1100px;
-  max-height: 90vh;
+  height: 90vh;
   background: linear-gradient(145deg, rgba(10, 15, 25, 0.98) 0%, rgba(0, 20, 40, 0.98) 100%);
   border: 2px solid rgba(0, 102, 255, 0.25);
   border-radius: 32px;
@@ -59,6 +59,25 @@
 }
 
 .modal-scrollable::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-blue-light) 0%, var(--color-blue) 100%);
+}
+
+/* Scrollbar para modal-info-section */
+.modal-info-section::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-info-section::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.modal-info-section::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-blue) 0%, var(--color-blue-light) 100%);
+  border-radius: 4px;
+}
+
+.modal-info-section::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--color-blue-light) 0%, var(--color-blue) 100%);
 }
 
@@ -152,8 +171,8 @@
   grid-template-columns: 1fr 1fr;
   gap: 0;
   flex: 1;
-  overflow: hidden;
   min-height: 0;
+  overflow: hidden;
 }
 
 .modal-image-section {
@@ -194,6 +213,10 @@
   flex-direction: column;
   gap: 3rem;
   background: linear-gradient(135deg, rgba(0, 15, 30, 0.5) 0%, rgba(0, 25, 50, 0.3) 100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .modal-main-description {
@@ -395,12 +418,16 @@
 @media (max-width: 1024px) {
   .modal-content-grid {
     grid-template-columns: 1fr;
-    max-height: calc(90vh - 200px);
+    grid-template-rows: auto 1fr;
   }
 
   .modal-image-section {
     height: 350px;
     min-height: 350px;
+  }
+
+  .modal-info-section {
+    height: 100%;
   }
 
   .modal-features-grid {
@@ -411,12 +438,12 @@
 @media (max-width: 768px) {
   .service-modal {
     width: 95%;
-    max-height: 95vh;
+    height: 95vh;
     border-radius: 24px;
   }
 
   .modal-content-grid {
-    max-height: calc(95vh - 180px);
+    grid-template-rows: auto 1fr;
   }
 
   .modal-close {
@@ -457,6 +484,7 @@
   .modal-info-section {
     padding: 2rem;
     gap: 2rem;
+    height: 100%;
   }
 
   .modal-main-description {
@@ -530,6 +558,7 @@
 
   .modal-info-section {
     padding: 1.5rem;
+    height: 100%;
   }
 
   .modal-main-description {
