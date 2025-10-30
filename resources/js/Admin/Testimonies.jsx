@@ -81,12 +81,12 @@ const Testimonies = ({}) => {
 
     const onDeleteClicked = async (id) => {
         const { isConfirmed } = await Swal.fire({
-            title: "Eliminar testimonio",
-            text: "¿Estas seguro de eliminar este testimonio?",
+            title: "Delete testimonial",
+            text: "Are you sure you want to delete this testimonial?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonText: "Si, eliminar",
-            cancelButtonText: "Cancelar",
+            confirmButtonText: "Yes, delete",
+            cancelButtonText: "Cancel",
         });
         if (!isConfirmed) return;
         const result = await testimoniesRest.delete(id);
@@ -98,7 +98,7 @@ const Testimonies = ({}) => {
         <>
             <Table
                 gridRef={gridRef}
-                title="Testimonios"
+                title="Testimonials"
                 rest={testimoniesRest}
                 toolBar={(container) => {
                     container.unshift({
@@ -106,7 +106,7 @@ const Testimonies = ({}) => {
                         location: "after",
                         options: {
                             icon: "refresh",
-                            hint: "Refrescar tabla",
+                            hint: "Refresh table",
                             onClick: () =>
                                 $(gridRef.current)
                                     .dxDataGrid("instance")
@@ -118,8 +118,8 @@ const Testimonies = ({}) => {
                         location: "after",
                         options: {
                             icon: "plus",
-                            text: "Nuevo testimonio",
-                            hint: "Nuevo testimonio",
+                            text: "New testimonial",
+                            hint: "New testimonial",
                             onClick: () => onModalOpen(),
                         },
                     });
@@ -132,7 +132,7 @@ const Testimonies = ({}) => {
                     },
                     {
                         dataField: "name",
-                        caption: "Autor",
+                        caption: "Author",
                         width: "100px",
                         cellTemplate: (container, { data }) => {
                             ReactAppend(
@@ -148,12 +148,12 @@ const Testimonies = ({}) => {
                     },
                     {
                         dataField: "description",
-                        caption: "Descripción",
+                        caption: "Description",
                         width: "50%",
                     },
                     {
                         dataField: "image",
-                        caption: "Imagen",
+                        caption: "Image",
                         width: "60px",
                         allowFiltering: false,
                         cellTemplate: (container, { data }) => {
@@ -197,12 +197,12 @@ const Testimonies = ({}) => {
                         },
                     },
                     {
-                        caption: "Acciones",
+                        caption: "Actions",
                         cellTemplate: (container, { data }) => {
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-primary",
-                                    title: "Editar",
+                                    title: "Edit",
                                     icon: "fa fa-pen",
                                     onClick: () => onModalOpen(data),
                                 })
@@ -210,7 +210,7 @@ const Testimonies = ({}) => {
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-danger",
-                                    title: "Eliminar",
+                                    title: "Delete",
                                     icon: "fa fa-trash",
                                     onClick: () => onDeleteClicked(data.id),
                                 })
@@ -223,7 +223,7 @@ const Testimonies = ({}) => {
             />
             <Modal
                 modalRef={modalRef}
-                title={isEditing ? "Editar testimonio" : "Agregar testimonio"}
+                title={isEditing ? "Edit testimonial" : "Add testimonial"}
                 onSubmit={onModalSubmit}
                 size="md"
             >
@@ -231,7 +231,7 @@ const Testimonies = ({}) => {
                     <input ref={idRef} type="hidden" />
                     <ImageFormGroup
                         eRef={imageRef}
-                        label="Imagen"
+                        label="Image"
                         col="col-md-4"
                         aspect={1}
                         fit="contain"
@@ -241,26 +241,26 @@ const Testimonies = ({}) => {
                     <div className="col-md-8">
                         <InputFormGroup
                             eRef={nameRef}
-                            label="Nombre"
+                            label="Name"
                             required
                         />
                         {/*<InputFormGroup
                             eRef={correlativeRef}
-                            label="Ubicación"
+                            label="Location"
                             required
                         /> */}
                           <InputFormGroup
                             eRef={caseRef}
-                            label="Caso"
+                            label="Case"
                             required
                         />
                     </div>
                     <TextareaFormGroup
                         type="text"
                         eRef={descriptionRef}
-                        label="Descripción"
+                        label="Description"
                         rows={3}
-                        placeholder="Ingresa el texto del testimonio"
+                        placeholder="Enter the testimonial text"
                         required
                         col="col-12"
                     />
@@ -272,7 +272,7 @@ const Testimonies = ({}) => {
 
 CreateReactScript((el, properties) => {
     createRoot(el).render(
-        <BaseAdminto {...properties} title="Testimonios">
+        <BaseAdminto {...properties} title="Testimonials">
             <Testimonies {...properties} />
         </BaseAdminto>
     );

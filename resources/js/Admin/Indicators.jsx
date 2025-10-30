@@ -84,12 +84,12 @@ const Indicators = () => {
 
     const onDeleteClicked = async (id) => {
         const { isConfirmed } = await Swal.fire({
-            title: "Eliminar indicador",
-            text: "¿Estas seguro de eliminar este indicador?",
+            title: "Delete indicator",
+            text: "Are you sure you want to delete this indicator?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonText: "Si, eliminar",
-            cancelButtonText: "Cancelar",
+            confirmButtonText: "Yes, delete",
+            cancelButtonText: "Cancel",
         });
         if (!isConfirmed) return;
         const result = await indicatorsRest.delete(id);
@@ -101,7 +101,7 @@ const Indicators = () => {
         <>
             <Table
                 gridRef={gridRef}
-                title="Indicadores"
+                title="Indicators"
                 rest={indicatorsRest}
                 toolBar={(container) => {
                     container.unshift({
@@ -109,7 +109,7 @@ const Indicators = () => {
                         location: "after",
                         options: {
                             icon: "refresh",
-                            hint: "Refrescar tabla",
+                            hint: "Refresh table",
                             onClick: () =>
                                 $(gridRef.current)
                                     .dxDataGrid("instance")
@@ -121,8 +121,8 @@ const Indicators = () => {
                         location: "after",
                         options: {
                             icon: "plus",
-                            text: "Nuevo indicador",
-                            hint: "Nuevo indicador",
+                            text: "New indicator",
+                            hint: "New indicator",
                             onClick: () => onModalOpen(),
                         },
                     });
@@ -156,12 +156,12 @@ const Indicators = () => {
                     }, */
                     {
                         dataField: "name",
-                        caption: "Titulo",
+                        caption: "Title",
                     },
 
                     {
                         dataField: "description",
-                        caption: "Descripción",
+                        caption: "Description",
                     },
                     {
                         dataField: "visible",
@@ -202,12 +202,12 @@ const Indicators = () => {
                     //   }
                     // },
                     {
-                        caption: "Acciones",
+                        caption: "Actions",
                         cellTemplate: (container, { data }) => {
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-primary",
-                                    title: "Editar",
+                                    title: "Edit",
                                     icon: "fa fa-pen",
                                     onClick: () => onModalOpen(data),
                                 })
@@ -215,7 +215,7 @@ const Indicators = () => {
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-danger",
-                                    title: "Eliminar",
+                                    title: "Delete",
                                     icon: "fa fa-trash",
                                     onClick: () => onDeleteClicked(data.id),
                                 })
@@ -228,7 +228,7 @@ const Indicators = () => {
             />
             <Modal
                 modalRef={modalRef}
-                title={isEditing ? "Editar indicador" : "Agregar indicador"}
+                title={isEditing ? "Edit indicator" : "Add indicator"}
                 onSubmit={onModalSubmit}
                 size="md"
             >
@@ -237,7 +237,7 @@ const Indicators = () => {
                   <div hidden>
                       <ImageFormGroup
                         eRef={symbolRef}
-                        label="Imagen"
+                        label="Image"
                         aspect={1}
                         fit="contain"
                         required
@@ -245,11 +245,11 @@ const Indicators = () => {
                     />
                   </div>
                     <div className="col-md-12">
-                        <InputFormGroup eRef={nameRef} label="Título" />
-                        {/*<InputFormGroup eRef={symbolRef} label='Símbolo' col='col-sm-4' rows={2} required />*/}
+                        <InputFormGroup eRef={nameRef} label="Title" />
+                        {/*<InputFormGroup eRef={symbolRef} label='Symbol' col='col-sm-4' rows={2} required />*/}
                         <TextareaFormGroup
                             eRef={descriptionRef}
-                            label="Descripción"
+                            label="Description"
                         />
                     </div>
                 </div>
@@ -260,7 +260,7 @@ const Indicators = () => {
 
 CreateReactScript((el, properties) => {
     createRoot(el).render(
-        <BaseAdminto {...properties} title="Indicadores">
+        <BaseAdminto {...properties} title="Indicators">
             <Indicators {...properties} />
         </BaseAdminto>
     );

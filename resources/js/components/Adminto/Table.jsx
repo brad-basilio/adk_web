@@ -15,7 +15,7 @@ const Table = ({ title, gridRef, rest, columns, toolBar, masterDetail, filterVal
             typeof title != 'object'
               ? <h4 className="header-title">
                 <div id="header-title-options" className="float-end"></div>
-                <span id="header-title-prefix"></span> Lista de {title} <span id="header-title-suffix"></span>
+                <span id="header-title-prefix"></span> {title} List <span id="header-title-suffix"></span>
               </h4>
               : ''
           }

@@ -5,7 +5,7 @@ const DataGrid = ({ gridRef: dataGridRef, rest, columns, toolBar, masterDetail, 
   useEffect(() => {
     DevExpress.localization.locale(navigator.language);
     $(dataGridRef.current).dxDataGrid({
-      language: "es",
+      language: "EN",
       dataSource: {
         load: async (params) => {
           const data = await rest.paginate({

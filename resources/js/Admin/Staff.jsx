@@ -233,12 +233,12 @@ const Staff = () => {
     // Resto de métodos (delete, boolean change, etc.)
     const onDeleteClicked = async (id) => {
         const { isConfirmed } = await Swal.fire({
-            title: "Eliminar Staff",
-            text: "¿Estás seguro de eliminar este staff?",
+            title: "Delete Staff",
+            text: "Are you sure you want to delete this staff member?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonText: "Sí, eliminar",
-            cancelButtonText: "Cancelar",
+            confirmButtonText: "Yes, delete",
+            cancelButtonText: "Cancel",
         });
         if (!isConfirmed) return;
         const result = await staffRest.delete(id);
@@ -258,7 +258,7 @@ const Staff = () => {
                         location: "after",
                         options: {
                             icon: "refresh",
-                            hint: "Refrescar tabla",
+                            hint: "Refresh table",
                             onClick: () =>
                                 $(gridRef.current)
                                     .dxDataGrid("instance")
@@ -270,8 +270,8 @@ const Staff = () => {
                         location: "after",
                         options: {
                             icon: "plus",
-                            text: "Agregar",
-                            hint: "Agregar nuevo staff",
+                            text: "Add",
+                            hint: "Add new staff member",
                             onClick: () => onModalOpen(),
                         },
                     });
@@ -284,12 +284,12 @@ const Staff = () => {
                     },
                     {
                         dataField: "job",
-                        caption: "Puesto",
+                        caption: "Position",
                         width: "200px",
                     },
                     {
                         dataField: "description",
-                        caption: "Descripción",
+                        caption: "Description",
                         cellTemplate: (container, { data }) => {
                             container.html(
                                 renderToString(
@@ -305,7 +305,7 @@ const Staff = () => {
                     },
                     {
                         dataField: "characteristics",
-                        caption: "Características",
+                        caption: "Characteristics",
                         cellTemplate: (container, { data }) => {
                             if (!data.characteristics) return;
                             container.html(
@@ -333,7 +333,7 @@ const Staff = () => {
                                                     +
                                                     {data.characteristics
                                                         .length - 2}{" "}
-                                                    más...
+                                                    more...
                                                 </small>
                                             </li>
                                         )}
@@ -344,10 +344,10 @@ const Staff = () => {
                     },
                     {
                         dataField: "socials",
-                        caption: "Redes sociales",
+                        caption: "Social Networks",
                         cellTemplate: (container, { data }) => {
                             if (!data.socials || data.socials.length === 0) {
-                                container.html('<small class="text-muted">Sin redes</small>');
+                                container.html('<small class="text-muted">No networks</small>');
                                 return;
                             }
                             
@@ -376,7 +376,7 @@ const Staff = () => {
                     },
                     {
                         dataField: "image",
-                        caption: "Imagen",
+                        caption: "Image",
                         width: "100px",
                         cellTemplate: (container, { data }) => {
                             ReactAppend(
@@ -398,14 +398,14 @@ const Staff = () => {
                         },
                     },
                     {
-                        caption: "Acciones",
+                        caption: "Actions",
                         width: "100px",
                         cellTemplate: (container, { data }) => {
                             container.append(
                                 DxButton({
                                     className:
                                         "btn btn-xs btn-soft-primary me-1",
-                                    title: "Editar",
+                                    title: "Edit",
                                     icon: "fa fa-pen",
                                     onClick: () => onModalOpen(data),
                                 })
@@ -413,7 +413,7 @@ const Staff = () => {
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-danger",
-                                    title: "Eliminar",
+                                    title: "Delete",
                                     icon: "fa fa-trash",
                                     onClick: () => onDeleteClicked(data.id),
                                 })
@@ -425,7 +425,7 @@ const Staff = () => {
 
             <Modal
                 modalRef={modalRef}
-                title={isEditing ? "Editar Staff" : "Nuevo Staff"}
+                title={isEditing ? "Edit Staff" : "New Staff"}
                 onSubmit={onModalSubmit}
                 size="lg"
             >
@@ -435,17 +435,17 @@ const Staff = () => {
                     <div className="col-md-6">
                         <InputFormGroup
                             eRef={nameRef}
-                            label="Nombres del staff"
+                            label="Staff Member Name"
                             required
                         />
                         <InputFormGroup
                             eRef={jobRef}
-                            label="Puesto laboral"
+                            label="Job Position"
                             required
                         />
 
                         <div className="mb-3">
-                            <label className="form-label">Descripción</label>
+                            <label className="form-label">Description</label>
                             <textarea
                                 ref={descriptionRef}
                                 className="form-control"
@@ -456,14 +456,14 @@ const Staff = () => {
 
                         <div className="mb-3">
                             <label className="form-label">
-                                Características
+                                Characteristics
                             </label>
                             {characteristics.map((char, index) => (
                                 <div key={index} className="input-group mb-2">
                                     <input
                                         type="text"
                                         className="form-control"
-                                        placeholder="Ej: Egresada de la Universidad Nacional Federico Villarreal."
+                                        placeholder="Ex: Graduate from Harvard Business School."
                                         value={char.value}
                                         onChange={(e) =>
                                             updateCharacteristic(
@@ -489,8 +489,8 @@ const Staff = () => {
                                 className="btn btn-sm btn-outline-primary"
                                 onClick={addCharacteristic}
                             >
-                                <i className="fas fa-plus me-1"></i> Agregar
-                                característica
+                                <i className="fas fa-plus me-1"></i> Add
+                                characteristic
                             </button>
                         </div>
                     </div>
@@ -498,19 +498,19 @@ const Staff = () => {
                     <div className="col-md-6">
                         <ImageFormGroup
                             eRef={imageRef}
-                            label="Imagen principal"
+                            label="Main Image"
                             aspect={1}
                         />
                         
                         <div className="mb-3">
                             <label className="form-label d-flex justify-content-between align-items-center">
-                                <span>Redes sociales</span>
+                                <span>Social Networks</span>
                                 <button
                                     type="button"
                                     className="btn btn-sm btn-outline-primary"
                                     onClick={addSocial}
                                 >
-                                    <i className="fas fa-plus me-1"></i> Agregar
+                                    <i className="fas fa-plus me-1"></i> Add
                                 </button>
                             </label>
                             
@@ -518,8 +518,8 @@ const Staff = () => {
                                 {socials.length === 0 ? (
                                     <div className="text-center text-muted py-4">
                                         <i className="fas fa-share-alt mb-2" style={{ fontSize: '2rem' }}></i>
-                                        <p className="mb-0">No hay redes sociales agregadas</p>
-                                        <p className="mb-0"><small>Haz clic en "Agregar" para añadir una red social</small></p>
+                                        <p className="mb-0">No social networks added</p>
+                                        <p className="mb-0"><small>Click "Add" to add a social network</small></p>
                                     </div>
                                 ) : (
                                     socials.map((social, index) => {
@@ -532,12 +532,12 @@ const Staff = () => {
                                         return (
                                             <div key={index} className="mb-3 pb-3 border-bottom">
                                                 <div className="d-flex justify-content-between align-items-center mb-2">
-                                                    <small className="text-muted fw-bold">Red Social #{index + 1}</small>
+                                                    <small className="text-muted fw-bold">Social Network #{index + 1}</small>
                                                     <button
                                                         type="button"
                                                         className="btn btn-sm btn-outline-danger"
                                                         onClick={() => removeSocial(index)}
-                                                        title="Eliminar red social"
+                                                        title="Remove social network"
                                                     >
                                                         <i className="fas fa-trash-alt"></i>
                                                     </button>
@@ -545,11 +545,11 @@ const Staff = () => {
                                                 
                                                 <SelectFormGroup
                                                     eRef={socialRefs[index]}
-                                                    label="Tipo de red social"
+                                                    label="Social network type"
                                                     dropdownParent="#staff-modal-container"
                                                     onChange={(e) => updateSocialType(index, e.target.value)}
                                                 >
-                                                    <option value="">Seleccionar red social...</option>
+                                                    <option value="">Select social network...</option>
                                                     {predefinedSocials.map((s) => {
                                                         const IconComponent = s.icon;
                                                         return (
@@ -565,7 +565,7 @@ const Staff = () => {
                                                         <div className="alert alert-info py-2 px-3 mb-0 d-flex align-items-center">
                                                             <selectedSocial.icon className="me-2" size={20} />
                                                             <small className="mb-0">
-                                                                <strong>{selectedSocial.name}</strong> seleccionado
+                                                                <strong>{selectedSocial.name}</strong> selected
                                                             </small>
                                                         </div>
                                                     </div>
@@ -573,15 +573,15 @@ const Staff = () => {
                                                 
                                                 <div className="mt-2">
                                                     <label className="form-label mb-1">
-                                                        <small>{selectedSocial?.id === 'email' ? 'Correo electrónico' : 'Enlace / URL'}</small>
+                                                        <small>{selectedSocial?.id === 'email' ? 'Email address' : 'Link / URL'}</small>
                                                     </label>
                                                     <input
                                                         type={selectedSocial?.id === 'email' ? 'email' : 'text'}
                                                         className="form-control"
                                                         placeholder={
                                                             selectedSocial?.id === 'email' 
-                                                                ? 'ejemplo@correo.com' 
-                                                                : `https://${social.social || 'ejemplo'}.com/tu-usuario`
+                                                                ? 'example@email.com' 
+                                                                : `https://${social.social || 'example'}.com/your-username`
                                                         }
                                                         value={social.link || ''}
                                                         onChange={(e) => updateSocialLink(index, e.target.value)}
@@ -602,7 +602,7 @@ const Staff = () => {
 
 CreateReactScript((el, properties) => {
     createRoot(el).render(
-        <BaseAdminto {...properties} title="Staffs">
+        <BaseAdminto {...properties} title="Staff">
             <Staff {...properties} />
         </BaseAdminto>
     );

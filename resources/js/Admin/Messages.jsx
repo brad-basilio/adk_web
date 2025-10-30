@@ -19,12 +19,12 @@ const Messages = () => {
 
     const onDeleteClicked = async (id) => {
         const { isConfirmed } = await Swal.fire({
-            title: "Eliminar mensaje",
-            text: "¿Estas seguro de eliminar este mensaje?",
+            title: "Delete Message",
+            text: "Are you sure you want to delete this message?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonText: "Si, eliminar",
-            cancelButtonText: "Cancelar",
+            confirmButtonText: "Yes, delete",
+            cancelButtonText: "Cancel",
         });
         if (!isConfirmed) return;
         const result = await messagesRest.delete(id);
@@ -49,7 +49,7 @@ const Messages = () => {
         <>
             <Table
                 gridRef={gridRef}
-                title="Mensajes"
+                title="Messages"
                 rest={messagesRest}
                 toolBar={(container) => {
                     container.unshift({
@@ -57,7 +57,7 @@ const Messages = () => {
                         location: "after",
                         options: {
                             icon: "refresh",
-                            hint: "Refrescar tabla",
+                            hint: "Refresh table",
                             onClick: () =>
                                 $(gridRef.current)
                                     .dxDataGrid("instance")
@@ -73,7 +73,7 @@ const Messages = () => {
                     },
                     {
                         dataField: "name",
-                        caption: "Nombre",
+                        caption: "Name",
                         cellTemplate: (container, { data }) => {
                             ReactAppend(
                                 container,
@@ -94,21 +94,21 @@ const Messages = () => {
                     },
                     {
                         dataField: "email",
-                        caption: "Correo",
+                        caption: "Email",
                     },
                     {
                         dataField: "phone",
-                        caption: "Teléfono",
+                        caption: "Phone",
                     },
                     {
                         dataField: "subject",
-                        caption: "Asunto",
+                        caption: "Subject",
                         cellTemplate: (container, { data }) => {
                             ReactAppend(
                                 container,
                                 <span>
                                     {data.subject || 
-                                        <i className="text-muted">- Sin asunto -</i>
+                                        <i className="text-muted">- No subject -</i>
                                     }
                                 </span>
                             );
@@ -116,40 +116,40 @@ const Messages = () => {
                     },
                     {
                         dataField: "created_at",
-                        caption: "Fecha",
+                        caption: "Date",
                         dataType: "datetime",
                         format: "yyyy-MM-dd HH:mm:ss",
                         sortOrder: "desc",
                     },
                     {
                         dataField: "status",
-                        caption: "Estado",
+                        caption: "Status",
                         dataType: "boolean",
                         cellTemplate: (container, { data }) => {
                             if (data.seen) {
                                 ReactAppend(
                                     container,
                                     <span className="badge bg-success rounded-pill">
-                                        Leído
+                                        Read
                                     </span>
                                 );
                             } else {
                                 ReactAppend(
                                     container,
                                     <span className="badge bg-danger rounded-pill">
-                                        No leído
+                                        Unread
                                     </span>
                                 );
                             }
                         },
                     },
                     {
-                        caption: "Acciones",
+                        caption: "Actions",
                         cellTemplate: (container, { data }) => {
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-dark",
-                                    title: "Ver mensaje",
+                                    title: "View message",
                                     icon: "fa fa-eye",
                                     onClick: () => onModalOpen(data),
                                 })
@@ -163,7 +163,7 @@ const Messages = () => {
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-danger",
-                                    title: "Eliminar",
+                                    title: "Delete",
                                     icon: "fa fa-trash",
                                     onClick: () => onDeleteClicked(data.id),
                                 })
@@ -174,33 +174,33 @@ const Messages = () => {
                     },
                 ]}
             />
-            <Modal modalRef={modalRef} title="Mensaje" hideFooter>
+            <Modal modalRef={modalRef} title="Message" hideFooter>
                 <p>
-                    <b>Nombre</b>:
+                    <b>Name</b>:
                     <span className="ms-1">{dataLoaded?.name}</span>
                 </p>
                 <p>
-                    <b>Correo</b>:
+                    <b>Email</b>:
                     <span className="ms-1">
                         {dataLoaded?.email || (
-                            <i className="text-muted">- Sin correo -</i>
+                            <i className="text-muted">- No email -</i>
                         )}
                     </span>
                 </p>
                 <p>
-                    <b>Telefono</b>:
+                    <b>Phone</b>:
                     <span className="ms-1">{dataLoaded?.phone}</span>
                 </p>
                 <p>
-                    <b>Asunto</b>:
+                    <b>Subject</b>:
                     <span className="ms-1">
                         {dataLoaded?.subject || (
-                            <i className="text-muted">- Sin asunto -</i>
+                            <i className="text-muted">- No subject -</i>
                         )}
                     </span>
                 </p>
                 <p>
-                    <b>Mensaje</b>:
+                    <b>Message</b>:
                     <span className="ms-1">{dataLoaded?.description}</span>
                 </p>
             </Modal>
@@ -210,7 +210,7 @@ const Messages = () => {
 
 CreateReactScript((el, properties) => {
     createRoot(el).render(
-        <BaseAdminto {...properties} title="Mensajes">
+        <BaseAdminto {...properties} title="Messages">
             <Messages {...properties} />
         </BaseAdminto>
     );

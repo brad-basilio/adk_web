@@ -30,7 +30,7 @@ const Login = ({}) => {
         if (GET.message)
             Swal.fire({
                 icon: "info",
-                title: "Mensaje",
+                title: "Message",
                 text: GET.message,
                 showConfirmButton: false,
                 timer: 3000,
@@ -84,7 +84,7 @@ const Login = ({}) => {
                         <div className="mx-auto w-full max-w-md space-y-6">
                             <div className="space-y-2">
                                 <h1 className="text-3xl font-bold text-center">
-                                    Bienvenido a {" "}
+                                    Welcome to {" "}
                                     <span className="text-primary">
                                        {Global.APP_NAME}
                                     </span>
@@ -101,12 +101,12 @@ const Login = ({}) => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        placeholder="hola@mail.com"
+                                        placeholder="hello@mail.com"
                                     />
                                 </div>
                                 <div className="space-y-2">
                                     <InputForm
-                                        label="Contraseña"
+                                        label="Password"
                                         type="password"
                                         name="password"
                                         value={formData.password}
@@ -126,7 +126,7 @@ const Login = ({}) => {
                                             htmlFor="remember"
                                             className="text-sm text-gray-600"
                                         >
-                                            Guardar mis datos
+                                            Remember me
                                         </label>
                                     </div>
                                  {/*   <a
@@ -141,7 +141,7 @@ const Login = ({}) => {
                                     type="submit"
                                     className="w-full rounded-xl font-semibold  bg-primary px-4 py-2 text-white hover:opacity-90 focus:outline-none focus:ring-2 transition-all duration-300"
                                 >
-                                    Ingresar
+                                    Sign In
                                 </button>
                                 <div>
                                     {" "}

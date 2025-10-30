@@ -8,7 +8,7 @@ const Table = ({ title, gridRef, rest, columns, toolBar, masterDetail, pageSize,
         <div className="card-body">
           <h4 className="header-title">
             <div id="header-title-options" className="float-end"></div>
-            <span id="header-title-prefix"></span> Lista de {title} <span id="header-title-suffix"></span>
+            <span id="header-title-prefix"></span> {title} List <span id="header-title-suffix"></span>
           </h4>
           <DataGrid gridRef={gridRef} rest={rest} columns={columns.filter(Boolean)} toolBar={toolBar} masterDetail={masterDetail} filterValue={filterValue} pageSize={pageSize} exportable={exportable} exportableName={title} customizeCell={customizeCell} />
         </div>

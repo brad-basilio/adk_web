@@ -57,7 +57,7 @@ const Generals = ({ generals }) => {
                 setLoadingVars(false);
             })
             .catch(err => {
-                setVarsError("No se pudieron cargar las variables.");
+                setVarsError("Could not load variables.");
                 setLoadingVars(false);
             });
     }, [selectedEmailCorrelative]);
@@ -185,87 +185,87 @@ const Generals = ({ generals }) => {
                 })),
                 {
                     correlative: "whatsapp_phone",
-                    name: "Número de WhatsApp",
+                    name: "WhatsApp Number",
                     description: formData.whatsapp_phone,
                 },
                 {
                     correlative: "whatsapp_message",
-                    name: "Mensaje de WhatsApp",
+                    name: "WhatsApp Message",
                     description: formData.whatsapp_message,
                 },
                 {
                     correlative: "phone_contact",
-                    name: "Teléfono de contacto",
+                    name: "Contact Phone",
                     description: formData.phones.join(","),
                 },
                 {
                     correlative: "email_contact",
-                    name: "Correo de contacto",
+                    name: "Contact Email",
                     description: formData.emails.join(","),
                 },
                 {
                     correlative: "address",
-                    name: "Dirección",
+                    name: "Address",
                     description: formData.address,
                 },
                 {
                     correlative: "opening_hours",
-                    name: "Horarios de atención",
+                    name: "Opening Hours",
                     description: formData.openingHours,
                 },
                 {
                     correlative: "support_phone",
-                    name: "Número de soporte",
+                    name: "Support Phone",
                     description: formData.supportPhone,
                 },
                 {
                     correlative: "support_email",
-                    name: "Correo de soporte",
+                    name: "Support Email",
                     description: formData.supportEmail,
                 },
                 {
                     correlative: "privacy_policy",
-                    name: "Política de privacidad",
+                    name: "Privacy Policy",
                     description: formData.privacyPolicy,
                 },
                 {
                     correlative: "terms_conditions",
-                    name: "Términos y condiciones",
+                    name: "Terms and Conditions",
                     description: formData.termsConditions,
                 },
                 {
                     correlative: "exchange_policy",
-                    name: "Política de cambio",
+                    name: "Exchange Policy",
                     description: formData.exchangePolicy,
                 },
                 {
                     correlative: "seo_title",
-                    name: "Titulo - SEO",
+                    name: "Title - SEO",
                     description: formData.seoTitle,
                 },
                 {
                     correlative: "seo_description",
-                    name: "Descripcion - SEO",
+                    name: "Description - SEO",
                     description: formData.seoDescription,
                 },
                 {
                     correlative: "seo_keywords",
-                    name: "Palabras clave - SEO",
+                    name: "Keywords - SEO",
                     description: formData.seoKeywords,
                 },
                 {
                     correlative: "copyright",
-                    name: "Texto de Copyright",
+                    name: "Copyright Text",
                     description: formData.copyright,
                 },
                 {
                     correlative: "email_coorporativo",
-                    name: "Email Corporativo",
+                    name: "Corporate Email",
                     description: formData.emailCoorporativo,
                 },
                 {
                     correlative: "location",
-                    name: "Ubicación",
+                    name: "Location",
                     description: `${formData.location.lat},${formData.location.lng}`,
                 },
                 // Píxeles de seguimiento
@@ -334,7 +334,7 @@ const Generals = ({ generals }) => {
                             type="button"
                             role="tab"
                         >
-                            Información de Contacto
+                            Contact Information
                         </button>
                     </li>
                     <li className="nav-item" role="presentation">
@@ -345,7 +345,7 @@ const Generals = ({ generals }) => {
                             type="button"
                             role="tab"
                         >
-                            Políticas y Términos
+                            Policies and Terms
                         </button>
                     </li>
                     <li className="nav-item" role="presentation">
@@ -369,7 +369,7 @@ const Generals = ({ generals }) => {
                             type="button"
                             role="tab"
                         >
-                            Ubicación
+                            Location
                         </button>
                     </li>
                     <li className="nav-item" role="presentation">
@@ -379,7 +379,7 @@ const Generals = ({ generals }) => {
                             type="button"
                             role="tab"
                         >
-                            Píxeles de Seguimiento
+                            Tracking Pixels
                         </button>
                     </li>
                     {Global.APP_CORRELATIVE === "cambioDev" && (
@@ -413,7 +413,7 @@ const Generals = ({ generals }) => {
                                             htmlFor={`phone-${index}`}
                                             className="form-label"
                                         >
-                                            Teléfono {index + 1}
+                                            Phone {index + 1}
                                         </label>
                                         <div className="input-group">
                                             <input
@@ -450,7 +450,7 @@ const Generals = ({ generals }) => {
                                     className="btn btn-outline-primary"
                                     onClick={() => handleAddField("phones")}
                                 >
-                                    Agregar teléfono
+                                    Add Phone
                                 </button>
                             </div>
                             <div className="col-md-6">
@@ -463,7 +463,7 @@ const Generals = ({ generals }) => {
                                             htmlFor={`email-${index}`}
                                             className="form-label"
                                         >
-                                            Correo {index + 1}
+                                            Email {index + 1}
                                         </label>
                                         <div className="input-group">
                                             <input
@@ -500,13 +500,13 @@ const Generals = ({ generals }) => {
                                     className="btn btn-outline-primary"
                                     onClick={() => handleAddField("emails")}
                                 >
-                                    Agregar correo
+                                    Add Email
                                 </button>
                             </div>
                         </div>
                         <div className="mb-3 mt-2">
                             <label htmlFor="address" className="form-label">
-                                Dirección
+                                Address
                             </label>
                             <textarea
                                 className="form-control"
@@ -523,7 +523,7 @@ const Generals = ({ generals }) => {
                         </div>
                         <div className="mb-3">
                             <TextareaFormGroup
-                                label="Horarios de atencion"
+                                label="Opening Hours"
                                 onChange={(e) =>
                                     setFormData({
                                         ...formData,
@@ -539,7 +539,7 @@ const Generals = ({ generals }) => {
                                 htmlFor="supportPhone"
                                 className="form-label"
                             >
-                                Número de soporte
+                                Support Phone
                             </label>
                             <input
                                 type="tel"
@@ -560,7 +560,7 @@ const Generals = ({ generals }) => {
                                 htmlFor="supportEmail"
                                 className="form-label"
                             >
-                                Correo de soporte
+                                Support Email
                             </label>
                             <input
                                 type="email"
@@ -576,12 +576,12 @@ const Generals = ({ generals }) => {
                                 required
                             />
                         </div>
-                         <div className="mb-3">
+                         <div className="mb-3" hidden>
                             <label
                                 htmlFor="whatsapp_phone"
                                 className="form-label"
                             >
-                                Número de WhatsApp
+                                WhatsApp Number
                             </label>
                             <input
                                 type="tel"
@@ -596,15 +596,15 @@ const Generals = ({ generals }) => {
                                 }
                             />
                             <small className="form-text text-muted">
-                                Este número se utilizará para recibir consultas a través de WhatsApp.
+                                This number will be used to receive inquiries through WhatsApp.
                             </small>
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-3" hidden>
                             <label
                                 htmlFor="whatsapp_message"
                                 className="form-label"
                             >
-                                Mensaje de WhatsApp
+                                WhatsApp Message
                             </label>
                             <textarea
                                 className="form-control"
@@ -618,7 +618,7 @@ const Generals = ({ generals }) => {
                                 }
                             ></textarea>
                             <small className="form-text text-muted">
-                                Este mensaje se enviará automáticamente al iniciar una conversación.
+                                This message will be sent automatically when starting a conversation.
                             </small>
                         </div>
                        {/*
@@ -674,7 +674,7 @@ const Generals = ({ generals }) => {
                                 htmlFor="emailCoorporativo"
                                 className="form-label"
                             >
-                                Email Corporativo
+                                Corporate Email
                             </label>
                             <input
                                 type="email"
@@ -690,7 +690,7 @@ const Generals = ({ generals }) => {
                                 placeholder="admin@cambiafx.com"
                             />
                             <small className="form-text text-muted">
-                                Email donde se enviarán las notificaciones de nuevos contactos.
+                                Email where new contact notifications will be sent.
                             </small>
                         </div>
                     </div>
@@ -702,7 +702,7 @@ const Generals = ({ generals }) => {
                     >
                         <div className="mb-3">
                             <QuillFormGroup
-                                label="Política de privacidad"
+                                label="Privacy Policy"
                                 value={formData.privacyPolicy}
                                 onChange={(value) =>
                                     setFormData({
@@ -714,7 +714,7 @@ const Generals = ({ generals }) => {
                         </div>
                         <div className="mb-3">
                             <QuillFormGroup
-                                label="Términos y condiciones"
+                                label="Terms and Conditions"
                                 value={formData.termsConditions}
                                 onChange={(value) =>
                                     setFormData({
@@ -738,7 +738,7 @@ const Generals = ({ generals }) => {
                         </div> */}
                         <div className="mb-3">
                             <InputFormGroup
-                                label="Email Corporativo (para notificaciones)"
+                                label="Corporate Email (for notifications)"
                                 type="email"
                                 value={formData.emailCoorporativo ?? ""}
                                 onChange={(e) =>
@@ -747,10 +747,10 @@ const Generals = ({ generals }) => {
                                         emailCoorporativo: e.target.value,
                                     })
                                 }
-                                placeholder="admin@empresa.com"
+                                placeholder="admin@company.com"
                             />
                             <small className="form-text text-muted">
-                                Este email recibirá las notificaciones de nuevos mensajes de contacto.
+                                This email will receive notifications of new contact messages.
                             </small>
                         </div>
                     </div>
@@ -761,7 +761,7 @@ const Generals = ({ generals }) => {
                         role="tabpanel"
                     >
                         <InputFormGroup
-                            label="Titulo - SEO"
+                            label="Title - SEO"
                             value={formData.seoTitle ?? ""}
                             onChange={(e) =>
                                 setFormData({
@@ -771,7 +771,7 @@ const Generals = ({ generals }) => {
                             }
                         />
                         <TextareaFormGroup
-                            label="Descripcion - SEO"
+                            label="Description - SEO"
                             value={formData.seoDescription ?? ""}
                             onChange={(e) =>
                                 setFormData({
@@ -782,7 +782,7 @@ const Generals = ({ generals }) => {
                         />
                         <SelectFormGroup
                             id="cbo-keywords"
-                            label="Palabras clave - SEO"
+                            label="Keywords - SEO"
                             tags
                             multiple
                             onChange={(e) =>
@@ -823,7 +823,7 @@ const Generals = ({ generals }) => {
                             </GoogleMap>
                         </LoadScript>
                         <small className="form-text text-muted">
-                            Haz clic en el mapa para seleccionar la ubicación.
+                            Click on the map to select the location.
                         </small>
                     </div>
 
@@ -832,8 +832,8 @@ const Generals = ({ generals }) => {
                         role="tabpanel"
                     >
                         <div className="alert alert-info">
-                            <strong>Píxeles de Seguimiento</strong><br />
-                            Configura aquí los códigos de seguimiento para diferentes plataformas. Solo ingresa el ID o código, el script completo se generará automáticamente.
+                            <strong>Tracking Pixels</strong><br />
+                            Configure tracking codes for different platforms here. Only enter the ID or code, the complete script will be generated automatically.
                         </div>
                         
                         <div className="row">
@@ -856,7 +856,7 @@ const Generals = ({ generals }) => {
                                         placeholder="123456789012345"
                                     />
                                     <small className="form-text text-muted">
-                                        Solo ingresa el ID del pixel (ej: 123456789012345)
+                                        Only enter the pixel ID (e.g.: 123456789012345)
                                     </small>
                                 </div>
 
@@ -878,7 +878,7 @@ const Generals = ({ generals }) => {
                                         placeholder="G-XXXXXXXXXX o UA-XXXXXXXX-X"
                                     />
                                     <small className="form-text text-muted">
-                                        Ingresa tu Google Analytics ID (GA4: G-XXXXXXXXXX o Universal: UA-XXXXXXXX-X)
+                                        Enter your Google Analytics ID (GA4: G-XXXXXXXXXX or Universal: UA-XXXXXXXX-X)
                                     </small>
                                 </div>
 
@@ -900,7 +900,7 @@ const Generals = ({ generals }) => {
                                         placeholder="GTM-XXXXXXX"
                                     />
                                     <small className="form-text text-muted">
-                                        Ingresa tu Google Tag Manager ID (ej: GTM-XXXXXXX)
+                                        Enter your Google Tag Manager ID (e.g.: GTM-XXXXXXX)
                                     </small>
                                 </div>
                             </div>
@@ -924,7 +924,7 @@ const Generals = ({ generals }) => {
                                         placeholder="C4XXXXXXXXXXXXXXXXXXXXXXXXXX"
                                     />
                                     <small className="form-text text-muted">
-                                        Ingresa tu TikTok Pixel ID
+                                        Enter your TikTok Pixel ID
                                     </small>
                                 </div>
 
@@ -946,7 +946,7 @@ const Generals = ({ generals }) => {
                                         placeholder="12345"
                                     />
                                     <small className="form-text text-muted">
-                                        Ingresa tu LinkedIn Partner ID
+                                        Enter your LinkedIn Partner ID
                                     </small>
                                 </div>
                             </div>
@@ -954,7 +954,7 @@ const Generals = ({ generals }) => {
 
                         <div className="mb-3">
                             <label htmlFor="customPixels" className="form-label">
-                                Píxeles Personalizados (Código HTML)
+                                Custom Pixels (HTML Code)
                             </label>
                             <textarea
                                 className="form-control"
@@ -967,13 +967,13 @@ const Generals = ({ generals }) => {
                                         customPixels: e.target.value,
                                     })
                                 }
-                                placeholder="<!-- Ingresa aquí scripts personalizados de seguimiento -->
+                                placeholder="<!-- Enter custom tracking scripts here -->
 <script>
-  // Tu código personalizado aquí
+  // Your custom code here
 </script>"
                             ></textarea>
                             <small className="form-text text-muted">
-                                Aquí puedes agregar scripts personalizados de seguimiento. ⚠️ <strong>Cuidado:</strong> Solo agrega código de fuentes confiables.
+                                Here you can add custom tracking scripts. ⚠️ <strong>Warning:</strong> Only add code from trusted sources.
                             </small>
                         </div>
                     </div>
@@ -984,13 +984,13 @@ const Generals = ({ generals }) => {
                     >
                         <div className="mb-3">
                             <label htmlFor="email_correlative" className="form-label">
-                                Tipo de Email <span className="badge bg-info">{emailTemplates.length} disponibles</span>
+                                Email Type <span className="badge bg-info">{emailTemplates.length} available</span>
                             </label>
 
                             {emailTemplates.length === 0 ? (
                                 <div className="alert alert-warning">
-                                    <strong>No se encontraron plantillas de email.</strong><br />
-                                    Asegúrate de que el seeder se haya ejecutado correctamente: <code>php artisan db:seed --class=EmailsGeneralSeeder</code>
+                                    <strong>No email templates found.</strong><br />
+                                    Make sure the seeder has been executed correctly: <code>php artisan db:seed --class=EmailsGeneralSeeder</code>
                                 </div>
                             ) : (
                                 <>
@@ -1000,7 +1000,7 @@ const Generals = ({ generals }) => {
                                         value={selectedEmailCorrelative}
                                         onChange={e => setSelectedEmailCorrelative(e.target.value)}
                                     >
-                                        <option value="">Selecciona un template</option>
+                                        <option value="">Select a template</option>
                                         {emailTemplates.map(t => (
                                             <option key={t.correlative} value={t.correlative}>
                                                 {t.name || t.correlative.replace(/_/g, ' ').replace(/email/g, '').trim()}
@@ -1012,16 +1012,16 @@ const Generals = ({ generals }) => {
                                         <TinyMCEFormGroup
                                             label={
                                                 <>
-                                                    Plantilla de Email (HTML seguro, variables: <code>{`{{variable}}`}</code>)
+                                                    Email Template (Safe HTML, variables: <code>{`{{variable}}`}</code>)
                                                     <small className="d-block text-muted">
-                                                        No se permite código PHP ni Blade. Solo variables seguras.<br />
-                                                        {loadingVars && <span>Cargando variables...</span>}
+                                                        PHP or Blade code is not allowed. Only safe variables.<br />
+                                                        {loadingVars && <span>Loading variables...</span>}
                                                         {varsError && <span className="text-danger">{varsError}</span>}
                                                         {!loadingVars && !varsError && (
                                                             <>
-                                                                <b>Variables disponibles:</b>{" "}
+                                                                <b>Available variables:</b>{" "}
                                                                 {Object.keys(templateVariables).length === 0
-                                                                    ? <span>No hay variables para esta notificación.</span>
+                                                                    ? <span>No variables for this notification.</span>
                                                                     : Object.entries(templateVariables).map(([key, desc]) => (
                                                                         <span key={key} style={{ display: 'inline-block', marginRight: 8 }}>
                                                                             <code>{`{{${key}}}`}</code> <span className="text-muted">({desc})</span>{" "}
@@ -1053,7 +1053,7 @@ const Generals = ({ generals }) => {
                 </div>
 
                 <button type="submit" className="btn btn-primary mt-3">
-                    Guardar
+                    Save
                 </button>
             </form>
         </div>
@@ -1062,7 +1062,7 @@ const Generals = ({ generals }) => {
 
 CreateReactScript((el, properties) => {
     createRoot(el).render(
-        <BaseAdminto {...properties} title="Datos Generales">
+        <BaseAdminto {...properties} title="General Settings">
             <Generals {...properties} />
         </BaseAdminto>
     );

@@ -51,12 +51,12 @@ class BasicRest {
 
             if (!status)
                 throw new Error(
-                    result?.message || "Ocurrio un error inesperado"
+                    result?.message || "An unexpected error occurred"
                 );
 
             Notify.add({
                 icon: "/assets/img/icon.png",
-                title: "Correcto",
+                title: "Success",
                 body: result.message,
                 type: "success",
             });
@@ -85,12 +85,12 @@ class BasicRest {
             );
             if (!fetchStatus)
                 throw new Error(
-                    result?.message ?? "Ocurrio un error inesperado"
+                    result?.message ?? "An unexpected error occurred"
                 );
 
             Notify.add({
                 icon: "/assets/img/icon.png",
-                title: "Correcto",
+                title: "Success",
                 body: result.message,
                 type: "success",
             });
@@ -119,12 +119,12 @@ class BasicRest {
             );
             if (!fetchStatus)
                 throw new Error(
-                    result?.message ?? "Ocurrio un error inesperado"
+                    result?.message ?? "An unexpected error occurred"
                 );
 
             Notify.add({
                 icon: "/assets/img/icon.png",
-                title: "Correcto",
+                title: "Success",
                 body: result.message,
                 type: "success",
             });
@@ -152,12 +152,12 @@ class BasicRest {
             );
             if (!fetchStatus)
                 throw new Error(
-                    result?.message ?? "Ocurrio un error inesperado"
+                    result?.message ?? "An unexpected error occurred"
                 );
 
             Notify.add({
                 icon: "/assets/img/icon.png",
-                title: "Correcto",
+                title: "Success",
                 body: result.message,
                 type: "success",
             });

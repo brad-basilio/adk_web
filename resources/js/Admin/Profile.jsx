@@ -40,7 +40,7 @@ const Profile = (props) => {
     try {
       const { full, thumbnail, type, ok } = await File.compress(file)
 
-      if (!ok) throw new Error('Ocurrio un error al comprimir la imagen. Intenta con otra.')
+      if (!ok) throw new Error('An error occurred while compressing the image. Try with another one.')
 
       const request = new FormData();
       request.append('thumbnail', await File.fromURL(`data:${type};base64,${thumbnail}`));
@@ -54,7 +54,7 @@ const Profile = (props) => {
         body: request
       })
       const data = JSON.parseable(await res.text())
-      if (!res.ok) throw new Error(data?.message ?? 'Ocurrio un error inesperado')
+      if (!res.ok) throw new Error(data?.message ?? 'An unexpected error occurred')
 
       const newSession = structuredClone(session)
       newSession.relative_id = data.data.relative_id
@@ -62,8 +62,8 @@ const Profile = (props) => {
 
       Notify.add({
         icon: '/assets/img/favicon.png',
-        title: 'Correcto',
-        body: 'La imagen de perfil se actualizo correctamente',
+        title: 'Success',
+        body: 'Profile image updated successfully',
         type: 'success'
       })
     } catch (error) {
@@ -80,26 +80,26 @@ const Profile = (props) => {
     <div className='col-xl-3 col-lg-4 col-md-6 col-sm-8 col-xs-12'>
       <form className='card' onSubmit={onFormSubmit}>
         <div className='card-header'>
-          <h4 className='card-title mb-0'>Perfil</h4>
+          <h4 className='card-title mb-0'>Profile</h4>
         </div>
         <div className='card-body'>
-          <Tippy content='Cambiar foto de perfil' arrow={true}>
+          <Tippy content='Change profile photo' arrow={true}>
             <label htmlFor='avatar' className='rounded-circle mx-auto d-block' style={{ cursor: 'pointer', width: 'max-content' }}>
               <input className='d-none' type='file' name='avatar' id='avatar' accept='image/*' onChange={onProfileChange} />
-              <img className='avatar-xl rounded-circle' src={`/api/admin/profile/${session.relative_id}?v=${crypto.randomUUID()}`} alt={`Perfil de ${session.name} ${session.lastname}`} style={{ objectFit: 'cover', objectPosition: 'center' }} />
+              <img className='avatar-xl rounded-circle' src={`/api/admin/profile/${session.relative_id}?v=${crypto.randomUUID()}`} alt={`Profile of ${session.name} ${session.lastname}`} style={{ objectFit: 'cover', objectPosition: 'center' }} />
             </label>
           </Tippy>
           <hr className='mt-3 mb-2' />
-          <InputFormGroup eRef={nameRef} label='Nombres' value={session.name} required />
-          <InputFormGroup eRef={lastnameRef} label='Apellidos' value={session.lastname} required />
+          <InputFormGroup eRef={nameRef} label='First Name' value={session.name} required />
+          <InputFormGroup eRef={lastnameRef} label='Last Name' value={session.lastname} required />
           <div className='text-center'>
             <button className='btn btn-primary btn-block' type='submit'>
-              <i className='fa fa-save'></i> Actualizar
+              <i className='fa fa-save'></i> Update
             </button>
           </div>
           <hr className='mt-3 mb-2' />
           <p className='card-text text-center'>
-            <small className='text-muted'>Ultima actualizacion {moment(session.updated_at).fromNow()}</small>
+            <small className='text-muted'>Last updated {moment(session.updated_at).fromNow()}</small>
           </p>
         </div>
       </form>
@@ -108,7 +108,7 @@ const Profile = (props) => {
 }
 
 CreateReactScript((el, properties) => {
-  createRoot(el).render(<BaseAdminto {...properties} title='Perfil de usuario' >
+  createRoot(el).render(<BaseAdminto {...properties} title='User Profile' >
     <Profile {...properties} />
   </BaseAdminto>);
 })

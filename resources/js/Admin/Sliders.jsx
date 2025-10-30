@@ -85,12 +85,12 @@ const Sliders = () => {
 
     const onDeleteClicked = async (id) => {
         const { isConfirmed } = await Swal.fire({
-            title: "Eliminar slider",
-            text: "¿Estas seguro de eliminar este slider?",
+            title: "Delete slider",
+            text: "Are you sure you want to delete this slider?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonText: "Si, eliminar",
-            cancelButtonText: "Cancelar",
+            confirmButtonText: "Yes, delete",
+            cancelButtonText: "Cancel",
         });
         if (!isConfirmed) return;
         const result = await slidersRest.delete(id);
@@ -110,7 +110,7 @@ const Sliders = () => {
                         location: "after",
                         options: {
                             icon: "refresh",
-                            hint: "Refrescar tabla",
+                            hint: "Refresh table",
                             onClick: () =>
                                 $(gridRef.current)
                                     .dxDataGrid("instance")
@@ -122,8 +122,8 @@ const Sliders = () => {
                         location: "after",
                         options: {
                             icon: "plus",
-                            text: "Nuevo slider",
-                            hint: "Nuevo slider",
+                            text: "New slider",
+                            hint: "New slider",
                             onClick: () => onModalOpen(),
                         },
                     });
@@ -136,7 +136,7 @@ const Sliders = () => {
                     },
                     {
                         dataField: "name",
-                        caption: "Titulo",
+                        caption: "Title",
                         width: "75%",
                         cellTemplate: (container, { data }) => {
                             ReactAppend(
@@ -161,7 +161,7 @@ const Sliders = () => {
                                     </p>
                                 ) : (
                                     <i className="text-muted">
-                                        - Sin contenido textual -
+                                        - No text content -
                                     </i>
                                 )
                             );
@@ -169,7 +169,7 @@ const Sliders = () => {
                     },
                     {
                         dataField: "image",
-                        caption: "Imagen",
+                        caption: "Image",
                         width: "90px",
                         cellTemplate: (container, { data }) => {
                             ReactAppend(
@@ -230,13 +230,13 @@ const Sliders = () => {
                     //   }
                     // },
                     {
-                        caption: "Acciones",
+                        caption: "Actions",
                         cellTemplate: (container, { data }) => {
                             container.css("text-overflow", "unset");
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-primary",
-                                    title: "Editar",
+                                    title: "Edit",
                                     icon: "fa fa-pen",
                                     onClick: () => onModalOpen(data),
                                 })
@@ -244,7 +244,7 @@ const Sliders = () => {
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-danger",
-                                    title: "Eliminar",
+                                    title: "Delete",
                                     icon: "fa fa-trash",
                                     onClick: () => onDeleteClicked(data.id),
                                 })
@@ -257,7 +257,7 @@ const Sliders = () => {
             />
             <Modal
                 modalRef={modalRef}
-                title={isEditing ? "Editar slider" : "Agregar slider"}
+                title={isEditing ? "Edit slider" : "Add slider"}
                 onSubmit={onModalSubmit}
                 size="md"
             >
@@ -265,27 +265,27 @@ const Sliders = () => {
                     <input ref={idRef} type="hidden" />
                     <ImageFormGroup
                         eRef={bgImageRef}
-                        label="Selecciona una imagen"
+                        label="Select an image"
                         col="col-12"
                         required
                     />
 
                     <TextareaFormGroup
                         eRef={nameRef}
-                        label="Título (usa *palabra* para resaltar)"
+                        label="Title (use *word* to highlight)"
                         col="col-12"
                         rows={2}
                         required
                     />
                     <InputFormGroup
                         eRef={tagRef}
-                        label="Etiqueta superior (TAG)"
+                        label="Top label (TAG)"
                         col="col-sm-12"
                         placeholder="INNOVATIVE TECHNOLOGY SOLUTIONS"
                     />
                     <TextareaFormGroup
                         eRef={descriptionRef}
-                        label="Descripción"
+                        label="Description"
                         col="col-12"
                         rows={3}
                     />

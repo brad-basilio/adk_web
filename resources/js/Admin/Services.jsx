@@ -200,12 +200,12 @@ const Services = ({ brands }) => {
     // Resto de métodos (delete, boolean change, etc.)
     const onDeleteClicked = async (id) => {
         const { isConfirmed } = await Swal.fire({
-            title: "Eliminar Servicio",
-            text: "¿Estás seguro de eliminar este servicio?",
+            title: "Delete Service",
+            text: "Are you sure you want to delete this service?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonText: "Sí, eliminar",
-            cancelButtonText: "Cancelar",
+            confirmButtonText: "Yes, delete",
+            cancelButtonText: "Cancel",
         });
         if (!isConfirmed) return;
         const result = await servicesRest.delete(id);
@@ -236,7 +236,7 @@ const Services = ({ brands }) => {
         <>
             <Table
                 gridRef={gridRef}
-                title="Servicios"
+                title="Services"
                 rest={servicesRest}
                 toolBar={(container) => {
                     container.unshift({
@@ -244,7 +244,7 @@ const Services = ({ brands }) => {
                         location: "after",
                         options: {
                             icon: "refresh",
-                            hint: "Refrescar tabla",
+                            hint: "Refresh table",
                             onClick: () =>
                                 $(gridRef.current)
                                     .dxDataGrid("instance")
@@ -256,8 +256,8 @@ const Services = ({ brands }) => {
                         location: "after",
                         options: {
                             icon: "plus",
-                            text: "Agregar",
-                            hint: "Agregar nuevo servicio",
+                            text: "Add",
+                            hint: "Add new service",
                             onClick: () => onModalOpen(),
                         },
                     });
@@ -270,12 +270,12 @@ const Services = ({ brands }) => {
                     },
                     {
                         dataField: "title",
-                        caption: "Título",
+                        caption: "Title",
                         width: "200px",
                     },
                     {
                         dataField: "description",
-                        caption: "Descripción",
+                        caption: "Description",
                         cellTemplate: (container, { data }) => {
                             container.html(
                                 renderToString(
@@ -291,7 +291,7 @@ const Services = ({ brands }) => {
                     },
                     {
                         dataField: "image",
-                        caption: "Imagen",
+                        caption: "Image",
                         width: "100px",
                         cellTemplate: (container, { data }) => {
                             if (data.image) {
@@ -312,13 +312,13 @@ const Services = ({ brands }) => {
                                     />
                                 );
                             } else {
-                                container.html('<span class="text-muted">Sin imagen</span>');
+                                container.html('<span class="text-muted">No image</span>');
                             }
                         },
                     },
                     {
                         dataField: "icon",
-                        caption: "Icono",
+                        caption: "Icon",
                         width: "80px",
                         cellTemplate: (container, { data }) => {
                             if (data.icon) {
@@ -340,7 +340,7 @@ const Services = ({ brands }) => {
                                     />
                                 );
                             } else {
-                                container.html('<span class="text-muted">Sin icono</span>');
+                                container.html('<span class="text-muted">No icon</span>');
                             }
                         },
                     },
@@ -425,14 +425,14 @@ const Services = ({ brands }) => {
                     },
 
                     {
-                        caption: "Acciones",
+                        caption: "Actions",
                         width: "100px",
                         cellTemplate: (container, { data }) => {
                             container.append(
                                 DxButton({
                                     className:
                                         "btn btn-xs btn-soft-primary me-1",
-                                    title: "Editar",
+                                    title: "Edit",
                                     icon: "fa fa-pen",
                                     onClick: () => onModalOpen(data),
                                 })
@@ -440,7 +440,7 @@ const Services = ({ brands }) => {
                             container.append(
                                 DxButton({
                                     className: "btn btn-xs btn-soft-danger",
-                                    title: "Eliminar",
+                                    title: "Delete",
                                     icon: "fa fa-trash",
                                     onClick: () => onDeleteClicked(data.id),
                                 })
@@ -452,7 +452,7 @@ const Services = ({ brands }) => {
 
             <Modal
                 modalRef={modalRef}
-                title={isEditing ? "Editar Servicio" : "Nuevo Servicio"}
+                title={isEditing ? "Edit Service" : "New Service"}
                 onSubmit={onModalSubmit}
                 size="lg"
             >
@@ -462,12 +462,12 @@ const Services = ({ brands }) => {
                     <div className="col-md-6">
                         <InputFormGroup
                             eRef={titleRef}
-                            label="Título del servicio"
+                            label="Service Title"
                             required
                         />
 
                         <div className="mb-3">
-                            <label className="form-label">Descripción</label>
+                            <label className="form-label">Description</label>
                             <textarea
                                 ref={descriptionRef}
                                 className="form-control"
@@ -477,25 +477,25 @@ const Services = ({ brands }) => {
                         </div>
 
                         <div className="mb-3">
-                            <label className="form-label">Beneficios / Por qué elegir este servicio</label>
+                            <label className="form-label">Benefits / Why choose this service</label>
                             <textarea
                                 ref={benefitsRef}
                                 className="form-control"
                                 rows={4}
-                                placeholder="Describe los beneficios y ventajas de este servicio..."
+                                placeholder="Describe the benefits and advantages of this service..."
                             />
                         </div>
 
                         <div className="mb-3">
                             <label className="form-label">
-                                Características / Features
+                                Characteristics / Features
                             </label>
                             {characteristics.map((char, index) => (
                                 <div key={index} className="input-group mb-2">
                                     <input
                                         type="text"
                                         className="form-control"
-                                        placeholder="Ej: Technical Troubleshooting"
+                                        placeholder="Ex: Technical Troubleshooting"
                                         value={char.value}
                                         onChange={(e) =>
                                             updateCharacteristic(
@@ -521,8 +521,8 @@ const Services = ({ brands }) => {
                                 className="btn btn-sm btn-outline-primary"
                                 onClick={addCharacteristic}
                             >
-                                <i className="fas fa-plus me-1"></i> Agregar
-                                característica
+                                <i className="fas fa-plus me-1"></i> Add
+                                characteristic
                             </button>
                         </div>
                     </div>
@@ -530,13 +530,13 @@ const Services = ({ brands }) => {
                     <div className="col-md-6">
                         <ImageFormGroup
                             eRef={imageRef}
-                            label="Imagen principal"
+                            label="Main Image"
                             aspect={16 / 9}
                         />
 
                         <ImageFormGroup
                             eRef={iconRef}
-                            label="Icono del servicio"
+                            label="Service Icon"
                             aspect={1 / 1}
                         />
                     </div>
@@ -549,7 +549,7 @@ const Services = ({ brands }) => {
 CreateReactScript((el, properties) => {
     createRoot(el).render(
         <LanguageProvider>
-            <BaseAdminto {...properties} title="Servicios">
+            <BaseAdminto {...properties} title="Services">
                 <Services {...properties} />
             </BaseAdminto>
         </LanguageProvider>

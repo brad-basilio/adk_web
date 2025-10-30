@@ -70,7 +70,7 @@ const Menu = ({
                                 className="dropdown-item notify-item"
                             >
                                 <i className="fe-user me-1"></i>
-                                <span>Mi perfil</span>
+                                <span>My Profile</span>
                             </a>
 
                             <a
@@ -78,7 +78,7 @@ const Menu = ({
                                 className="dropdown-item notify-item"
                             >
                                 <i className="mdi mdi-account-key-outline me-1"></i>
-                                <span>Mi cuenta</span>
+                                <span>My Account</span>
                             </a>
 
                             <a
@@ -86,7 +86,7 @@ const Menu = ({
                                 className="dropdown-item notify-item right-bar-toggle dropdown notification-list"
                             >
                                 <i className="fe-settings me-1"></i>
-                                <span>Configuracion</span>
+                                <span>Settings</span>
                             </a>
 
                             <a
@@ -95,7 +95,7 @@ const Menu = ({
                                 onClick={Logout}
                             >
                                 <i className="fe-log-out me-1"></i>
-                                <span>Cerrar sesion</span>
+                                <span>Sign Out</span>
                             </a>
                         </div>
                     </div>
@@ -106,7 +106,7 @@ const Menu = ({
 
                     <ul className="list-inline">
                         <li className="list-inline-item">
-                            <Tippy content="Configuracion">
+                            <Tippy content="Settings">
                                 <a
                                     href="#"
                                     className="text-muted left-user-info right-bar-toggle dropdown notification-list"
@@ -117,7 +117,7 @@ const Menu = ({
                         </li>
 
                         <li className="list-inline-item">
-                            <Tippy content="Cerrar sesion">
+                            <Tippy content="Sign Out">
                                 <a
                                     href="#"
                                     className="text-danger"
@@ -157,7 +157,7 @@ const Menu = ({
                                         {messagesCount}
                                     </span>
 
-                                    {t("admin.sidebar.messages", "Mensajes")}
+                                    Messages
                                 </MenuItem>
                                 <MenuItem
                                     href="/admin/app-requests"
@@ -166,7 +166,7 @@ const Menu = ({
                                       <span className="badge bg-primary float-end">
                                         {appRequestsCount}
                                     </span>
-                                    {t("admin.sidebar.app_requests", "App Requests")}
+                                    App Requests
                                 </MenuItem>
                            {/*     <MenuItem
                                     href="/admin/appointments"
@@ -195,13 +195,13 @@ const Menu = ({
                                     href="/admin/services"
                                     icon="mdi mdi-shield-star"
                                 >
-                                    {t("admin.sidebar.services", "Servicios")}
+                                    Services
                                 </MenuItem>
                                  <MenuItem
                                     href="/admin/staff"
                                     icon="mdi mdi-account-heart"
                                 >
-                                    {t("admin.sidebar.staff", "Staff")}
+                                    Staff
                                 </MenuItem>
                            {/*     <MenuItem
                                     href="/admin/specialities"
@@ -286,16 +286,14 @@ const Menu = ({
                                     href="/admin/indicators"
                                     icon="mdi mdi-checkbox-marked-outline"
                                 >
-                                   Indicadores
+                                   Indicators
                                 </MenuItem>
                                 <MenuItem
                                     href="/admin/testimonies"
                                     icon="mdi mdi-forum"
                                 >
-                                    {t(
-                                        "admin.sidebar.testimonials",
-                                        "Testimonios"
-                                    )}
+                                   
+                                        Testimonials
                                 </MenuItem>
                              
                               {/*  <MenuItem
@@ -381,12 +379,9 @@ const Menu = ({
                                     href="/admin/socials"
                                     icon="mdi mdi-web"
                                 >
-                                    {t(
-                                        "admin.sidebar.socials",
-                                        "Redes Sociales"
-                                    )}
+                                   Social Networks
                                 </MenuItem>
-                                <li className="menu-title">Configuraciones</li>
+                                <li className="menu-title">Settings</li>
                             {/*    <MenuItem
                                     href="/admin/users"
                                     icon="mdi mdi-account-multiple"
@@ -397,22 +392,20 @@ const Menu = ({
                                     href="/admin/generals"
                                     icon="mdi mdi-credit-card-settings"
                                 >
-                                    {t(
-                                        "admin.sidebar.generals",
-                                        "Datos Generales"
-                                    )}
+                                    General Data
+                                
                                 </MenuItem>
                                 <MenuItem
                                     href="/admin/profile"
                                     icon="mdi mdi-account-box"
                                 >
-                                    {t("admin.sidebar.profile", "Mi perfil")}
+                                    My Profile
                                 </MenuItem>
                                 <MenuItem
                                     href="/admin/account"
                                     icon="mdi mdi-account-key"
                                 >
-                                    {t("admin.sidebar.account", "Mi cuenta")}
+                                    My Account
                                 </MenuItem>
                             </>
                         )}

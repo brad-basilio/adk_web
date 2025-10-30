@@ -119,7 +119,7 @@ const Socials = ({ }) => {
     e.preventDefault()
 
     if (!selectedSocial) {
-      Swal.fire('Error', 'Por favor selecciona una red social', 'error');
+      Swal.fire('Error', 'Please select a social network', 'error');
       return;
     }
 
@@ -146,12 +146,12 @@ const Socials = ({ }) => {
 
   const onDeleteClicked = async (id) => {
     const { isConfirmed } = await Swal.fire({
-      title: 'Eliminar registro',
-      text: '¿Estas seguro de eliminar este registro?',
+      title: 'Delete record',
+      text: 'Are you sure you want to delete this record?',
       icon: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Si, eliminar',
-      cancelButtonText: 'Cancelar'
+      confirmButtonText: 'Yes, delete',
+      cancelButtonText: 'Cancel'
     })
     if (!isConfirmed) return
     const result = await socialsRest.delete(id)
@@ -162,13 +162,13 @@ const Socials = ({ }) => {
 
 
   return (<>
-    <Table gridRef={gridRef} title='Redes Sociales' rest={socialsRest}
+    <Table gridRef={gridRef} title='Social Networks' rest={socialsRest}
       toolBar={(container) => {
         container.unshift({
           widget: 'dxButton', location: 'after',
           options: {
             icon: 'refresh',
-            hint: 'Refrescar tabla',
+            hint: 'Refresh table',
             onClick: () => $(gridRef.current).dxDataGrid('instance').refresh()
           }
         });
@@ -176,8 +176,8 @@ const Socials = ({ }) => {
           widget: 'dxButton', location: 'after',
           options: {
             icon: 'plus',
-            text: 'Nuevo registro',
-            hint: 'Nuevo registro',
+            text: 'New record',
+            hint: 'New record',
             onClick: () => onModalOpen()
           }
         });
@@ -190,11 +190,11 @@ const Socials = ({ }) => {
         },
         {
           dataField: 'name',
-          caption: 'Usuario',
+          caption: 'User',
         },
         {
           dataField: 'description',
-          caption: 'Red Social',
+          caption: 'Social Network',
           cellTemplate: (container, { data }) => {
             const social = predefinedSocials.find(s =>
               s.name === data.description || s.iconRef === data.icon
@@ -231,18 +231,18 @@ const Socials = ({ }) => {
           }
         },
         {
-          caption: 'Acciones',
+          caption: 'Actions',
           cellTemplate: (container, { data }) => {
             container.css('text-overflow', 'unset')
             container.append(DxButton({
               className: 'btn btn-xs btn-soft-primary',
-              title: 'Editar',
+              title: 'Edit',
               icon: 'fa fa-pen',
               onClick: () => onModalOpen(data)
             }))
             container.append(DxButton({
               className: 'btn btn-xs btn-soft-danger',
-              title: 'Eliminar',
+              title: 'Delete',
               icon: 'fa fa-trash',
               onClick: () => onDeleteClicked(data.id)
             }))
@@ -251,18 +251,18 @@ const Socials = ({ }) => {
           allowExporting: false
         }
       ]} />
-    <Modal modalRef={modalRef} title={isEditing ? 'Editar red social' : 'Agregar red social'} onSubmit={onModalSubmit} size='md'>
+    <Modal modalRef={modalRef} title={isEditing ? 'Edit social network' : 'Add social network'} onSubmit={onModalSubmit} size='md'>
       <div className='row' id='socials-container'>
         <input ref={idRef} type='hidden' />
 
         <div className='col-12 mb-3'>
-          <label className='form-label'>Red Social <span className="text-danger">*</span></label>
+          <label className='form-label'>Social Network <span className="text-danger">*</span></label>
           <SelectFormGroup
             eRef={socialSelectRef}
             dropdownParent='#socials-container'
             required
           >
-            <option value="">Seleccionar red social...</option>
+            <option value="">Select social network...</option>
             {predefinedSocials.map((social) => (
               <option key={social.id} value={social.id}>
                 {social.name}
@@ -275,13 +275,13 @@ const Socials = ({ }) => {
           <div className='col-12 mb-3'>
             <div className='alert alert-info d-flex align-items-center'>
               <selectedSocial.icon className="me-2" size={20} />
-              <span>Red social seleccionada: <strong>{selectedSocial.name}</strong></span>
+              <span>Selected social network: <strong>{selectedSocial.name}</strong></span>
             </div>
           </div>
         )}
 
-        <InputFormGroup eRef={nameRef} label='Usuario/Nombre de cuenta' col='col-12' required />
-        <TextareaFormGroup eRef={linkRef} label='Enlace (https://...)' col='col-12' rows={2} required />
+        <InputFormGroup eRef={nameRef} label='User/Account name' col='col-12' required />
+        <TextareaFormGroup eRef={linkRef} label='Link (https://...)' col='col-12' rows={2} required />
       </div>
     </Modal>
   </>
@@ -290,7 +290,7 @@ const Socials = ({ }) => {
 
 CreateReactScript((el, properties) => {
 
-  createRoot(el).render(<BaseAdminto {...properties} title='Redes Sociales'>
+  createRoot(el).render(<BaseAdminto {...properties} title='Social Networks'>
     <Socials {...properties} />
   </BaseAdminto>);
 })
