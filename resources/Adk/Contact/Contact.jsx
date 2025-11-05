@@ -246,7 +246,7 @@ const Contact = ({ services = [], generals = [] }) => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder="Felix Izquierdo"
+                  placeholder=""
                 />
               </div>
 
@@ -260,7 +260,7 @@ const Contact = ({ services = [], generals = [] }) => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    placeholder="pepe@adkthecnology.com"
+                    placeholder=""
                   />
                 </div>
 
@@ -272,7 +272,7 @@ const Contact = ({ services = [], generals = [] }) => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="+1 (555) 000-0000"
+                    placeholder=""
                   />
                 </div>
               </div>
