@@ -37,10 +37,10 @@ const About = ({ indicators = [], staff = [] }) => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -67,7 +67,7 @@ const About = ({ indicators = [], staff = [] }) => {
 
     return socialsArray.map(item => {
       if (!item || !item.social || !item.link) return null;
-      
+
       const IconComponent = socialIcons[item.social];
       if (!IconComponent) return null;
 
@@ -83,13 +83,13 @@ const About = ({ indicators = [], staff = [] }) => {
   // Mapear staff de la BD al formato del componente
   const teamMembers = staff.length > 0
     ? staff.map(member => ({
-        name: member.name,
-        role: member.job,
-        image: `/api/staff/media/${member.image}`,
-        bio: member.description,
-        expertise: member.characteristics || [],
-        socials: parseSocials(member.socials)
-      }))
+      name: member.name,
+      role: member.job,
+      image: `/api/staff/media/${member.image}`,
+      bio: member.description,
+      expertise: member.characteristics || [],
+      socials: parseSocials(member.socials)
+    }))
     : [];
 
   const nextTeamSlide = () => {
@@ -153,7 +153,7 @@ const About = ({ indicators = [], staff = [] }) => {
               Our company is a trusted provider of technology solutions with over 10 years of experience in the industry.
             </p>
             <p className="main-paragraph">
-             At ADK Tech, we take pride in our expertise in identifying and selecting exceptional talent to meet our clients’ unique needs. We are dedicated to providing swift and efficient solutions without compromising the quality of our work.
+              At ADK Tech, we take pride in our expertise in identifying and selecting exceptional talent to meet our clients’ unique needs. We are dedicated to providing swift and efficient solutions without compromising the quality of our work.
             </p>
             <p className="main-paragraph">
               Understanding that each client has specific requirements, our top priority is delving deep into comprehending their particular needs. This commitment drives us to deliver innovative and tailored solutions that not only meet their expectations but also equip them with the necessary tools to successfully achieve their business objectives. At ADK Tech, we aim not just to find talent but also to build long-term relationships, actively collaborating to ensure that each step contributes to the growth and prosperity of our clients’ enterprises. With a focus on excellence and innovation, we strive to be your reliable partner in talent search and development, contributing to the ongoing success of your organization.
@@ -217,109 +217,109 @@ const About = ({ indicators = [], staff = [] }) => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-          <div className="team-header-modern">
-            <div className="team-header-content">
-              <motion.div className="team-number-modern">02</motion.div>
-              <div>
-                <h3 className="team-title-modern !font-bold">Meet Our Team</h3>
-                <p className="team-subtitle-modern">Experts driving innovation forward</p>
+            <div className="team-header-modern">
+              <div className="team-header-content">
+                <motion.div className="team-number-modern">02</motion.div>
+                <div>
+                  <h3 className="team-title-modern !font-bold">Meet Our Team</h3>
+                  <p className="team-subtitle-modern">Experts driving innovation forward</p>
+                </div>
+              </div>
+              <div className="team-carousel-controls">
+                <button
+                  className="team-carousel-btn team-carousel-btn-prev"
+                  onClick={prevTeamSlide}
+                  aria-label="Previous team members"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <button
+                  className="team-carousel-btn team-carousel-btn-next"
+                  onClick={nextTeamSlide}
+                  aria-label="Next team members"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
               </div>
             </div>
-            <div className="team-carousel-controls">
-              <button
-                className="team-carousel-btn team-carousel-btn-prev"
-                onClick={prevTeamSlide}
-                aria-label="Previous team members"
-              >
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
-              <button
-                className="team-carousel-btn team-carousel-btn-next"
-                onClick={nextTeamSlide}
-                aria-label="Next team members"
-              >
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </button>
+
+            <div className="team-carousel-wrapper">
+              <div className="team-grid-modern">
+                {getVisibleTeamMembers().map((member, index) => (
+                  <motion.div
+                    key={index}
+                    className="team-card-modern"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                    whileHover={{ y: 0 }}
+                    onClick={() => setSelectedMember(member)}
+                  >
+                    <div className="team-card-inner">
+                      <div className="team-image-wrapper">
+                        <img
+                          src={member.image}
+                          alt={member.name}
+                          className="team-image-modern !aspect-square w-full"
+                        />
+                        <div className="team-gradient-overlay"></div>
+                        <div className="team-hover-icon">
+                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      <div className="team-content-modern">
+                        <h4 className="team-name-modern">{member.name}</h4>
+                        <p className="team-role-modern">{member.role}</p>
+
+                        <div className="team-expertise">
+                          {member.expertise.slice(0, 2).map((skill, idx) => (
+                            <span key={idx} className="expertise-tag">{skill}</span>
+                          ))}
+                        </div>
+
+                        <div className="team-social">
+                          {member.socials && member.socials.map((social, idx) => {
+                            const IconComponent = social.icon;
+                            return (
+                              <a
+                                key={idx}
+                                href={social.link}
+                                className="social-link"
+                                onClick={(e) => e.stopPropagation()}
+                                title={social.name}
+                              >
+                                <IconComponent size={18} />
+                              </a>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="team-card-border"></div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="team-carousel-wrapper">
-            <div className="team-grid-modern">
-              {getVisibleTeamMembers().map((member, index) => (
-              <motion.div
-                key={index}
-                className="team-card-modern"
-                initial={{ opacity: 0, y: 30 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 * index }}
-                whileHover={{ y: 0 }}
-                onClick={() => setSelectedMember(member)}
-              >
-                <div className="team-card-inner">
-                  <div className="team-image-wrapper">
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="team-image-modern"
-                    />
-                    <div className="team-gradient-overlay"></div>
-                    <div className="team-hover-icon">
-                      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                  </div>
-
-                  <div className="team-content-modern">
-                    <h4 className="team-name-modern">{member.name}</h4>
-                    <p className="team-role-modern">{member.role}</p>
-
-                    <div className="team-expertise">
-                      {member.expertise.slice(0, 2).map((skill, idx) => (
-                        <span key={idx} className="expertise-tag">{skill}</span>
-                      ))}
-                    </div>
-
-                    <div className="team-social">
-                      {member.socials && member.socials.map((social, idx) => {
-                        const IconComponent = social.icon;
-                        return (
-                          <a 
-                            key={idx}
-                            href={social.link} 
-                            className="social-link" 
-                            onClick={(e) => e.stopPropagation()}
-                            title={social.name}
-                          >
-                            <IconComponent size={18} />
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="team-card-border"></div>
-                </div>
-              </motion.div>
+            <div className="team-carousel-indicators">
+              {Array.from({ length: Math.ceil(teamMembers.length / (isMobile ? 1 : 3)) }).map((_, idx) => (
+                <button
+                  key={idx}
+                  className={`team-indicator ${idx === currentTeamIndex ? 'active' : ''}`}
+                  onClick={() => setCurrentTeamIndex(idx)}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
               ))}
             </div>
-          </div>
-
-          <div className="team-carousel-indicators">
-            {Array.from({ length: Math.ceil(teamMembers.length / (isMobile ? 1 : 3)) }).map((_, idx) => (
-              <button
-                key={idx}
-                className={`team-indicator ${idx === currentTeamIndex ? 'active' : ''}`}
-                onClick={() => setCurrentTeamIndex(idx)}
-                aria-label={`Go to slide ${idx + 1}`}
-              />
-            ))}
-          </div>
-        </motion.div>
+          </motion.div>
         )}
       </div>
 
@@ -340,7 +340,7 @@ const About = ({ indicators = [], staff = [] }) => {
           >
             <button className="modal-close" onClick={() => setSelectedMember(null)}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
 

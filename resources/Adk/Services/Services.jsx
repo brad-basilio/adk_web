@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import ServiceModal from './ServiceModal';
@@ -16,21 +16,39 @@ const Services = ({ services = [] }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const autoPlayRef = useRef(null);
 
   // Distancia mínima para considerar un swipe
   const minSwipeDistance = 50;
+  const autoPlayInterval = 4000; // 5 segundos
 
   // Detectar si es mobile
   React.useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
+
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Autoplay functionality
+  useEffect(() => {
+    if (isAutoPlaying && services.length > 0) {
+      autoPlayRef.current = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % services.length);
+      }, autoPlayInterval);
+    }
+
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [isAutoPlaying, services.length]);
 
   const onTouchStart = (e) => {
     setTouchEnd(null);
@@ -43,15 +61,17 @@ const Services = ({ services = [] }) => {
 
   const onTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;
-    
+
     if (isLeftSwipe) {
-      handleNext();
+      setCurrentIndex((prev) => (prev + 1) % services.length);
+      setIsAutoPlaying(false);
     } else if (isRightSwipe) {
-      handlePrev();
+      setCurrentIndex((prev) => (prev - 1 + services.length) % services.length);
+      setIsAutoPlaying(false);
     }
   };
 
@@ -59,10 +79,20 @@ const Services = ({ services = [] }) => {
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % services.length);
+    setIsAutoPlaying(false); // Pausar autoplay al interactuar manualmente
   };
 
   const handlePrev = () => {
     setCurrentIndex((prev) => (prev - 1 + services.length) % services.length);
+    setIsAutoPlaying(false); // Pausar autoplay al interactuar manualmente
+  };
+
+  const handleMouseEnter = () => {
+    setIsAutoPlaying(false);
+  };
+
+  const handleMouseLeave = () => {
+    setIsAutoPlaying(true);
   };
 
   const handleCardClick = (index) => {
@@ -100,15 +130,17 @@ const Services = ({ services = [] }) => {
         <div className="carousel-container">
           <button className="carousel-btn prev" onClick={handlePrev}>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
 
-          <div 
+          <div
             className="services-carousel"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <AnimatePresence mode="wait">
               <motion.div
@@ -147,7 +179,7 @@ const Services = ({ services = [] }) => {
                         {(service.characteristics || []).slice(0, 4).map((feature, idx) => (
                           <div key={idx} className="feature-item-small">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                              <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor" />
                             </svg>
                             <span>{feature}</span>
                           </div>
@@ -165,7 +197,7 @@ const Services = ({ services = [] }) => {
                       >
                         View Details
                         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </motion.button>
                     </div>
@@ -179,7 +211,7 @@ const Services = ({ services = [] }) => {
 
           <button className="carousel-btn next" onClick={handleNext}>
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
         </div>
