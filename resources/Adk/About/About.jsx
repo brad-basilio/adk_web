@@ -264,7 +264,7 @@ const About = ({ indicators = [], staff = [] }) => {
                         <img
                           src={member.image}
                           alt={member.name}
-                          className="team-image-modern !aspect-square w-full"
+                          className="team-image-modern"
                         />
                         <div className="team-gradient-overlay"></div>
                         <div className="team-hover-icon">
