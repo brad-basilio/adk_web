@@ -13,8 +13,8 @@
       "_main-D1ujSG59.js"
     ]
   },
-  "_Base-CIJAnyun.js": {
-    "file": "assets/Base-CIJAnyun.js",
+  "_Base-BS7niVuO.js": {
+    "file": "assets/Base-BS7niVuO.js",
     "name": "Base",
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
@@ -654,13 +654,13 @@
     ]
   },
   "resources/js/Admin/About.jsx": {
-    "file": "assets/About-xBngl9DG.js",
+    "file": "assets/About-DQQCWc4m.js",
     "name": "About",
     "src": "resources/js/Admin/About.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_SwitchFormGroup-COj39dTx.js",
       "_TextareaFormGroup-BncP5wW3.js",
       "resources/js/components/TrackingPixels.jsx",
@@ -688,7 +688,7 @@
     ]
   },
   "resources/js/Admin/Account.jsx": {
-    "file": "assets/Account-D1Yavt0w.js",
+    "file": "assets/Account-DXUHmy8u.js",
     "name": "Account",
     "src": "resources/js/Admin/Account.jsx",
     "isEntry": true,
@@ -697,7 +697,7 @@
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_JSEncrypt-D3I3x59l.js",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_main-D1ujSG59.js",
       "_InputFormGroup-DDhzlCe_.js",
@@ -717,7 +717,7 @@
     ]
   },
   "resources/js/Admin/Ads.jsx": {
-    "file": "assets/Ads-BWIB_1bi.js",
+    "file": "assets/Ads-kFU0Oyte.js",
     "name": "Ads",
     "src": "resources/js/Admin/Ads.jsx",
     "isEntry": true,
@@ -725,7 +725,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -755,7 +755,7 @@
     ]
   },
   "resources/js/Admin/AppRequests.jsx": {
-    "file": "assets/AppRequests-B3Xw558z.js",
+    "file": "assets/AppRequests-e3c4ryCn.js",
     "name": "AppRequests",
     "src": "resources/js/Admin/AppRequests.jsx",
     "isEntry": true,
@@ -763,7 +763,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_DxButton-CsjWvhyj.js",
@@ -787,7 +787,7 @@
     ]
   },
   "resources/js/Admin/Appointments.jsx": {
-    "file": "assets/Appointments-D1triQ11.js",
+    "file": "assets/Appointments-BHJbOqrS.js",
     "name": "Appointments",
     "src": "resources/js/Admin/Appointments.jsx",
     "isEntry": true,
@@ -795,7 +795,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_DxButton-CsjWvhyj.js",
@@ -820,7 +820,7 @@
     ]
   },
   "resources/js/Admin/Bundles.jsx": {
-    "file": "assets/Bundles-DYULdw66.js",
+    "file": "assets/Bundles-eznpyK3b.js",
     "name": "Bundles",
     "src": "resources/js/Admin/Bundles.jsx",
     "isEntry": true,
@@ -828,7 +828,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -856,7 +856,7 @@
     ]
   },
   "resources/js/Admin/Categories.jsx": {
-    "file": "assets/Categories-DYa5aZny.js",
+    "file": "assets/Categories-CH4aqPmm.js",
     "name": "Categories",
     "src": "resources/js/Admin/Categories.jsx",
     "isEntry": true,
@@ -864,7 +864,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -891,7 +891,7 @@
     ]
   },
   "resources/js/Admin/Colors.jsx": {
-    "file": "assets/Colors-DdA1nZiJ.js",
+    "file": "assets/Colors-CmXTOJqU.js",
     "name": "Colors",
     "src": "resources/js/Admin/Colors.jsx",
     "isEntry": true,
@@ -899,7 +899,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -927,7 +927,7 @@
     ]
   },
   "resources/js/Admin/Complaints.jsx": {
-    "file": "assets/Complaints-BbCf104b.js",
+    "file": "assets/Complaints-iOI2g65W.js",
     "name": "Complaints",
     "src": "resources/js/Admin/Complaints.jsx",
     "isEntry": true,
@@ -935,7 +935,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -958,7 +958,7 @@
     ]
   },
   "resources/js/Admin/CoreValues.jsx": {
-    "file": "assets/CoreValues-CaT0u7qq.js",
+    "file": "assets/CoreValues-DdaRv0YB.js",
     "name": "CoreValues",
     "src": "resources/js/Admin/CoreValues.jsx",
     "isEntry": true,
@@ -966,7 +966,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -993,7 +993,7 @@
     ]
   },
   "resources/js/Admin/Coupons.jsx": {
-    "file": "assets/Coupons-Ck41uJrn.js",
+    "file": "assets/Coupons-DkW9jsgz.js",
     "name": "Coupons",
     "src": "resources/js/Admin/Coupons.jsx",
     "isEntry": true,
@@ -1001,7 +1001,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1031,14 +1031,14 @@
     ]
   },
   "resources/js/Admin/Facilities.jsx": {
-    "file": "assets/Facilities-DNzVXDnt.js",
+    "file": "assets/Facilities-oCIS7pUL.js",
     "name": "Facilities",
     "src": "resources/js/Admin/Facilities.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/Adminto/Dx/DxBox.jsx",
       "_sweetalert2.all-C96erxsa.js",
@@ -1064,7 +1064,7 @@
     ]
   },
   "resources/js/Admin/Faqs.jsx": {
-    "file": "assets/Faqs-DaAhHrPo.js",
+    "file": "assets/Faqs-HTNKz3ix.js",
     "name": "Faqs",
     "src": "resources/js/Admin/Faqs.jsx",
     "isEntry": true,
@@ -1072,7 +1072,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1107,7 +1107,7 @@
     ]
   },
   "resources/js/Admin/Formulas.jsx": {
-    "file": "assets/Formulas-Cf7YfXIA.js",
+    "file": "assets/Formulas-DZ5EnlHs.js",
     "name": "Formulas",
     "src": "resources/js/Admin/Formulas.jsx",
     "isEntry": true,
@@ -1115,7 +1115,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1141,7 +1141,7 @@
     ]
   },
   "resources/js/Admin/Fragrances.jsx": {
-    "file": "assets/Fragrances-Ckem3zCo.js",
+    "file": "assets/Fragrances-KgbNyUzh.js",
     "name": "Fragrances",
     "src": "resources/js/Admin/Fragrances.jsx",
     "isEntry": true,
@@ -1149,7 +1149,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1177,7 +1177,7 @@
     ]
   },
   "resources/js/Admin/Gallery.jsx": {
-    "file": "assets/Gallery-b24gTCuI.js",
+    "file": "assets/Gallery-DCyF01-p.js",
     "name": "Gallery",
     "src": "resources/js/Admin/Gallery.jsx",
     "isEntry": true,
@@ -1185,7 +1185,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "resources/js/components/Blog/Results.jsx",
       "_index-CbrplguO.js",
@@ -1204,7 +1204,7 @@
     ]
   },
   "resources/js/Admin/Generals.jsx": {
-    "file": "assets/Generals-Bbya9StK.js",
+    "file": "assets/Generals-q4-R2MOE.js",
     "name": "Generals",
     "src": "resources/js/Admin/Generals.jsx",
     "isEntry": true,
@@ -1212,7 +1212,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "_index-CbrplguO.js",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "resources/js/components/Blog/Results.jsx",
       "_CreateReactScript-BEktg6JA.js",
       "resources/js/Utils/ReactAppend.jsx",
@@ -1237,7 +1237,7 @@
     ]
   },
   "resources/js/Admin/Gifts.jsx": {
-    "file": "assets/Gifts-COB5lojQ.js",
+    "file": "assets/Gifts-C6Nma5Cz.js",
     "name": "Gifts",
     "src": "resources/js/Admin/Gifts.jsx",
     "isEntry": true,
@@ -1245,7 +1245,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1274,7 +1274,7 @@
     ]
   },
   "resources/js/Admin/Home.jsx": {
-    "file": "assets/Home-BYUeMbOr.js",
+    "file": "assets/Home-D32vv_D6.js",
     "name": "Home",
     "src": "resources/js/Admin/Home.jsx",
     "isEntry": true,
@@ -1283,7 +1283,7 @@
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_CreateReactScript-BEktg6JA.js",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_index-CbrplguO.js",
       "_index.esm-Duzu12F9.js",
       "_axios-B4uVmeYG.js",
@@ -1300,7 +1300,7 @@
     ]
   },
   "resources/js/Admin/Indicators.jsx": {
-    "file": "assets/Indicators-KM90UwhT.js",
+    "file": "assets/Indicators-BlyGykDe.js",
     "name": "Indicators",
     "src": "resources/js/Admin/Indicators.jsx",
     "isEntry": true,
@@ -1308,7 +1308,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1336,7 +1336,7 @@
     ]
   },
   "resources/js/Admin/InstagramPosts.jsx": {
-    "file": "assets/InstagramPosts-C94UJxL4.js",
+    "file": "assets/InstagramPosts-C5e1BHYL.js",
     "name": "InstagramPosts",
     "src": "resources/js/Admin/InstagramPosts.jsx",
     "isEntry": true,
@@ -1344,7 +1344,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1372,13 +1372,13 @@
     ]
   },
   "resources/js/Admin/Items.jsx": {
-    "file": "assets/Items-Cj-mM2az.js",
+    "file": "assets/Items-jJWbNaPx.js",
     "name": "Items",
     "src": "resources/js/Admin/Items.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_SwitchFormGroup-COj39dTx.js",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
@@ -1411,7 +1411,7 @@
     ]
   },
   "resources/js/Admin/LandingHome.jsx": {
-    "file": "assets/LandingHome-CP7rO_AN.js",
+    "file": "assets/LandingHome-D1HMOCF4.js",
     "name": "LandingHome",
     "src": "resources/js/Admin/LandingHome.jsx",
     "isEntry": true,
@@ -1419,7 +1419,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Modal-Dub2Vndy.js",
       "_InputFormGroup-DDhzlCe_.js",
@@ -1444,7 +1444,7 @@
     ]
   },
   "resources/js/Admin/Langs.jsx": {
-    "file": "assets/Langs-Amm_DL1B.js",
+    "file": "assets/Langs-DVDaPL8q.js",
     "name": "Langs",
     "src": "resources/js/Admin/Langs.jsx",
     "isEntry": true,
@@ -1452,7 +1452,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1480,7 +1480,7 @@
     ]
   },
   "resources/js/Admin/Messages.jsx": {
-    "file": "assets/Messages-DXg94BPL.js",
+    "file": "assets/Messages-ywXGuA5U.js",
     "name": "Messages",
     "src": "resources/js/Admin/Messages.jsx",
     "isEntry": true,
@@ -1488,7 +1488,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_DxButton-CsjWvhyj.js",
@@ -1512,7 +1512,7 @@
     ]
   },
   "resources/js/Admin/Posts.jsx": {
-    "file": "assets/Posts-WcRfEZ30.js",
+    "file": "assets/Posts-CSaSLywg.js",
     "name": "Posts",
     "src": "resources/js/Admin/Posts.jsx",
     "isEntry": true,
@@ -1520,7 +1520,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1548,7 +1548,7 @@
     ]
   },
   "resources/js/Admin/Profile.jsx": {
-    "file": "assets/Profile-Bsp5xjjK.js",
+    "file": "assets/Profile-CZOtm8VW.js",
     "name": "Profile",
     "src": "resources/js/Admin/Profile.jsx",
     "isEntry": true,
@@ -1558,7 +1558,7 @@
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
       "_main-D1ujSG59.js",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_InputFormGroup-DDhzlCe_.js",
       "_CreateReactScript-BEktg6JA.js",
       "_index-CbrplguO.js",
@@ -1575,7 +1575,7 @@
     ]
   },
   "resources/js/Admin/Renewals.jsx": {
-    "file": "assets/Renewals-BMzTxFVl.js",
+    "file": "assets/Renewals-ClCcLOuf.js",
     "name": "Renewals",
     "src": "resources/js/Admin/Renewals.jsx",
     "isEntry": true,
@@ -1583,7 +1583,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1610,7 +1610,7 @@
     ]
   },
   "resources/js/Admin/Sales.jsx": {
-    "file": "assets/Sales-bQ3CR2Ux.js",
+    "file": "assets/Sales-BZ8g_lYu.js",
     "name": "Sales",
     "src": "resources/js/Admin/Sales.jsx",
     "isEntry": true,
@@ -1618,7 +1618,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_DxButton-CsjWvhyj.js",
@@ -1644,14 +1644,14 @@
     ]
   },
   "resources/js/Admin/Services.jsx": {
-    "file": "assets/Services-DeER7RkY.js",
+    "file": "assets/Services-Cz7B0S6A.js",
     "name": "Services",
     "src": "resources/js/Admin/Services.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/Adminto/Dx/DxBox.jsx",
       "_sweetalert2.all-C96erxsa.js",
@@ -1680,7 +1680,7 @@
     ]
   },
   "resources/js/Admin/Sizes.jsx": {
-    "file": "assets/Sizes-B9C6kp2R.js",
+    "file": "assets/Sizes-DrMlSlS9.js",
     "name": "Sizes",
     "src": "resources/js/Admin/Sizes.jsx",
     "isEntry": true,
@@ -1688,7 +1688,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1716,7 +1716,7 @@
     ]
   },
   "resources/js/Admin/Sliders.jsx": {
-    "file": "assets/Sliders-DQj9b5ks.js",
+    "file": "assets/Sliders-CSZ7dOX1.js",
     "name": "Sliders",
     "src": "resources/js/Admin/Sliders.jsx",
     "isEntry": true,
@@ -1724,7 +1724,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1752,13 +1752,13 @@
     ]
   },
   "resources/js/Admin/Socials.jsx": {
-    "file": "assets/Socials-CCBuySLR.js",
+    "file": "assets/Socials-CvYGEpe_.js",
     "name": "Socials",
     "src": "resources/js/Admin/Socials.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_InputFormGroup-DDhzlCe_.js",
       "_SelectFormGroup-DYWvpzd2.js",
       "_SwitchFormGroup-COj39dTx.js",
@@ -1790,7 +1790,7 @@
     ]
   },
   "resources/js/Admin/Specialities.jsx": {
-    "file": "assets/Specialities-CiY5ZYJ3.js",
+    "file": "assets/Specialities-N2R6G9Us.js",
     "name": "Specialities",
     "src": "resources/js/Admin/Specialities.jsx",
     "isEntry": true,
@@ -1798,7 +1798,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1825,14 +1825,14 @@
     ]
   },
   "resources/js/Admin/Staff.jsx": {
-    "file": "assets/Staff-BUmRhNTF.js",
+    "file": "assets/Staff-CGdvaeRF.js",
     "name": "Staff",
     "src": "resources/js/Admin/Staff.jsx",
     "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "resources/js/Utils/ReactAppend.jsx",
       "resources/js/components/Adminto/Dx/DxBox.jsx",
       "_sweetalert2.all-C96erxsa.js",
@@ -1862,7 +1862,7 @@
     ]
   },
   "resources/js/Admin/Strengths.jsx": {
-    "file": "assets/Strengths-Cw106CbP.js",
+    "file": "assets/Strengths-BycusZty.js",
     "name": "Strengths",
     "src": "resources/js/Admin/Strengths.jsx",
     "isEntry": true,
@@ -1870,7 +1870,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1898,7 +1898,7 @@
     ]
   },
   "resources/js/Admin/Subscriptions.jsx": {
-    "file": "assets/Subscriptions-4zJkHeis.js",
+    "file": "assets/Subscriptions-DQeGPZ1_.js",
     "name": "Subscriptions",
     "src": "resources/js/Admin/Subscriptions.jsx",
     "isEntry": true,
@@ -1906,7 +1906,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_DxButton-CsjWvhyj.js",
@@ -1929,7 +1929,7 @@
     ]
   },
   "resources/js/Admin/Supplies.jsx": {
-    "file": "assets/Supplies-Cdd-T8qv.js",
+    "file": "assets/Supplies-Btpv_-83.js",
     "name": "Supplies",
     "src": "resources/js/Admin/Supplies.jsx",
     "isEntry": true,
@@ -1937,7 +1937,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1964,7 +1964,7 @@
     ]
   },
   "resources/js/Admin/Tags.jsx": {
-    "file": "assets/Tags-RP1PXe4T.js",
+    "file": "assets/Tags-B-Db1XoQ.js",
     "name": "Tags",
     "src": "resources/js/Admin/Tags.jsx",
     "isEntry": true,
@@ -1972,7 +1972,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -1999,7 +1999,7 @@
     ]
   },
   "resources/js/Admin/Testimonies.jsx": {
-    "file": "assets/Testimonies-CMb31ulE.js",
+    "file": "assets/Testimonies-B1DppB4_.js",
     "name": "Testimonies",
     "src": "resources/js/Admin/Testimonies.jsx",
     "isEntry": true,
@@ -2007,7 +2007,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -2035,7 +2035,7 @@
     ]
   },
   "resources/js/Admin/Translations.jsx": {
-    "file": "assets/Translations-Co99pvGd.js",
+    "file": "assets/Translations-yF62z-bF.js",
     "name": "Translations",
     "src": "resources/js/Admin/Translations.jsx",
     "isEntry": true,
@@ -2043,7 +2043,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -2068,7 +2068,7 @@
     ]
   },
   "resources/js/Admin/Users.jsx": {
-    "file": "assets/Users-BedSUbGx.js",
+    "file": "assets/Users-DaDYKEgV.js",
     "name": "Users",
     "src": "resources/js/Admin/Users.jsx",
     "isEntry": true,
@@ -2076,7 +2076,7 @@
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
       "resources/js/Utils/ReactAppend.jsx",
-      "_Base-CIJAnyun.js",
+      "_Base-BS7niVuO.js",
       "_CreateReactScript-BEktg6JA.js",
       "_Table-CnO1ch86.js",
       "_Modal-Dub2Vndy.js",
@@ -3478,7 +3478,7 @@
     ]
   },
   "resources/js/components/Adminto/Modal.jsx": {
-    "file": "assets/Modal-COKCz9DG.js",
+    "file": "assets/Modal-BM6_LCjb.js",
     "name": "Modal",
     "src": "resources/js/components/Adminto/Modal.jsx",
     "isEntry": true,
@@ -3546,7 +3546,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-COKCz9DG.js",
+    "file": "assets/InputFormGroup-BM6_LCjb.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -3588,7 +3588,7 @@
     ]
   },
   "resources/js/components/Adminto/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-COKCz9DG.js",
+    "file": "assets/SelectFormGroup-BM6_LCjb.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/Adminto/form/SelectFormGroup.jsx",
     "isEntry": true,
@@ -4090,7 +4090,7 @@
     ]
   },
   "resources/js/components/Modal.jsx": {
-    "file": "assets/Modal-BM6_LCjb.js",
+    "file": "assets/Modal-COKCz9DG.js",
     "name": "Modal",
     "src": "resources/js/components/Modal.jsx",
     "isEntry": true,
@@ -4171,7 +4171,7 @@
     ]
   },
   "resources/js/components/Table.jsx": {
-    "file": "assets/Table-COKCz9DG.js",
+    "file": "assets/Table-BM6_LCjb.js",
     "name": "Table",
     "src": "resources/js/components/Table.jsx",
     "isEntry": true,
@@ -4359,7 +4359,7 @@
     ]
   },
   "resources/js/components/Tailwind/Table.jsx": {
-    "file": "assets/Table-BM6_LCjb.js",
+    "file": "assets/Table-COKCz9DG.js",
     "name": "Table",
     "src": "resources/js/components/Tailwind/Table.jsx",
     "isEntry": true,
@@ -4660,7 +4660,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-BM6_LCjb.js",
+    "file": "assets/InputFormGroup-COKCz9DG.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4702,7 +4702,7 @@
     ]
   },
   "resources/js/components/form/SelectFormGroup.jsx": {
-    "file": "assets/SelectFormGroup-BM6_LCjb.js",
+    "file": "assets/SelectFormGroup-COKCz9DG.js",
     "name": "SelectFormGroup",
     "src": "resources/js/components/form/SelectFormGroup.jsx",
     "isEntry": true,
