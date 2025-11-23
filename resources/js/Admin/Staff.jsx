@@ -14,38 +14,38 @@ import CreateReactScript from "../Utils/CreateReactScript";
 import ReactAppend from "../Utils/ReactAppend";
 import StaffRest from "../actions/Admin/StaffRest";
 import {
-  FaFacebook,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-  FaYoutube,
-  FaTiktok,
-  FaWhatsapp,
-  FaTelegram,
-  FaDiscord,
-  FaSnapchat,
-  FaPinterest,
-  FaReddit,
-  FaEnvelope
+    FaFacebook,
+    FaTwitter,
+    FaInstagram,
+    FaLinkedin,
+    FaYoutube,
+    FaTiktok,
+    FaWhatsapp,
+    FaTelegram,
+    FaDiscord,
+    FaSnapchat,
+    FaPinterest,
+    FaReddit,
+    FaEnvelope
 } from 'react-icons/fa';
 
 const staffRest = new StaffRest();
 
 // Redes sociales predefinidas
 const predefinedSocials = [
-  { id: 'facebook', name: 'Facebook', icon: FaFacebook },
-  { id: 'instagram', name: 'Instagram', icon: FaInstagram },
-  { id: 'twitter', name: 'Twitter/X', icon: FaTwitter },
-  { id: 'linkedin', name: 'LinkedIn', icon: FaLinkedin },
-  { id: 'youtube', name: 'YouTube', icon: FaYoutube },
-  { id: 'tiktok', name: 'TikTok', icon: FaTiktok },
-  { id: 'whatsapp', name: 'WhatsApp', icon: FaWhatsapp },
-  { id: 'telegram', name: 'Telegram', icon: FaTelegram },
-  { id: 'discord', name: 'Discord', icon: FaDiscord },
-  { id: 'snapchat', name: 'Snapchat', icon: FaSnapchat },
-  { id: 'pinterest', name: 'Pinterest', icon: FaPinterest },
-  { id: 'reddit', name: 'Reddit', icon: FaReddit },
-  { id: 'email', name: 'Email', icon: FaEnvelope }
+    { id: 'facebook', name: 'Facebook', icon: FaFacebook },
+    { id: 'instagram', name: 'Instagram', icon: FaInstagram },
+    { id: 'twitter', name: 'Twitter/X', icon: FaTwitter },
+    { id: 'linkedin', name: 'LinkedIn', icon: FaLinkedin },
+    { id: 'youtube', name: 'YouTube', icon: FaYoutube },
+    { id: 'tiktok', name: 'TikTok', icon: FaTiktok },
+    { id: 'whatsapp', name: 'WhatsApp', icon: FaWhatsapp },
+    { id: 'telegram', name: 'Telegram', icon: FaTelegram },
+    { id: 'discord', name: 'Discord', icon: FaDiscord },
+    { id: 'snapchat', name: 'Snapchat', icon: FaSnapchat },
+    { id: 'pinterest', name: 'Pinterest', icon: FaPinterest },
+    { id: 'reddit', name: 'Reddit', icon: FaReddit },
+    { id: 'email', name: 'Email', icon: FaEnvelope }
 ];
 
 const Staff = () => {
@@ -184,6 +184,18 @@ const Staff = () => {
 
         console.log('=== SUBMIT - Estado actual de socials:', socials);
 
+        // Validar que todas las redes sociales tengan link
+        const invalidSocials = socials.filter((s) => s.social && !s.link.trim());
+        if (invalidSocials.length > 0) {
+            Swal.fire({
+                title: "Validation Error",
+                text: "All social networks must have a link/URL or email address. Please fill in all link fields or remove the social networks without links.",
+                icon: "error",
+                confirmButtonText: "OK",
+            });
+            return;
+        }
+
         const formData = new FormData();
         formData.append("name", nameRef.current.value);
         formData.append("job", jobRef.current.value);
@@ -224,7 +236,7 @@ const Staff = () => {
         // Limpiar y cerrar
         $(gridRef.current).dxDataGrid("instance").refresh();
         $(modalRef.current).modal("hide");
-        
+
         setCharacteristics([{ value: "" }]);
         setSocials([]);
         setSocialRefs([]);
@@ -350,10 +362,10 @@ const Staff = () => {
                                 container.html('<small class="text-muted">No networks</small>');
                                 return;
                             }
-                            
+
                             const socialsArray = Array.isArray(data.socials) ? data.socials : [];
                             const socialsToShow = socialsArray.slice(0, 3);
-                            
+
                             ReactAppend(
                                 container,
                                 <div className="d-flex align-items-center">
@@ -390,8 +402,8 @@ const Staff = () => {
                                         borderRadius: "4px",
                                     }}
                                     onError={(e) =>
-                                        (e.target.src =
-                                            "/images/default-thumbnail.jpg")
+                                    (e.target.src =
+                                        "/images/default-thumbnail.jpg")
                                     }
                                 />
                             );
@@ -501,7 +513,7 @@ const Staff = () => {
                             label="Main Image"
                             aspect={1}
                         />
-                        
+
                         <div className="mb-3">
                             <label className="form-label d-flex justify-content-between align-items-center">
                                 <span>Social Networks</span>
@@ -513,7 +525,7 @@ const Staff = () => {
                                     <i className="fas fa-plus me-1"></i> Add
                                 </button>
                             </label>
-                            
+
                             <div className="border rounded p-3" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                                 {socials.length === 0 ? (
                                     <div className="text-center text-muted py-4">
@@ -528,7 +540,7 @@ const Staff = () => {
                                         }
                                         const selectedSocial = predefinedSocials.find(s => s.id === social.social);
                                         console.log(`Renderizando social ${index}:`, social, 'Link value:', social.link);
-                                        
+
                                         return (
                                             <div key={index} className="mb-3 pb-3 border-bottom">
                                                 <div className="d-flex justify-content-between align-items-center mb-2">
@@ -542,7 +554,7 @@ const Staff = () => {
                                                         <i className="fas fa-trash-alt"></i>
                                                     </button>
                                                 </div>
-                                                
+
                                                 <SelectFormGroup
                                                     eRef={socialRefs[index]}
                                                     label="Social network type"
@@ -559,7 +571,7 @@ const Staff = () => {
                                                         );
                                                     })}
                                                 </SelectFormGroup>
-                                                
+
                                                 {selectedSocial && (
                                                     <div className="mb-2">
                                                         <div className="alert alert-info py-2 px-3 mb-0 d-flex align-items-center">
@@ -570,22 +582,29 @@ const Staff = () => {
                                                         </div>
                                                     </div>
                                                 )}
-                                                
+
                                                 <div className="mt-2">
                                                     <label className="form-label mb-1">
-                                                        <small>{selectedSocial?.id === 'email' ? 'Email address' : 'Link / URL'}</small>
+                                                        <small>{selectedSocial?.id === 'email' ? 'Email address' : 'Link / URL'} <span className="text-danger">*</span></small>
                                                     </label>
                                                     <input
                                                         type={selectedSocial?.id === 'email' ? 'email' : 'text'}
                                                         className="form-control"
                                                         placeholder={
-                                                            selectedSocial?.id === 'email' 
-                                                                ? 'example@email.com' 
+                                                            selectedSocial?.id === 'email'
+                                                                ? 'example@email.com'
                                                                 : `https://${social.social || 'example'}.com/your-username`
                                                         }
                                                         value={social.link || ''}
                                                         onChange={(e) => updateSocialLink(index, e.target.value)}
+                                                        required={social.social ? true : false}
                                                     />
+                                                    {social.social && !social.link.trim() && (
+                                                        <small className="text-danger mt-1 d-block">
+                                                            <i className="fas fa-exclamation-circle me-1"></i>
+                                                            This field is required
+                                                        </small>
+                                                    )}
                                                 </div>
                                             </div>
                                         );
