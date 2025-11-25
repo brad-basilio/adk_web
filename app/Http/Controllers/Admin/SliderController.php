@@ -128,4 +128,36 @@ class SliderController extends BasicController
             );
         }
     }
+
+    public function beforeSave(Request $request)
+    {
+        $body = $request->all();
+
+        // Si es un nuevo registro (no tiene ID), asignar el orden automáticamente
+        if (!$request->has('id') || empty($request->id)) {
+            // Obtener el máximo orden actual y sumar 1
+            $maxOrder = Slider::max('order') ?? -1;
+            $body['order'] = $maxOrder + 1;
+        }
+
+        return $body;
+    }
+
+    public function reorder(Request $request)
+    {
+        $response = new Response();
+        try {
+            $items = $request->input('items');
+            foreach ($items as $item) {
+                Slider::where('id', $item['id'])->update(['order' => $item['order']]);
+            }
+            $response->status = 200;
+            $response->message = 'Orden actualizado correctamente';
+        } catch (\Throwable $th) {
+            $response->status = 400;
+            $response->message = $th->getMessage();
+        } finally {
+            return response($response->toArray(), $response->status);
+        }
+    }
 }

@@ -294,6 +294,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/sliders/paginate', [AdminSliderController::class, 'paginate']);
         Route::patch('/sliders/status', [AdminSliderController::class, 'status']);
         Route::patch('/sliders/{field}', [AdminSliderController::class, 'boolean']);
+        Route::post('/sliders/reorder', [AdminSliderController::class, 'reorder']);
         Route::delete('/sliders/{id}', [AdminSliderController::class, 'delete']);
 
         Route::post('/testimonies', [AdminTestimonyController::class, 'save']);

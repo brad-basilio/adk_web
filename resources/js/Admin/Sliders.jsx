@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import BaseAdminto from "@Adminto/Base";
 import CreateReactScript from "../Utils/CreateReactScript";
@@ -9,7 +9,7 @@ import ReactAppend from "../Utils/ReactAppend";
 import DxButton from "../Components/dx/DxButton";
 import TextareaFormGroup from "@Adminto/form/TextareaFormGroup";
 import SwitchFormGroup from "@Adminto/form/SwitchFormGroup";
-import SlidersRest from "../Actions/Admin/SlidersRest";
+import SlidersRest from "../actions/Admin/SlidersRest";
 import ImageFormGroup from "../Components/Adminto/form/ImageFormGroup";
 import Swal from "sweetalert2";
 import VideoFormGroup from "../components/Adminto/form/VideoFormGroup";
@@ -28,6 +28,43 @@ const Sliders = () => {
     const bgImageRef = useRef();
 
     const [isEditing, setIsEditing] = useState(false);
+
+    // Habilitar Drag and Drop en la tabla
+    useEffect(() => {
+        const checkInterval = setInterval(() => {
+            if (gridRef.current && $(gridRef.current).dxDataGrid("instance")) {
+                clearInterval(checkInterval);
+                const grid = $(gridRef.current).dxDataGrid("instance");
+
+                grid.option("rowDragging", {
+                    allowReordering: true,
+                    showDragIcons: true,
+                    onReorder: async (e) => {
+                        const visibleRows = e.component.getVisibleRows();
+                        const toIndex = e.toIndex;
+                        const fromIndex = e.fromIndex;
+
+                        const newRows = [...visibleRows];
+                        const movedItem = newRows.splice(fromIndex, 1)[0];
+                        newRows.splice(toIndex, 0, movedItem);
+
+                        const pageIndex = e.component.pageIndex();
+                        const pageSize = e.component.pageSize();
+                        const startOrder = pageIndex * pageSize;
+
+                        const newOrderItems = newRows.map((row, index) => ({
+                            id: row.data.id,
+                            order: startOrder + index
+                        }));
+
+                        await slidersRest.reorder(newOrderItems);
+                        e.component.refresh();
+                    },
+                });
+            }
+        }, 100);
+        return () => clearInterval(checkInterval);
+    }, []);
 
     const onModalOpen = (data) => {
         if (data?.id) setIsEditing(true);
@@ -184,8 +221,8 @@ const Sliders = () => {
                                         borderRadius: "4px",
                                     }}
                                     onError={(e) =>
-                                        (e.target.src =
-                                            "/api/cover/thumbnail/null")
+                                    (e.target.src =
+                                        "/api/cover/thumbnail/null")
                                     }
                                 />
                             );
