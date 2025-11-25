@@ -3,7 +3,7 @@ import BaseAdminto from "@Adminto/Base";
 import { createRoot } from "react-dom/client";
 import { renderToString } from "react-dom/server";
 import Swal from "sweetalert2";
-import ServicesRest from "../Actions/Admin/ServicesRest";
+import ServicesRest from "../actions/Admin/ServicesRest";
 import Modal from "../Components/Adminto/Modal";
 import Table from "../Components/Adminto/Table";
 import ImageFormGroup from "../Components/Adminto/form/ImageFormGroup";
@@ -34,6 +34,43 @@ const Services = ({ brands }) => {
     //const galleryRef = useRef();
     const [characteristics, setCharacteristics] = useState([{ value: "" }]);
     const [isEditing, setIsEditing] = useState(false);
+
+    // Habilitar Drag and Drop en la tabla
+    useEffect(() => {
+        const checkInterval = setInterval(() => {
+            if (gridRef.current && $(gridRef.current).dxDataGrid("instance")) {
+                clearInterval(checkInterval);
+                const grid = $(gridRef.current).dxDataGrid("instance");
+
+                grid.option("rowDragging", {
+                    allowReordering: true,
+                    showDragIcons: true,
+                    onReorder: async (e) => {
+                        const visibleRows = e.component.getVisibleRows();
+                        const toIndex = e.toIndex;
+                        const fromIndex = e.fromIndex;
+
+                        const newRows = [...visibleRows];
+                        const movedItem = newRows.splice(fromIndex, 1)[0];
+                        newRows.splice(toIndex, 0, movedItem);
+
+                        const pageIndex = e.component.pageIndex();
+                        const pageSize = e.component.pageSize();
+                        const startOrder = pageIndex * pageSize;
+
+                        const newOrderItems = newRows.map((row, index) => ({
+                            id: row.data.id,
+                            order: startOrder + index
+                        }));
+
+                        await servicesRest.reorder(newOrderItems);
+                        e.component.refresh();
+                    },
+                });
+            }
+        }, 100);
+        return () => clearInterval(checkInterval);
+    }, []);
 
     // Manejo de la galería
     const handleGalleryChange = (e) => {
@@ -81,7 +118,7 @@ const Services = ({ brands }) => {
         benefitsRef.current.value = data?.benefits || "";
         imageRef.current.value = null;
         iconRef.current.value = null;
-        
+
         // Manejo del color (transparente o con valor)
         const hasColor = data?.color && data.color !== "transparent" && data.color !== "";
         setItemData({
@@ -89,18 +126,18 @@ const Services = ({ brands }) => {
             transparent_color: !hasColor,
             color: hasColor ? data?.color : "transparent"
         });
-        
-       /* if (hasColor) {
-            colorRef.current.value = data?.color;
-        } else {
-            colorRef.current.value = "#000000";
-            colorRef.current.dataset.prevColor = "#000000";
-        } */
-        
+
+        /* if (hasColor) {
+             colorRef.current.value = data?.color;
+         } else {
+             colorRef.current.value = "#000000";
+             colorRef.current.dataset.prevColor = "#000000";
+         } */
+
         if (data?.image) {
             imageRef.image.src = `/api/service/media/${data.image}`;
         }
-        
+
         if (data?.icon) {
             iconRef.image.src = `/api/service/media/${data.icon}`;
         }
@@ -138,7 +175,7 @@ const Services = ({ brands }) => {
         formData.append("title", titleRef.current.value);
         formData.append("description", descriptionRef.current.value);
         formData.append("benefits", benefitsRef.current.value);
-        
+
         // Si el color es transparente, enviar valor especial, de lo contrario enviar el color seleccionado
         //formData.append("color", itemData?.transparent_color ? "transparent" : colorRef.current.value);
         // formData.append("link", linkRef.current.value);
@@ -191,9 +228,9 @@ const Services = ({ brands }) => {
         $(modalRef.current).modal("hide");
         setGallery([]);
         setCharacteristics([{ value: "" }]);
-        
+
         // Resetear campos adicionales
-       // colorRef.current.value = "#000000";
+        // colorRef.current.value = "#000000";
         iconRef.current.value = null;
     };
 
@@ -306,8 +343,8 @@ const Services = ({ brands }) => {
                                             borderRadius: "4px",
                                         }}
                                         onError={(e) =>
-                                            (e.target.src =
-                                                "/images/default-thumbnail.jpg")
+                                        (e.target.src =
+                                            "/images/default-thumbnail.jpg")
                                         }
                                     />
                                 );
@@ -333,8 +370,8 @@ const Services = ({ brands }) => {
                                             borderRadius: "4px",
                                         }}
                                         onError={(e) =>
-                                            (e.target.src =
-                                                "/images/default-icon.png")
+                                        (e.target.src =
+                                            "/images/default-icon.png")
                                         }
                                         className="bg-secondary p-1"
                                     />
@@ -344,65 +381,65 @@ const Services = ({ brands }) => {
                             }
                         },
                     },
-                 /*   {
-                        dataField: "color",
-                        caption: "Color",
-                        width: "80px",
-                        cellTemplate: (container, { data }) => {
-                            const isTransparent = !data.color || data.color === "transparent" || data.color === "";
-                            
-                            ReactAppend(
-                                container,
-                                <div className="d-flex align-items-center">
-                                    {isTransparent ? (
-                                        <div
-                                            style={{
-                                                width: "30px",
-                                                height: "20px",
-                                                borderRadius: "3px",
-                                                border: "1px solid #ddd",
-                                                marginRight: "5px",
-                                                backgroundImage: "linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 50%, #f0f0f0 50%, #f0f0f0 75%, transparent 75%, transparent)",
-                                                backgroundSize: "8px 8px"
-                                            }}
-                                        ></div>
-                                    ) : (
-                                        <div
-                                            style={{
-                                                width: "30px",
-                                                height: "20px",
-                                                backgroundColor: data.color,
-                                                borderRadius: "3px",
-                                                border: "1px solid #ddd",
-                                                marginRight: "5px"
-                                            }}
-                                        ></div>
-                                    )}
-                                    <small>{isTransparent ? "Transparente" : data.color}</small>
-                                </div>
-                            );
-                        },
-                    },
-                    {
-                        dataField: "featured",
-                        caption: "Destacado",
-                        dataType: "boolean",
-                        cellTemplate: (container, { data }) => {
-                            $(container).empty();
-                            ReactAppend(
-                                container,
-                                <SwitchFormGroup
-                                    checked={data.featured == 1}
-                                    onChange={() =>
-                                        onFeaturedChange({
-                                            id: data.id,
-                                            value: !data.featured,
-                                        })
-                                    }
-                                />
-                            );
-                        },
-                    }, */
+                    /*   {
+                           dataField: "color",
+                           caption: "Color",
+                           width: "80px",
+                           cellTemplate: (container, { data }) => {
+                               const isTransparent = !data.color || data.color === "transparent" || data.color === "";
+                               
+                               ReactAppend(
+                                   container,
+                                   <div className="d-flex align-items-center">
+                                       {isTransparent ? (
+                                           <div
+                                               style={{
+                                                   width: "30px",
+                                                   height: "20px",
+                                                   borderRadius: "3px",
+                                                   border: "1px solid #ddd",
+                                                   marginRight: "5px",
+                                                   backgroundImage: "linear-gradient(45deg, #f0f0f0 25%, transparent 25%, transparent 50%, #f0f0f0 50%, #f0f0f0 75%, transparent 75%, transparent)",
+                                                   backgroundSize: "8px 8px"
+                                               }}
+                                           ></div>
+                                       ) : (
+                                           <div
+                                               style={{
+                                                   width: "30px",
+                                                   height: "20px",
+                                                   backgroundColor: data.color,
+                                                   borderRadius: "3px",
+                                                   border: "1px solid #ddd",
+                                                   marginRight: "5px"
+                                               }}
+                                           ></div>
+                                       )}
+                                       <small>{isTransparent ? "Transparente" : data.color}</small>
+                                   </div>
+                               );
+                           },
+                       },
+                       {
+                           dataField: "featured",
+                           caption: "Destacado",
+                           dataType: "boolean",
+                           cellTemplate: (container, { data }) => {
+                               $(container).empty();
+                               ReactAppend(
+                                   container,
+                                   <SwitchFormGroup
+                                       checked={data.featured == 1}
+                                       onChange={() =>
+                                           onFeaturedChange({
+                                               id: data.id,
+                                               value: !data.featured,
+                                           })
+                                       }
+                                   />
+                               );
+                           },
+                       }, */
                     {
                         dataField: "visible",
                         caption: "Visible",

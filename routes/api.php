@@ -387,6 +387,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/services/paginate', [AdminServiceController::class, 'paginate']);
         Route::patch('/services/status', [AdminServiceController::class, 'status']);
         Route::patch('/services/{field}', [AdminServiceController::class, 'boolean']);
+        Route::post('/services/reorder', [AdminServiceController::class, 'reorder']);
         Route::delete('/services/{id}', [AdminServiceController::class, 'delete']);
 
         Route::post('/facilities', [AdminFacilityController::class, 'save']);

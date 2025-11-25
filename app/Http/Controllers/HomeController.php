@@ -36,7 +36,7 @@ class HomeController extends BasicController
         $indicators = Indicator::where('status', true)->where('visible', true)->where('lang_id', $langId)->get();
         $landing = LandingHome::where('correlative', 'like', 'page_home%')->where('lang_id', $langId)->get();
         $benefits = Strength::where('status', true)->where('visible', true)->where('lang_id', $langId)->get();
-        $services = Service::where('visible', true)->where('status', true)->where('lang_id', $langId)->orderBy('created_at', 'ASC')->get();
+        $services = Service::where('visible', true)->where('status', true)->where('lang_id', $langId)->orderBy('order', 'ASC')->get();
         $testimonies = Testimony::where('status', true)->where('visible', true)->where('lang_id', $langId)->get();
         $staff_boss = Staff::where('status', true)->where('visible', true)->where('job', 'LIKE', 'Director%')->where('lang_id', $langId)->first();
         $staff = Staff::where('status', true)->where('visible', true)->where('lang_id', $langId)->orderBy('order', 'ASC')->get();
