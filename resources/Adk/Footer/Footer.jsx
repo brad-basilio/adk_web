@@ -48,12 +48,12 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
       .filter(item => item && item.icon && item.link)
       .map(item => {
         // Buscar la clave del icono (ej: 'fab fa-facebook' -> 'facebook')
-        const socialKey = Object.keys(socialIcons).find(key => 
+        const socialKey = Object.keys(socialIcons).find(key =>
           item.icon.includes(key) || item.description?.toLowerCase().includes(key)
         );
-        
+
         if (!socialKey) return null;
-        
+
         const IconComponent = socialIcons[socialKey];
         if (!IconComponent) return null;
 
@@ -97,8 +97,8 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
   // Links de Connect con políticas
   const connectLinks = [
     { name: 'Contact Us', href: '#contact' },
-    { 
-      name: 'Privacy Policy', 
+    {
+      name: 'Privacy Policy',
       onClick: () => {
         setSelectedPolicy({
           title: 'Privacy Policy',
@@ -107,8 +107,8 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
         setPolicyModalOpen(true);
       }
     },
-    { 
-      name: 'Terms of Service', 
+    {
+      name: 'Terms of Service',
       onClick: () => {
         setSelectedPolicy({
           title: 'Terms & Conditions',
@@ -252,7 +252,7 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
             &copy; {currentYear} ADK Technology. All rights reserved.
           </p>
           <p className="made-with">
-            Powered by <span className="heart">❤️</span> Rhino Consulting And ADK Technology
+            Powered by <span className="heart"></span> Rhino Consulting And ADK Technology
           </p>
         </motion.div>
       </div>
@@ -292,7 +292,7 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
             >
               <button className="modal-close" onClick={() => setPolicyModalOpen(false)}>
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
 
@@ -304,11 +304,11 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
                   transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
                 >
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M14 2V8H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M16 13H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M16 17H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M10 9H9H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M14 2V8H20" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M16 13H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M16 17H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M10 9H9H8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </motion.div>
                 <motion.h2
@@ -328,7 +328,7 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
                   >
-                    <div 
+                    <div
                       className="modal-policy-content"
                       dangerouslySetInnerHTML={{ __html: selectedPolicy.content }}
                     />
