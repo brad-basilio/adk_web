@@ -20,7 +20,7 @@ const ADKAssist = () => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 968);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -29,11 +29,11 @@ const ADKAssist = () => {
   // Auto-slide para mobile (solo para app screens)
   useEffect(() => {
     if (!isMobile) return;
-    
+
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % appScreens.length);
     }, 4000);
-    
+
     return () => clearInterval(interval);
   }, [isMobile]);
 
@@ -206,17 +206,17 @@ const ADKAssist = () => {
   ];
 
   const features = [
-    { icon: '🕐', title: '24/7 Remote Support', description: 'Access expert tech support any time, day or night.' },
-    { icon: '👨‍💻', title: 'In-Person Assistance', description: 'When needed, technicians will visit to resolve complex issues.' },
-    { icon: '🛡️', title: 'Monthly Cybersecurity Reports', description: 'Regular updates to keep your systems safe and secure.' },
-    { icon: '📋', title: 'User-Friendly Ticketing System', description: 'Easily log and track issues with our intuitive interface.' },
-    { icon: '⚡', title: 'Quick Resolution Times', description: 'Swift action to minimize downtime and maximize productivity.' },
-    { icon: '📱', title: 'Available on Apple Store', description: 'Download and access features directly from your device.' }
+    { icon: '/assets/imgcards/support.png', title: '24/7 Remote Support', description: 'Access expert tech support any time, day or night.' },
+    { icon: '/assets/imgcards/assitance.png', title: 'In-Person Assistance', description: 'When needed, technicians will visit to resolve complex issues.' },
+    { icon: '/assets/imgcards/cybersecurity.png', title: 'Monthly Cybersecurity Reports', description: 'Regular updates to keep your systems safe and secure.' },
+    { icon: '/assets/imgcards/ticketing.png', title: 'User-Friendly Ticketing System', description: 'Easily log and track issues with our intuitive interface.' },
+    { icon: '/assets/imgcards/quiktimes.png', title: 'Quick Resolution Times', description: 'Swift action to minimize downtime and maximize productivity.' },
+    { icon: '/assets/imgcards/appstore.png', title: 'Available on Apple Store', description: 'Download and access features directly from your device.' }
   ];
 
   return (
-    <section 
-      id="adk-assist" 
+    <section
+      id="adk-assist"
       className="adk-assist section"
       ref={ref}
     >
@@ -256,7 +256,7 @@ const ADKAssist = () => {
                   {/* Mockup 3D */}
                   <motion.div
                     className="showcase-mockup"
-                    initial={{ 
+                    initial={{
                       scale: 0.85,
                       x: index % 2 === 0 ? -250 : 250,
                       y: index % 3 === 0 ? 100 : index % 3 === 1 ? -100 : 0,
@@ -290,23 +290,23 @@ const ADKAssist = () => {
                   >
                     <div className="phone-mockup-3d">
                       <div className="phone-reflection"></div>
-                      
+
                       <div className="phone-frame-3d">
                         <div className="phone-bezel">
                           <div className="bezel-highlight"></div>
                         </div>
-                        
+
                         <div className="phone-notch-3d"></div>
-                        
+
                         <div className="phone-screen-3d">
                           <div className="screen-glare"></div>
-                          <img 
-                            src={screen.image} 
+                          <img
+                            src={screen.image}
                             alt={screen.title}
                             className="screen-image-3d"
                           />
                         </div>
-                        
+
                         <div className="phone-power-button"></div>
                         <div className="phone-volume-buttons">
                           <div className="volume-up"></div>
@@ -321,8 +321,8 @@ const ADKAssist = () => {
                   {/* Información de la feature */}
                   <motion.div
                     className="showcase-info"
-                    initial={{ 
-                      opacity: 0, 
+                    initial={{
+                      opacity: 0,
                       x: index % 2 === 0 ? 120 : -120,
                       y: 40
                     }}
@@ -333,8 +333,8 @@ const ADKAssist = () => {
                       y: -40
                     }}
                     viewport={{ once: false, amount: 0.4, margin: "-100px" }}
-                    transition={{ 
-                      duration: 1, 
+                    transition={{
+                      duration: 1,
                       delay: 0.15,
                       ease: [0.22, 1, 0.36, 1]
                     }}
@@ -372,8 +372,8 @@ const ADKAssist = () => {
                     <div className="phone-frame-mobile">
                       <div className="phone-notch-mobile"></div>
                       <div className="phone-screen-mobile">
-                        <img 
-                          src={appScreens[currentSlide].image} 
+                        <img
+                          src={appScreens[currentSlide].image}
                           alt={appScreens[currentSlide].title}
                           className="screen-image-mobile"
                           draggable={false}
@@ -405,14 +405,14 @@ const ADKAssist = () => {
               </div>
 
               {/* Navigation Arrows */}
-              <button 
+              <button
                 className="carousel-arrow carousel-arrow-left"
                 onClick={() => setCurrentSlide((prev) => (prev - 1 + appScreens.length) % appScreens.length)}
                 aria-label="Previous slide"
               >
                 ‹
               </button>
-              <button 
+              <button
                 className="carousel-arrow carousel-arrow-right"
                 onClick={() => setCurrentSlide((prev) => (prev + 1) % appScreens.length)}
                 aria-label="Next slide"
@@ -444,7 +444,9 @@ const ADKAssist = () => {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05, y: -5 }}
                 >
-                  <div className="feature-icon-circle">{feature.icon}</div>
+                  <div className="feature-icon-circle">
+                    <img src={feature.icon} alt={feature.title} />
+                  </div>
                   <div className="feature-content">
                     <h4 className="feature-title">{feature.title}</h4>
                     <p className="feature-description">{feature.description}</p>
@@ -516,7 +518,7 @@ const ADKAssist = () => {
             >
               <div className="store-icon">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36">
-                  <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+                  <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 22C7.79 22.05 6.8 20.68 5.96 19.47C4.25 17 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z" />
                 </svg>
               </div>
               <div className="store-text">
@@ -536,7 +538,7 @@ const ADKAssist = () => {
             >
               <div className="request-icon">
                 <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-                  <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z"/>
+                  <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" />
                 </svg>
               </div>
               <div className="request-text">
@@ -549,7 +551,7 @@ const ADKAssist = () => {
       </div>
 
       {/* Request Info Modal */}
-      <AppRequestModal 
+      <AppRequestModal
         isOpen={showRequestModal}
         onClose={() => setShowRequestModal(false)}
       />
