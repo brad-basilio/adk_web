@@ -21,7 +21,8 @@ class Staff extends Model
         'slug',
         'characteristics',
         'socials',
-        'lang_id'
+        'lang_id',
+        'order'
     ];
     
     protected $casts = [

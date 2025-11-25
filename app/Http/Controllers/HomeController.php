@@ -39,7 +39,7 @@ class HomeController extends BasicController
         $services = Service::where('visible', true)->where('status', true)->where('lang_id', $langId)->orderBy('created_at', 'ASC')->get();
         $testimonies = Testimony::where('status', true)->where('visible', true)->where('lang_id', $langId)->get();
         $staff_boss = Staff::where('status', true)->where('visible', true)->where('job', 'LIKE', 'Director%')->where('lang_id', $langId)->first();
-        $staff = Staff::where('status', true)->where('visible', true)->where('lang_id', $langId)->get();
+        $staff = Staff::where('status', true)->where('visible', true)->where('lang_id', $langId)->orderBy('order', 'ASC')->get();
         $faqs = Faq::where('status', true)->where('visible', true)->where('lang_id', $langId)->get();
         $generlas = General::where('lang_id', $langId)->get();
         $socials = Social::where('status', true)->where('visible', true)->get();

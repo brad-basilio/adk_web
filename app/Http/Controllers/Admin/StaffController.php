@@ -21,20 +21,26 @@ class StaffController extends BasicController
     {
         $body = $request->all();
 
-
+        // Si es un nuevo registro (no tiene ID), asignar el orden automáticamente
+        if (!$request->has('id') || empty($request->id)) {
+            // Obtener el máximo orden actual y sumar 1
+            $maxOrder = Staff::max('order') ?? -1;
+            $body['order'] = $maxOrder + 1;
+        }
 
         // Procesar características
         if ($request->has('characteristics')) {
             $characteristics = json_decode($request->characteristics, true);
-            $body['characteristics'] = array_values(array_filter($characteristics, function ($item) {
+            $filtered = array_values(array_filter($characteristics, function ($item) {
                 return !empty(trim($item));
             }));
+            $body['characteristics'] = json_encode($filtered);
         }
         
         // Procesar redes sociales (ahora son objetos con social y link)
         if ($request->has('socials')) {
             $socials = json_decode($request->socials, true);
-            $body['socials'] = array_values(array_filter($socials, function ($item) {
+            $filtered = array_values(array_filter($socials, function ($item) {
                 // Verificar que sea un array con 'social' y 'link'
                 return is_array($item) && 
                        isset($item['social']) && 
@@ -42,9 +48,8 @@ class StaffController extends BasicController
                        !empty(trim($item['social'])) && 
                        !empty(trim($item['link']));
             }));
+            $body['socials'] = json_encode($filtered);
         }
-
-        
 
         return $body;
     }
@@ -53,5 +58,23 @@ class StaffController extends BasicController
     {
         // Eliminar imágenes marcadas para borrar (si implementas esta función)
         return $staff;
+    }
+
+    public function reorder(Request $request)
+    {
+        $response = new Response();
+        try {
+            $items = $request->input('items');
+            foreach ($items as $item) {
+                Staff::where('id', $item['id'])->update(['order' => $item['order']]);
+            }
+            $response->status = 200;
+            $response->message = 'Orden actualizado correctamente';
+        } catch (\Throwable $th) {
+            $response->status = 400;
+            $response->message = $th->getMessage();
+        } finally {
+            return response($response->toArray(), $response->status);
+        }
     }
 }

@@ -86,6 +86,43 @@ const Staff = () => {
         }
     }, [shouldUpdateSelects, socials, socialRefs]);
 
+    // Habilitar Drag and Drop en la tabla
+    useEffect(() => {
+        const checkInterval = setInterval(() => {
+            if (gridRef.current && $(gridRef.current).dxDataGrid("instance")) {
+                clearInterval(checkInterval);
+                const grid = $(gridRef.current).dxDataGrid("instance");
+
+                grid.option("rowDragging", {
+                    allowReordering: true,
+                    showDragIcons: true,
+                    onReorder: async (e) => {
+                        const visibleRows = e.component.getVisibleRows();
+                        const toIndex = e.toIndex;
+                        const fromIndex = e.fromIndex;
+
+                        const newRows = [...visibleRows];
+                        const movedItem = newRows.splice(fromIndex, 1)[0];
+                        newRows.splice(toIndex, 0, movedItem);
+
+                        const pageIndex = e.component.pageIndex();
+                        const pageSize = e.component.pageSize();
+                        const startOrder = pageIndex * pageSize;
+
+                        const newOrderItems = newRows.map((row, index) => ({
+                            id: row.data.id,
+                            order: startOrder + index
+                        }));
+
+                        await staffRest.reorder(newOrderItems);
+                        e.component.refresh();
+                    },
+                });
+            }
+        }, 100);
+        return () => clearInterval(checkInterval);
+    }, []);
+
     // Manejo de características
     const addCharacteristic = () => {
         setCharacteristics([...characteristics, { value: "" }]);

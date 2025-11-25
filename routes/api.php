@@ -398,6 +398,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/staff/paginate', [AdminStaffController::class, 'paginate']);
         Route::patch('/staff/status', [AdminStaffController::class, 'status']);
         Route::patch('/staff/{field}', [AdminStaffController::class, 'boolean']);
+        Route::post('/staff/reorder', [AdminStaffController::class, 'reorder']);
         Route::delete('/staff/{id}', [AdminStaffController::class, 'delete']);
 
         Route::post('/specialities', [AdminSpecialityController::class, 'save']);

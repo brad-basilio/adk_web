@@ -267,8 +267,14 @@ class BasicController extends Controller
               $sorting['desc'] ? 'DESC' : 'ASC'
             );
           }
-        } else { //MEJORAR IMPLMENTAR ASC O DESC DESDE EL REST, PARA MEJORARLO LA INTERACTIVIDAD CON OTRAS TABLAS
-          $instance->orderBy($this->prefix4filter ? $this->prefix4filter . '.id' : 'id', 'ASC');
+        } else { 
+          // Si la tabla tiene el campo 'order', ordenar por ese campo primero
+          $table = $this->prefix4filter ? $this->prefix4filter : (new $this->model)->getTable();
+          if (Schema::hasColumn($table, 'order')) {
+            $instance->orderBy($this->prefix4filter ? $this->prefix4filter . '.order' : 'order', 'ASC');
+          } else {
+            $instance->orderBy($this->prefix4filter ? $this->prefix4filter . '.id' : 'id', 'ASC');
+          }
         }
       }
 
