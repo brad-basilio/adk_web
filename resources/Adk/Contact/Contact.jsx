@@ -188,7 +188,7 @@ const Contact = ({ services = [], generals = [] }) => {
                       <div className="contact-card-content">
                         <h4 className="contact-card-title">{info.title}</h4>
                         {info.details.map((detail, idx) => (
-                          <p key={idx} className="contact-card-detail">{detail}</p>
+                          <p key={idx} className="contact-card-detail !whitespace-pre-line">{detail}</p>
                         ))}
                       </div>
                     </a>

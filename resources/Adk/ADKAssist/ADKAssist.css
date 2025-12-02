@@ -2,8 +2,7 @@
   position: relative;
   background: var(--color-black);
   overflow: hidden;
-  min-height: 200vh;
-  padding: 10rem 0 20rem 0;
+  padding: 8rem 0;
 }
 
 .assist-background {
@@ -74,7 +73,7 @@
 /* === HEADER === */
 .assist-header {
   text-align: center;
-  margin-bottom: 8rem;
+  margin-bottom: 0rem;
   position: relative;
   z-index: 1;
 }
@@ -105,51 +104,43 @@
   text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
 }
 
-/* === SCROLLYTELLING SHOWCASE === */
-.app-showcase-scrollytelling {
+/* === APP SHOWCASE SLIDER === */
+.app-showcase-slider {
   position: relative;
   width: 100%;
-  margin: 4rem 0;
+  margin: 0rem 0;
+  padding: 3rem 0;
 }
 
-.showcase-screen-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6rem 2rem;
+.slider-container {
   position: relative;
-}
-
-.showcase-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8rem;
-  max-width: 1400px;
-  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
 }
 
-.showcase-screen-section:nth-child(even) .showcase-content {
-  flex-direction: row-reverse;
+.slider-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6rem;
+  min-height: 600px;
 }
 
-.showcase-mockup {
+.slider-mockup {
   flex-shrink: 0;
   perspective: 2000px;
   transform-style: preserve-3d;
-  will-change: transform;
 }
 
-.showcase-info {
+.slider-info {
   flex: 1;
-  max-width: 600px;
+  max-width: 500px;
 }
 
-.feature-number-big {
+.slider-number {
   display: block;
-  font-size: 8rem;
+  font-size: 5rem;
   font-weight: 900;
   font-family: var(--font-tech);
   background: linear-gradient(135deg, var(--color-gold) 0%, #f4e5c0 100%);
@@ -158,37 +149,132 @@
   background-clip: text;
   line-height: 1;
   margin-bottom: 1rem;
-  opacity: 0.15;
+  opacity: 0.2;
 }
 
-.feature-title-showcase {
-  font-size: 3.5rem;
+.slider-title {
+  font-size: 2.5rem;
   font-weight: 900;
   font-family: var(--font-tech);
   color: var(--color-gold);
   line-height: 1.1;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
-.feature-subtitle-showcase {
-  font-size: 3.5rem;
+.slider-subtitle {
+  font-size: 2.5rem;
   font-weight: 900;
   font-family: var(--font-tech);
   color: #fff;
   line-height: 1.1;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-transform: uppercase;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
-.feature-description-showcase {
-  font-size: 1.25rem;
+.slider-description {
+  font-size: 1.15rem;
   font-family: var(--font-inter);
   color: rgba(255, 255, 255, 0.7);
-  line-height: 1.8;
-  max-width: 500px;
+  line-height: 1.7;
+}
+
+/* Slider Navigation Arrows - Laterales estilo Hero */
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--color-gold);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.slider-arrow-left {
+  left: -80px;
+}
+
+.slider-arrow-right {
+  right: -80px;
+}
+
+.slider-arrow:hover {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.25) 0%, rgba(212, 175, 55, 0.15) 100%);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-arrow:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Slider Pagination - Estilo Hero */
+.slider-pagination {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.pagination-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: transparent;
+  border: 2px solid rgba(212, 175, 55, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.pagination-dot:hover {
+  border-color: rgba(212, 175, 55, 0.8);
+  transform: scale(1.2);
+}
+
+.pagination-dot.active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  transform: scale(1.3);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+}
+
+/* Remove old controls styles */
+.slider-controls {
+  display: none;
+}
+
+.slider-dots {
+  display: none;
+}
+
+.slider-dot {
+  display: none;
+}
+
+/* === OLD SCROLLYTELLING (REMOVED) === */
+.app-showcase-scrollytelling,
+.showcase-screen-section,
+.showcase-content,
+.showcase-mockup,
+.showcase-info,
+.feature-number-big,
+.feature-title-showcase,
+.feature-subtitle-showcase,
+.feature-description-showcase {
+  display: none;
 }
 
 /* === MOCKUP 3D === */
@@ -1240,22 +1326,30 @@
 }
 
 @media (max-width: 1200px) {
-  .showcase-content {
+  .slider-content {
     gap: 4rem;
   }
 
-  .feature-title-showcase,
-  .feature-subtitle-showcase {
-    font-size: 2.5rem;
+  .slider-title,
+  .slider-subtitle {
+    font-size: 2rem;
   }
 
-  .feature-number-big {
-    font-size: 6rem;
+  .slider-number {
+    font-size: 4rem;
   }
 
   .phone-mockup-3d {
     width: 340px;
     height: 700px;
+  }
+
+  .slider-arrow-left {
+    left: -40px;
+  }
+
+  .slider-arrow-right {
+    right: -40px;
   }
 
   .features-grid {
@@ -1265,52 +1359,74 @@
 
 @media (max-width: 968px) {
   .adk-assist {
-    padding: 6rem 0 10rem 0;
+    padding: 6rem 0;
   }
 
   .assist-header {
-    margin-bottom: 4rem;
+    margin-bottom: 0rem;
   }
 
-  /* Ocultar scrollytelling en mobile */
-  .app-showcase-scrollytelling {
-    display: none;
+  .app-showcase-slider {
+    margin: 4rem 0;
+    padding: 2rem 0;
   }
 
-  /* Mostrar carrusel en mobile */
-  .mobile-carousel-container {
-    display: block !important;
+  .slider-container {
+    padding: 0 1rem;
   }
 
-  .showcase-content {
-    flex-direction: column !important;
+  .slider-content {
+    flex-direction: column;
     gap: 3rem;
+    min-height: auto;
   }
 
-  .showcase-screen-section {
-    padding: 4rem 2rem;
+  .slider-mockup {
+    order: 1;
+  }
+
+  .slider-info {
+    order: 2;
+    text-align: center;
+  }
+
+  .slider-number {
+    font-size: 3.5rem;
+  }
+
+  .slider-title,
+  .slider-subtitle {
+    font-size: 1.75rem;
+  }
+
+  .slider-description {
+    font-size: 1rem;
   }
 
   .phone-mockup-3d {
-    width: 320px;
-    height: 660px;
+    width: 300px;
+    height: 620px;
   }
 
-  .feature-title-showcase,
-  .feature-subtitle-showcase {
-    font-size: 2rem;
+  .slider-arrow {
+    width: 50px;
+    height: 50px;
   }
 
-  .feature-number-big {
-    font-size: 5rem;
+  .slider-arrow-left {
+    left: 10px;
   }
 
-  .feature-description-showcase {
-    font-size: 1.1rem;
+  .slider-arrow-right {
+    right: 10px;
   }
 
-  /* Ocultar scrollytelling en mobile */
-  .app-showcase-scrollytelling {
+  .pagination-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .mobile-carousel-container {
     display: none;
   }
 
@@ -1327,39 +1443,63 @@
 
 
 @media (max-width: 768px) {
-  .mobile-phone-mockup {
+  .app-showcase-slider {
+    margin: 3rem 0;
+    padding: 1.5rem 0;
+  }
+
+  .slider-container {
+    padding: 0 1rem;
+  }
+
+  .slider-content {
+    gap: 2rem;
+  }
+
+  .phone-mockup-3d {
     width: 260px;
-    height: 520px;
+    height: 540px;
   }
 
-  .mobile-slide-number {
-    font-size: 2.5rem;
+  .slider-number {
+    font-size: 3rem;
   }
 
-  .mobile-slide-title {
+  .slider-title,
+  .slider-subtitle {
     font-size: 1.5rem;
   }
 
-  .mobile-slide-subtitle {
-    font-size: 1.25rem;
+  .slider-description {
+    font-size: 0.95rem;
   }
 
-  .mobile-slide-description {
-    font-size: 0.9rem;
+  .slider-pagination {
+    gap: 0.6rem;
+    margin-top: 2rem;
   }
 
-  .carousel-arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 1.25rem;
+  .slider-arrow {
+    width: 45px;
+    height: 45px;
   }
 
-  .carousel-arrow-left {
-    left: -17px;
+  .slider-arrow svg {
+    width: 20px;
+    height: 20px;
   }
 
-  .carousel-arrow-right {
-    right: -17px;
+  .slider-arrow-left {
+    left: 5px;
+  }
+
+  .slider-arrow-right {
+    right: 5px;
+  }
+
+  .pagination-dot {
+    width: 8px;
+    height: 8px;
   }
 
   /* Features swiper adjustments */
@@ -1380,29 +1520,6 @@
     font-size: 0.95rem;
   }
 
-  .showcase-screen-section {
-    gap: 2rem;
-    padding: 3rem 1rem;
-  }
-
-  .phone-mockup-3d {
-    width: 280px;
-    height: 580px;
-  }
-
-  .feature-title-showcase,
-  .feature-subtitle-showcase {
-    font-size: 1.75rem;
-  }
-
-  .feature-description-showcase {
-    font-size: 1rem;
-  }
-
-  .feature-number-big {
-    font-size: 4rem;
-  }
-
   .features-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -1421,17 +1538,45 @@
     height: 500px;
   }
 
-  .feature-title-showcase,
-  .feature-subtitle-showcase {
-    font-size: 1.5rem;
+  .slider-number {
+    font-size: 2.5rem;
   }
 
-  .feature-description-showcase {
-    font-size: 0.95rem;
+  .slider-title,
+  .slider-subtitle {
+    font-size: 1.3rem;
   }
 
-  .feature-number-big {
-    font-size: 3rem;
+  .slider-description {
+    font-size: 0.9rem;
+  }
+
+  .slider-pagination {
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .slider-arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .slider-arrow svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .slider-arrow-left {
+    left: 0;
+  }
+
+  .slider-arrow-right {
+    right: 0;
+  }
+
+  .pagination-dot {
+    width: 7px;
+    height: 7px;
   }
 
   .app-store-button {

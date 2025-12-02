@@ -14,6 +14,7 @@ const ADKAssist = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentFeatureSlide, setCurrentFeatureSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
   // Detectar si es mobile
   useEffect(() => {
@@ -26,16 +27,16 @@ const ADKAssist = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Auto-slide para mobile (solo para app screens)
+  // Auto-slide para todos los dispositivos
   useEffect(() => {
-    if (!isMobile) return;
+    if (!isAutoPlaying) return;
 
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % appScreens.length);
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [isMobile]);
+  }, [isAutoPlaying]);
 
   // Handlers para swipe de app screens
   const handleAppScreenSwipe = (event, info) => {
@@ -240,188 +241,109 @@ const ADKAssist = () => {
           <p className="section-subtitle gold-subtitle">Your Personal Tech Support Companion</p>
         </motion.div>
 
-        {/* Desktop: Scrollytelling - Una sección por cada pantalla */}
-        {!isMobile && (
-          <div className="app-showcase-scrollytelling">
-            {appScreens.map((screen, index) => (
+        {/* Slider Unificado - Desktop y Mobile */}
+        <div className="app-showcase-slider">
+          <div className="slider-container">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={screen.id}
-                className="showcase-screen-section"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: false, amount: 0.5 }}
-                transition={{ duration: 0.8 }}
+                key={currentSlide}
+                className="slider-content"
+                initial={{ opacity: 0, x: 100, scale: 0.9 }}
+                animate={{ opacity: 1, x: 0, scale: 1 }}
+                exit={{ opacity: 0, x: -100, scale: 0.9 }}
+                transition={{ 
+                  duration: 0.6,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                onMouseEnter={() => setIsAutoPlaying(false)}
+                onMouseLeave={() => setIsAutoPlaying(true)}
               >
-                <div className="showcase-content">
-                  {/* Mockup 3D */}
-                  <motion.div
-                    className="showcase-mockup"
-                    initial={{
-                      scale: 0.85,
-                      x: index % 2 === 0 ? -250 : 250,
-                      y: index % 3 === 0 ? 100 : index % 3 === 1 ? -100 : 0,
-                      opacity: 0.3
-                    }}
-                    whileInView={{
-                      rotateY: screen.animation.rotateY,
-                      rotateX: screen.animation.rotateX,
-                      scale: screen.animation.scale,
-                      x: screen.animation.x,
-                      y: screen.animation.y,
-                      opacity: 1
-                    }}
-                    exit={{
-                      scale: 0.85,
-                      x: index % 2 === 0 ? 250 : -250,
-                      y: index % 3 === 0 ? -100 : index % 3 === 1 ? 100 : 0,
-                      opacity: 0.3
-                    }}
-                    viewport={{ once: false, amount: 0.3, margin: "-120px" }}
-                    transition={{
-                      duration: 1.1,
-                      ease: [0.22, 1, 0.36, 1],
-                      scale: { duration: 1, ease: "easeOut" },
-                      rotateY: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-                      rotateX: { duration: 1.2, ease: [0.22, 1, 0.36, 1] },
-                      x: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
-                      y: { duration: 1.1, ease: [0.22, 1, 0.36, 1] },
-                      opacity: { duration: 0.8, ease: "easeInOut" }
-                    }}
-                  >
-                    <div className="phone-mockup-3d">
-                      <div className="phone-reflection"></div>
+                {/* Phone Mockup 3D */}
+                <motion.div
+                  className="slider-mockup"
+                  initial={{ rotateY: -15, scale: 0.85 }}
+                  animate={{ rotateY: 0, scale: 1 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                  <div className="phone-mockup-3d">
+                    <div className="phone-reflection"></div>
 
-                      <div className="phone-frame-3d">
-                        <div className="phone-bezel">
-                          <div className="bezel-highlight"></div>
-                        </div>
-
-                        <div className="phone-notch-3d"></div>
-
-                        <div className="phone-screen-3d">
-                          <div className="screen-glare"></div>
-                          <img
-                            src={screen.image}
-                            alt={screen.title}
-                            className="screen-image-3d"
-                          />
-                        </div>
-
-                        <div className="phone-power-button"></div>
-                        <div className="phone-volume-buttons">
-                          <div className="volume-up"></div>
-                          <div className="volume-down"></div>
-                        </div>
+                    <div className="phone-frame-3d">
+                      <div className="phone-bezel">
+                        <div className="bezel-highlight"></div>
                       </div>
 
-                      <div className="phone-shadow-3d"></div>
-                    </div>
-                  </motion.div>
+                      <div className="phone-notch-3d"></div>
 
-                  {/* Información de la feature */}
-                  <motion.div
-                    className="showcase-info"
-                    initial={{
-                      opacity: 0,
-                      x: index % 2 === 0 ? 120 : -120,
-                      y: 40
-                    }}
-                    whileInView={{ opacity: 1, x: 0, y: 0 }}
-                    exit={{
-                      opacity: 0,
-                      x: index % 2 === 0 ? -120 : 120,
-                      y: -40
-                    }}
-                    viewport={{ once: false, amount: 0.4, margin: "-100px" }}
-                    transition={{
-                      duration: 1,
-                      delay: 0.15,
-                      ease: [0.22, 1, 0.36, 1]
-                    }}
-                  >
-                    <span className="feature-number-big">0{index + 1}</span>
-                    <h3 className="feature-title-showcase">{screen.title}</h3>
-                    <h4 className="feature-subtitle-showcase">{screen.subtitle}</h4>
-                    <p className="feature-description-showcase">{screen.description}</p>
-                  </motion.div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
-
-        {/* Mobile: Carrusel Compacto */}
-        {isMobile && (
-          <div className="mobile-carousel-container">
-            <div className="carousel-wrapper">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentSlide}
-                  className="carousel-slide"
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.5 }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
-                  onDragEnd={handleAppScreenSwipe}
-                >
-                  {/* Phone Mockup */}
-                  <div className="mobile-phone-mockup">
-                    <div className="phone-frame-mobile">
-                      <div className="phone-notch-mobile"></div>
-                      <div className="phone-screen-mobile">
+                      <div className="phone-screen-3d">
+                        <div className="screen-glare"></div>
                         <img
                           src={appScreens[currentSlide].image}
                           alt={appScreens[currentSlide].title}
-                          className="screen-image-mobile"
-                          draggable={false}
+                          className="screen-image-3d"
                         />
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Info Compacta */}
-                  <div className="mobile-slide-info">
-                    <span className="mobile-slide-number">0{currentSlide + 1}</span>
-                    <h3 className="mobile-slide-title">{appScreens[currentSlide].title}</h3>
-                    <h4 className="mobile-slide-subtitle">{appScreens[currentSlide].subtitle}</h4>
-                    <p className="mobile-slide-description">{appScreens[currentSlide].description}</p>
+                      <div className="phone-power-button"></div>
+                      <div className="phone-volume-buttons">
+                        <div className="volume-up"></div>
+                        <div className="volume-down"></div>
+                      </div>
+                    </div>
+
+                    <div className="phone-shadow-3d"></div>
                   </div>
                 </motion.div>
-              </AnimatePresence>
 
-              {/* Navigation Dots */}
-              <div className="carousel-dots">
-                {appScreens.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`carousel-dot ${index === currentSlide ? 'active' : ''}`}
-                    onClick={() => setCurrentSlide(index)}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
+                {/* Información */}
+                <motion.div
+                  className="slider-info"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <span className="slider-number">0{currentSlide + 1}</span>
+                  <h3 className="slider-title">{appScreens[currentSlide].title}</h3>
+                  <h4 className="slider-subtitle">{appScreens[currentSlide].subtitle}</h4>
+                  <p className="slider-description">{appScreens[currentSlide].description}</p>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
 
-              {/* Navigation Arrows */}
-              <button
-                className="carousel-arrow carousel-arrow-left"
-                onClick={() => setCurrentSlide((prev) => (prev - 1 + appScreens.length) % appScreens.length)}
-                aria-label="Previous slide"
-              >
-                ‹
-              </button>
-              <button
-                className="carousel-arrow carousel-arrow-right"
-                onClick={() => setCurrentSlide((prev) => (prev + 1) % appScreens.length)}
-                aria-label="Next slide"
-              >
-                ›
-              </button>
-            </div>
+            {/* Navigation Arrows - Laterales */}
+            <button
+              className="slider-arrow slider-arrow-left"
+              onClick={() => setCurrentSlide((prev) => (prev - 1 + appScreens.length) % appScreens.length)}
+              aria-label="Previous slide"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            <button
+              className="slider-arrow slider-arrow-right"
+              onClick={() => setCurrentSlide((prev) => (prev + 1) % appScreens.length)}
+              aria-label="Next slide"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
           </div>
-        )}
+
+          {/* Pagination Dots - Estilo Hero */}
+          <div className="slider-pagination">
+            {appScreens.map((_, index) => (
+              <button
+                key={index}
+                className={`pagination-dot ${index === currentSlide ? 'active' : ''}`}
+                onClick={() => setCurrentSlide(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
 
         {/* Features Grid Final */}
         <div className="features-grid-final">
