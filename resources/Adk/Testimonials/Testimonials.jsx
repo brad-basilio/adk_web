@@ -16,9 +16,22 @@ const Testimonials = ({ testimonies = [] }) => {
   });
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
   // Filtrar solo testimonios visibles
   const visibleTestimonies = testimonies.filter(t => t.visible);
+
+  const handleCardMouseEnter = () => {
+    if (swiperInstance && swiperInstance.autoplay) {
+      swiperInstance.autoplay.stop();
+    }
+  };
+
+  const handleCardMouseLeave = () => {
+    if (swiperInstance && swiperInstance.autoplay) {
+      swiperInstance.autoplay.start();
+    }
+  };
 
   if (visibleTestimonies.length === 0) return null;
 
@@ -73,7 +86,7 @@ const Testimonials = ({ testimonies = [] }) => {
             spaceBetween={30}
             loop={true}
             slidesPerView={1}
-          
+            onSwiper={setSwiperInstance}
             navigation={{
               prevEl: '.carousel-prev',
               nextEl: '.carousel-next',
@@ -116,6 +129,8 @@ const Testimonials = ({ testimonies = [] }) => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={inView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
+                  onMouseEnter={handleCardMouseEnter}
+                  onMouseLeave={handleCardMouseLeave}
                 >
                   <div className="card-shine" />
                   <div className="card-border-glow" />
