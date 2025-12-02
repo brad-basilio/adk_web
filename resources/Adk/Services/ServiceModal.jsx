@@ -56,6 +56,17 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
 
             <div className="modal-header">
               <motion.div
+                className="modal-header-background"
+                initial={{ opacity: 0, scale: 1.1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
+                <img src={`/api/service/media/${service.image}`} alt={service.title} />
+                <div className="modal-image-overlay"></div>
+                <div className="hero-gradient-overlay"></div>
+              </motion.div>
+
+              <motion.div
                 className="modal-icon !p-2"
                 initial={{ scale: 0, rotate: -180 }}
                 animate={{ scale: 1, rotate: 0 }}
@@ -84,6 +95,7 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.4 }}
+                style={{ display: 'none' }}
               >
                 <img src={`/api/service/media/${service.image}`} alt={service.title} />
                 <div className="modal-image-overlay"></div>
@@ -139,24 +151,6 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
                     </p>
                   </motion.div>
                 </div>
-
-                <motion.div
-                  className="modal-footer"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.9 }}
-                >
-                  <motion.button
-                    className="modal-cta-button"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span>Get Started</span>
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </motion.button>
-                </motion.div>
               </div>
             </div>
           </motion.div>
