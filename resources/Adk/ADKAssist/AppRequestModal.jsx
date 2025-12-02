@@ -9,12 +9,24 @@ const AppRequestModal = ({ isOpen, onClose }) => {
     name: '',
     email: '',
     phone: '',
-    company: '',
+    building_name: '',
+    unit_number: '',
+    number_of_residents: '',
+    service_interest: '',
     message: ''
   });
   const [sending, setSending] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   
   const appRequestsRest = new AppRequestsRest();
+
+  const serviceOptions = [
+    { value: 'Individual Plan', label: 'Individual Plan' },
+    { value: 'Building/Property Plan', label: 'Building/Property Plan' },
+    { value: 'Cybersecurity Add-Ons', label: 'Cybersecurity Add-Ons' },
+    { value: 'Onsite Support Options', label: 'Onsite Support Options' },
+    { value: 'Other', label: 'Other' }
+  ];
 
   useEffect(() => {
     if (isOpen) {
@@ -42,6 +54,14 @@ const AppRequestModal = ({ isOpen, onClose }) => {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleServiceSelect = (value) => {
+    setFormData({
+      ...formData,
+      service_interest: value
+    });
+    setDropdownOpen(false);
   };
 
   const handleSubmit = async () => {
@@ -129,8 +149,21 @@ const AppRequestModal = ({ isOpen, onClose }) => {
                           placeholder="John Doe"
                         />
                       </div>
+   <div className="form-group-new">
+                      <label htmlFor="phone">Phone Number</label>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        placeholder="+1 (555) 000-0000"
+                      />
+                    </div>
+                    
+                    </div>
 
-                      <div className="form-group-new">
+                   <div className="form-group-new">
                         <label htmlFor="email">Email Address *</label>
                         <input
                           type="email"
@@ -142,33 +175,6 @@ const AppRequestModal = ({ isOpen, onClose }) => {
                           placeholder="john@example.com"
                         />
                       </div>
-                    </div>
-
-                    <div className="form-row">
-                      <div className="form-group-new">
-                        <label htmlFor="phone">Phone Number</label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          placeholder="+1 (555) 000-0000"
-                        />
-                      </div>
-
-                      <div className="form-group-new">
-                        <label htmlFor="company">Company Name</label>
-                        <input
-                          type="text"
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleChange}
-                          placeholder="Your Company"
-                        />
-                      </div>
-                    </div>
                   </motion.div>
 
                   <motion.div
@@ -177,9 +183,119 @@ const AppRequestModal = ({ isOpen, onClose }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
                   >
-                    <h3>Additional Information</h3>
+                    <h3>Building / Unit Information</h3>
+                    <div className="form-row">
+                      <div className="form-group-new">
+                        <label htmlFor="building_name">Building Name *</label>
+                        <input
+                          type="text"
+                          id="building_name"
+                          name="building_name"
+                          value={formData.building_name}
+                          onChange={handleChange}
+                          required
+                          placeholder="Building name"
+                        />
+                      </div>
+
+                      <div className="form-group-new">
+                        <label htmlFor="unit_number">Unit Number</label>
+                        <input
+                          type="text"
+                          id="unit_number"
+                          name="unit_number"
+                          value={formData.unit_number}
+                          onChange={handleChange}
+                          placeholder="Unit #"
+                        />
+                      </div>
+                    </div>
+
                     <div className="form-group-new">
-                      <label htmlFor="message">Tell us about your needs</label>
+                      <label htmlFor="number_of_residents">Number of Residents</label>
+                      <input
+                        type="number"
+                        id="number_of_residents"
+                        name="number_of_residents"
+                        value={formData.number_of_residents}
+                        onChange={handleChange}
+                        placeholder="e.g., 50"
+                        min="1"
+                      />
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="form-section"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                  >
+                    <h3>Service Interest</h3>
+                    <div className="form-group-new">
+                      <label htmlFor="service_interest">What are you interested in? *</label>
+                      <div className="custom-dropdown">
+                        <button
+                          type="button"
+                          className="dropdown-toggle"
+                          onClick={() => setDropdownOpen(!dropdownOpen)}
+                        >
+                          <span className={formData.service_interest ? '' : 'placeholder'}>
+                            {formData.service_interest || 'Select a service'}
+                          </span>
+                          <svg 
+                            width="20" 
+                            height="20" 
+                            viewBox="0 0 24 24" 
+                            fill="none" 
+                            stroke="currentColor" 
+                            strokeWidth="2"
+                            className={dropdownOpen ? 'rotate' : ''}
+                          >
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                          </svg>
+                        </button>
+                        
+                        <AnimatePresence>
+                          {dropdownOpen && (
+                            <motion.div
+                              className="dropdown-menu"
+                              initial={{ opacity: 0, y: -10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: -10 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              {serviceOptions.map((option) => (
+                                <button
+                                  key={option.value}
+                                  type="button"
+                                  className={`dropdown-item ${formData.service_interest === option.value ? 'selected' : ''}`}
+                                  onClick={() => handleServiceSelect(option.value)}
+                                >
+                                  {option.label}
+                                  {formData.service_interest === option.value && (
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                      <polyline points="20 6 9 17 4 12"></polyline>
+                                    </svg>
+                                  )}
+                                </button>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    className="form-section"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 }}
+                  >
+                    <h3>Additional Details</h3>
+                    <div className="form-group-new">
+                      <label htmlFor="message">Describe your needs or questions</label>
                       <textarea
                         id="message"
                         name="message"

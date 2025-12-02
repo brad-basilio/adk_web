@@ -20,7 +20,12 @@ class AppRequestController extends BasicController
             'email.email' => 'Email must have the format user@domain.com.',
             'email.max' => 'Email must not exceed 320 characters.',
             'phone.string' => 'Phone must be a text string.',
-            'company.string' => 'Company must be a text string.',
+            'building_name.required' => 'Building name is required.',
+            'building_name.string' => 'Building name must be a text string.',
+            'unit_number.string' => 'Unit number must be a text string.',
+            'number_of_residents.integer' => 'Number of residents must be a number.',
+            'service_interest.required' => 'Service interest is required.',
+            'service_interest.string' => 'Service interest must be a text string.',
             'message.string' => 'Message must be a text string.'
         ];
 
@@ -29,7 +34,10 @@ class AppRequestController extends BasicController
             'name' => 'required|string',
             'email' => 'required|email|max:320',
             'phone' => 'nullable|string',
-            'company' => 'nullable|string',
+            'building_name' => 'required|string',
+            'unit_number' => 'nullable|string',
+            'number_of_residents' => 'nullable|integer',
+            'service_interest' => 'required|string',
             'message' => 'nullable|string',
         ], $messages);
 

@@ -111,14 +111,28 @@ const AppRequests = () => {
                         },
                     },
                     {
-                        dataField: "company",
-                        caption: "Company",
+                        dataField: "building_name",
+                        caption: "Building",
                         cellTemplate: (container, { data }) => {
                             ReactAppend(
                                 container,
                                 <span>
-                                    {data.company || 
-                                        <i className="text-muted">- No company -</i>
+                                    {data.building_name || 
+                                        <i className="text-muted">- No building -</i>
+                                    }
+                                </span>
+                            );
+                        },
+                    },
+                    {
+                        dataField: "service_interest",
+                        caption: "Service Interest",
+                        cellTemplate: (container, { data }) => {
+                            ReactAppend(
+                                container,
+                                <span>
+                                    {data.service_interest || 
+                                        <i className="text-muted">- Not specified -</i>
                                     }
                                 </span>
                             );
@@ -198,12 +212,34 @@ const AppRequests = () => {
                             </span>
                         </p>
                     )}
-                    {dataLoaded?.company && (
+                    <hr />
+                    {dataLoaded?.building_name && (
                         <p>
-                            <b>Company</b>:
-                            <span className="ms-1">{dataLoaded?.company}</span>
+                            <b>Building Name</b>:
+                            <span className="ms-1">{dataLoaded?.building_name}</span>
                         </p>
                     )}
+                    {dataLoaded?.unit_number && (
+                        <p>
+                            <b>Unit Number</b>:
+                            <span className="ms-1">{dataLoaded?.unit_number}</span>
+                        </p>
+                    )}
+                    {dataLoaded?.number_of_residents && (
+                        <p>
+                            <b>Number of Residents</b>:
+                            <span className="ms-1">{dataLoaded?.number_of_residents}</span>
+                        </p>
+                    )}
+                    {dataLoaded?.service_interest && (
+                        <p>
+                            <b>Service Interest</b>:
+                            <span className="ms-1">
+                                <span className="badge bg-primary">{dataLoaded?.service_interest}</span>
+                            </span>
+                        </p>
+                    )}
+                    <hr />
                     {dataLoaded?.message && (
                         <p>
                             <b>Message</b>:

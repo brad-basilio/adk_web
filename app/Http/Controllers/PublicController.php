@@ -273,7 +273,7 @@ class PublicController extends Controller
                 ->get();
 
             $response->status = 200;
-            $response->message = 'Operación correcta';
+            $response->message = 'Successful operation';
             $response->data = $jpas;
             $response->summary = $this->setPaginationSummary($request, $instance);
             $response->totalCount = $totalCount;

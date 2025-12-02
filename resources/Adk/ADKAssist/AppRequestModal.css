@@ -189,7 +189,8 @@
 }
 
 .form-group-new input,
-.form-group-new textarea {
+.form-group-new textarea,
+.form-group-new select {
   background: rgba(0, 0, 0, 0.4);
   border: 2px solid rgba(0, 102, 255, 0.2);
   border-radius: 12px;
@@ -200,13 +201,30 @@
   font-family: inherit;
 }
 
+.form-group-new select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%230066ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 20px;
+  padding-right: 3rem;
+}
+
+.form-group-new select option {
+  background: rgba(10, 15, 25, 0.98);
+  color: white;
+  padding: 0.5rem;
+}
+
 .form-group-new input::placeholder,
 .form-group-new textarea::placeholder {
   color: rgba(255, 255, 255, 0.3);
 }
 
 .form-group-new input:focus,
-.form-group-new textarea:focus {
+.form-group-new textarea:focus,
+.form-group-new select:focus {
   outline: none;
   border-color: var(--color-blue);
   background: rgba(0, 102, 255, 0.05);
@@ -217,6 +235,115 @@
   resize: vertical;
   min-height: 120px;
   line-height: 1.6;
+}
+
+/* Custom Dropdown Styles */
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-toggle {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 102, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  color: white;
+  font-size: 1rem;
+  font-family: inherit;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-align: left;
+}
+
+.dropdown-toggle .placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle:focus {
+  outline: none;
+  border-color: var(--color-blue);
+  background: rgba(0, 102, 255, 0.05);
+}
+
+.dropdown-toggle svg {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  color: var(--color-blue-light);
+}
+
+.dropdown-toggle svg.rotate {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  right: 0;
+  background: rgba(10, 15, 25, 0.98);
+  border: 2px solid rgba(0, 102, 255, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  z-index: 1000;
+  box-shadow: 0 10px 40px rgba(0, 102, 255, 0.3);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.dropdown-menu::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dropdown-menu::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-menu::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-blue) 0%, var(--color-blue-light) 100%);
+  border-radius: 4px;
+}
+
+.dropdown-item {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 102, 255, 0.1);
+}
+
+.dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.dropdown-item:hover {
+  background: rgba(0, 102, 255, 0.1);
+  color: white;
+}
+
+.dropdown-item.selected {
+  background: rgba(0, 102, 255, 0.2);
+  color: var(--color-blue-light);
+  font-weight: 600;
+}
+
+.dropdown-item svg {
+  color: var(--color-blue-light);
+  flex-shrink: 0;
 }
 
 .app-request-modal-container .modal-footer {

@@ -16,7 +16,10 @@ class AppRequest extends Model
         'name',
         'email',
         'phone',
-        'company',
+        'building_name',
+        'unit_number',
+        'number_of_residents',
+        'service_interest',
         'message',
         'seen',
         'status'
