@@ -165,7 +165,7 @@ const Testimonials = ({ testimonies = [] }) => {
 
                     <div className="testimony-footer">
                       <div className="author-section">
-                        <div className="author-image-wrapper">
+                       {/* <div className="author-image-wrapper">
                           <div className="image-glow" />
                           <img 
                             src={`/api/testimony/media/${testimony.image}`}
@@ -173,7 +173,7 @@ const Testimonials = ({ testimonies = [] }) => {
                             className="author-image"
                             onError={(e) => e.target.src = '/api/cover/thumbnail/null'}
                           />
-                        </div>
+                        </div> */}
                         <div className="author-info">
                           <h4 className="author-name">{testimony.name}</h4>
                           {testimony.case && (
