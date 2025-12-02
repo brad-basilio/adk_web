@@ -102,7 +102,7 @@ const Contact = ({ services = [], generals = [] }) => {
         </svg>
       ),
       title: 'Office',
-      details: getGeneralValue('address') ? getGeneralValue('address').split(',').map(a => a.trim()) : ['123 Tech Boulevard', 'Silicon Valley, CA 94025'],
+      details: getGeneralValue('address') ? getGeneralValue('address').split('\n').map(a => a.trim()) : ['123 Tech Boulevard', 'Silicon Valley, CA 94025'],
       link: 'https://maps.google.com'
     },
     {
@@ -188,7 +188,7 @@ const Contact = ({ services = [], generals = [] }) => {
                       <div className="contact-card-content">
                         <h4 className="contact-card-title">{info.title}</h4>
                         {info.details.map((detail, idx) => (
-                          <p key={idx} className="contact-card-detail !whitespace-pre-line">{detail}</p>
+                          <p key={idx} className="contact-card-detail">{detail}</p>
                         ))}
                       </div>
                     </a>

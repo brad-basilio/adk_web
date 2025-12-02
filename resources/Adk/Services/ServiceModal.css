@@ -258,7 +258,7 @@
 }
 
 .modal-info-section {
-  padding: 3rem;
+  padding: 3rem 3rem 24rem;
   display: flex;
   flex-direction: column;
   gap: 3rem;
@@ -532,7 +532,7 @@
   }
 
   .modal-info-section {
-    padding: 2rem;
+    padding: 2rem 2rem 3rem;
     gap: 2rem;
     height: 100%;
   }
@@ -607,7 +607,7 @@
   }
 
   .modal-info-section {
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 3rem;
     height: 100%;
   }
 
