@@ -101,9 +101,9 @@ const AppRequestModal = ({ isOpen, onClose }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Request More Information
+                Request Information About ADK Assist
               </motion.h2>
-           
+              <p>Get detailed information about our 24/7 tech support service, pricing, building plans, and how ADK Assist can support your property or residents.</p>
             </div>
 
             <div className="modal-scrollable">

@@ -150,14 +150,19 @@ const About = ({ indicators = [], staff = [] }) => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <p className="main-paragraph">
-              Our company is a trusted provider of technology solutions with over 10 years of experience in the industry.
+              ADK Technology is a leading provider of IT support, cybersecurity protection, and custom software development for businesses and luxury residential clients. With more than a decade of experience, we design, build, and maintain secure and scalable technology ecosystems tailored to the modern world.
+            </p>            <p className="main-paragraph">
+              Our strength comes from our global team of certified engineers, developers, and technology specialists, working across multiple time zones to deliver faster response times, 24/7 monitoring, and exceptional service. We combine deep technical expertise with a personalized approach, ensuring every client receives solutions that align with their unique goals and challenges.
+            </p>           <p className="main-paragraph">
+              From fully managed IT services and advanced cybersecurity tools to custom mobile and web applications, ADK Technology empowers organizations to operate with efficiency, reliability, and complete peace of mind. Our solutions are engineered to optimize performance, secure critical assets, and support long-term digital transformation.
+            </p>           <p className="main-paragraph">
+
+              At ADK Technology, we don’t just solve problems—
+              <br />
+              we build the future of your technology.
+
             </p>
-            <p className="main-paragraph">
-              At ADK Tech, we take pride in our expertise in identifying and selecting exceptional talent to meet our clients’ unique needs. We are dedicated to providing swift and efficient solutions without compromising the quality of our work.
-            </p>
-            <p className="main-paragraph">
-              Understanding that each client has specific requirements, our top priority is delving deep into comprehending their particular needs. This commitment drives us to deliver innovative and tailored solutions that not only meet their expectations but also equip them with the necessary tools to successfully achieve their business objectives. At ADK Tech, we aim not just to find talent but also to build long-term relationships, actively collaborating to ensure that each step contributes to the growth and prosperity of our clients’ enterprises. With a focus on excellence and innovation, we strive to be your reliable partner in talent search and development, contributing to the ongoing success of your organization.
-            </p>
+
           </motion.div>
 
           {indicators.length > 0 && (

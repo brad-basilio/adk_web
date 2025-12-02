@@ -205,26 +205,35 @@ const Contact = ({ services = [], generals = [] }) => {
             >
               <div className="cta-content">
                 <h3 className="!font-bold">Ready to Start Your Project?</h3>
-                <p>Our team is available 24/7 to answer your questions and provide support. Let's build something amazing together.</p>
+                <p>Our team is available 24/7 to answer your questions and provide support. Choose the option that best fits what you need and we’ll connect you with the right person.</p>
                 <div className="cta-badges">
-                  <div className="badge">
+                  <a href="mailto:shaimaa.husien@adktechnology.net" className="badge">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M9 12L11 14L15 10M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span>Fast Response</span>
-                  </div>
-                  <div className="badge">
+                    <div>
+                      <div>Fast Response</div>
+                      <span>Shaimaa (Tech Support)</span>
+                    </div>
+                  </a>
+                  <a href="mailto:nicole.zelingher@adktechnology.net" className="badge">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 15C15.866 15 19 11.866 19 8C19 4.13401 15.866 1 12 1C8.13401 1 5 4.13401 5 8C5 11.866 8.13401 15 12 15ZM12 15V23M8 23H16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
-                    <span>Expert Team</span>
-                  </div>
-                  <div className="badge">
+                    <div>
+                      <div>Expert Team</div>
+                      <span>Nicole (Sales / Projects)</span>
+                    </div>
+                  </a>
+                  <a href="mailto:Karolina.kapitan@adktechnology.net" className="badge">
                     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M12 2L4 6V11C4 16.55 7.84 21.74 12 23C16.16 21.74 20 16.55 20 11V6L12 2ZM12 11.99H18C17.47 16.11 14.72 19.78 12 20.93V12H6V7.3L12 4.19V11.99Z" fill="currentColor"/>
                     </svg>
-                    <span>Secure & Reliable</span>
-                  </div>
+                    <div>
+                      <div>Secure & Reliable</div>
+                      <span>Karolina (Operations)</span>
+                    </div>
+                  </a>
                 </div>
               </div>
             </motion.div>

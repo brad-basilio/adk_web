@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, EffectFade } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-fade';
 import AppRequestModal from './AppRequestModal';
 import './ADKAssist.css';
 
@@ -14,7 +20,7 @@ const ADKAssist = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentFeatureSlide, setCurrentFeatureSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
   // Detectar si es mobile
   useEffect(() => {
@@ -27,26 +33,16 @@ const ADKAssist = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Auto-slide para todos los dispositivos
-  useEffect(() => {
-    if (!isAutoPlaying) return;
+  // Handlers para pausar/reanudar autoplay
+  const handleMouseEnter = () => {
+    if (swiperInstance && swiperInstance.autoplay) {
+      swiperInstance.autoplay.stop();
+    }
+  };
 
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % appScreens.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  // Handlers para swipe de app screens
-  const handleAppScreenSwipe = (event, info) => {
-    const threshold = 50;
-    if (info.offset.x > threshold) {
-      // Swipe derecha - slide anterior
-      setCurrentSlide((prev) => (prev - 1 + appScreens.length) % appScreens.length);
-    } else if (info.offset.x < -threshold) {
-      // Swipe izquierda - slide siguiente
-      setCurrentSlide((prev) => (prev + 1) % appScreens.length);
+  const handleMouseLeave = () => {
+    if (swiperInstance && swiperInstance.autoplay) {
+      swiperInstance.autoplay.start();
     }
   };
 
@@ -241,79 +237,84 @@ const ADKAssist = () => {
           <p className="section-subtitle gold-subtitle">Your Personal Tech Support Companion</p>
         </motion.div>
 
-        {/* Slider Unificado - Desktop y Mobile */}
+        {/* Slider Unificado - Desktop y Mobile con Swiper */}
         <div className="app-showcase-slider">
           <div className="slider-container">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSlide}
-                className="slider-content"
-                initial={{ opacity: 0, x: 100, scale: 0.9 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -100, scale: 0.9 }}
-                transition={{ 
-                  duration: 0.6,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-                onMouseEnter={() => setIsAutoPlaying(false)}
-                onMouseLeave={() => setIsAutoPlaying(true)}
-              >
-                {/* Phone Mockup 3D */}
-                <motion.div
-                  className="slider-mockup"
-                  initial={{ rotateY: -15, scale: 0.85 }}
-                  animate={{ rotateY: 0, scale: 1 }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                >
-                  <div className="phone-mockup-3d">
-                    <div className="phone-reflection"></div>
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={0}
+              slidesPerView={1}
+              loop={true}
+              speed={600}
+              onSwiper={setSwiperInstance}
+              onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex)}
+              navigation={{
+                prevEl: '.slider-arrow-left',
+                nextEl: '.slider-arrow-right',
+              }}
+              pagination={{
+                el: '.slider-pagination',
+                clickable: true,
+                bulletClass: 'pagination-dot',
+                bulletActiveClass: 'active',
+              }}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              className="adk-assist-swiper"
+            >
+              {appScreens.map((screen, index) => (
+                <SwiperSlide key={screen.id}>
+                  <div className="slider-content">
+                    {/* Phone Mockup 3D */}
+                    <div className="slider-mockup">
+                      <div className="phone-mockup-3d">
+                        <div className="phone-reflection"></div>
 
-                    <div className="phone-frame-3d">
-                      <div className="phone-bezel">
-                        <div className="bezel-highlight"></div>
-                      </div>
+                        <div className="phone-frame-3d">
+                          <div className="phone-bezel">
+                            <div className="bezel-highlight"></div>
+                          </div>
 
-                      <div className="phone-notch-3d"></div>
+                          <div className="phone-notch-3d"></div>
 
-                      <div className="phone-screen-3d">
-                        <div className="screen-glare"></div>
-                        <img
-                          src={appScreens[currentSlide].image}
-                          alt={appScreens[currentSlide].title}
-                          className="screen-image-3d"
-                        />
-                      </div>
+                          <div className="phone-screen-3d">
+                            <div className="screen-glare"></div>
+                            <img
+                              src={screen.image}
+                              alt={screen.title}
+                              className="screen-image-3d"
+                            />
+                          </div>
 
-                      <div className="phone-power-button"></div>
-                      <div className="phone-volume-buttons">
-                        <div className="volume-up"></div>
-                        <div className="volume-down"></div>
+                          <div className="phone-power-button"></div>
+                          <div className="phone-volume-buttons">
+                            <div className="volume-up"></div>
+                            <div className="volume-down"></div>
+                          </div>
+                        </div>
+
+                        <div className="phone-shadow-3d"></div>
                       </div>
                     </div>
 
-                    <div className="phone-shadow-3d"></div>
+                    {/* Información */}
+                    <div className="slider-info">
+                      <span className="slider-number">0{index + 1}</span>
+                      <h3 className="slider-title">{screen.title}</h3>
+                      <h4 className="slider-subtitle">{screen.subtitle}</h4>
+                      <p className="slider-description">{screen.description}</p>
+                    </div>
                   </div>
-                </motion.div>
-
-                {/* Información */}
-                <motion.div
-                  className="slider-info"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                >
-                  <span className="slider-number">0{currentSlide + 1}</span>
-                  <h3 className="slider-title">{appScreens[currentSlide].title}</h3>
-                  <h4 className="slider-subtitle">{appScreens[currentSlide].subtitle}</h4>
-                  <p className="slider-description">{appScreens[currentSlide].description}</p>
-                </motion.div>
-              </motion.div>
-            </AnimatePresence>
+                </SwiperSlide>
+              ))}
+            </Swiper>
 
             {/* Navigation Arrows - Laterales */}
             <button
               className="slider-arrow slider-arrow-left"
-              onClick={() => setCurrentSlide((prev) => (prev - 1 + appScreens.length) % appScreens.length)}
               aria-label="Previous slide"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -323,7 +324,6 @@ const ADKAssist = () => {
 
             <button
               className="slider-arrow slider-arrow-right"
-              onClick={() => setCurrentSlide((prev) => (prev + 1) % appScreens.length)}
               aria-label="Next slide"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -333,16 +333,7 @@ const ADKAssist = () => {
           </div>
 
           {/* Pagination Dots - Estilo Hero */}
-          <div className="slider-pagination">
-            {appScreens.map((_, index) => (
-              <button
-                key={index}
-                className={`pagination-dot ${index === currentSlide ? 'active' : ''}`}
-                onClick={() => setCurrentSlide(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
+          <div className="slider-pagination"></div>
         </div>
 
         {/* Features Grid Final */}
