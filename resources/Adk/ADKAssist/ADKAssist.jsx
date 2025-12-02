@@ -18,9 +18,9 @@ const ADKAssist = () => {
 
   const [showRequestModal, setShowRequestModal] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentFeatureSlide, setCurrentFeatureSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [swiperInstance, setSwiperInstance] = useState(null);
+  const [featureSwiperInstance, setFeatureSwiperInstance] = useState(null);
 
   // Detectar si es mobile
   useEffect(() => {
@@ -43,18 +43,6 @@ const ADKAssist = () => {
   const handleMouseLeave = () => {
     if (swiperInstance && swiperInstance.autoplay) {
       swiperInstance.autoplay.start();
-    }
-  };
-
-  // Handlers para swipe de features
-  const handleFeatureSwipe = (event, info) => {
-    const threshold = 50;
-    if (info.offset.x > threshold) {
-      // Swipe derecha - feature anterior
-      setCurrentFeatureSlide((prev) => (prev - 1 + features.length) % features.length);
-    } else if (info.offset.x < -threshold) {
-      // Swipe izquierda - feature siguiente
-      setCurrentFeatureSlide((prev) => (prev + 1) % features.length);
     }
   };
 
@@ -372,40 +360,42 @@ const ADKAssist = () => {
           {/* Mobile: Swiper de Features */}
           {isMobile && (
             <div className="features-swiper-container">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={currentFeatureSlide}
-                  className="features-swiper-slide"
-                  initial={{ opacity: 0, x: 100 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -100 }}
-                  transition={{ duration: 0.4 }}
-                  drag="x"
-                  dragConstraints={{ left: 0, right: 0 }}
-                  dragElastic={0.2}
-                  onDragEnd={handleFeatureSwipe}
-                >
-                  <div className="assist-feature">
-                    <div className="feature-icon-circle">{features[currentFeatureSlide].icon}</div>
-                    <div className="feature-content">
-                      <h4 className="feature-title">{features[currentFeatureSlide].title}</h4>
-                      <p className="feature-description">{features[currentFeatureSlide].description}</p>
+              <Swiper
+                modules={[Pagination, Autoplay]}
+                spaceBetween={20}
+                slidesPerView={1}
+                loop={true}
+                speed={400}
+                onSwiper={setFeatureSwiperInstance}
+                pagination={{
+                  el: '.features-dots',
+                  clickable: true,
+                  bulletClass: 'feature-dot',
+                  bulletActiveClass: 'active',
+                }}
+                autoplay={{
+                  delay: 3500,
+                  disableOnInteraction: false,
+                }}
+                className="features-mobile-swiper"
+              >
+                {features.map((feature, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="assist-feature">
+                      <div className="feature-icon-circle">
+                        <img src={feature.icon} alt={feature.title} />
+                      </div>
+                      <div className="feature-content">
+                        <h4 className="feature-title">{feature.title}</h4>
+                        <p className="feature-description">{feature.description}</p>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Navigation Dots - Solo abajo */}
-              <div className="features-dots">
-                {features.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`feature-dot ${index === currentFeatureSlide ? 'active' : ''}`}
-                    onClick={() => setCurrentFeatureSlide(index)}
-                    aria-label={`Go to feature ${index + 1}`}
-                  />
+                  </SwiperSlide>
                 ))}
-              </div>
+              </Swiper>
+
+              {/* Navigation Dots */}
+              <div className="features-dots"></div>
             </div>
           )}
         </div>
