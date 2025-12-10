@@ -1,7 +1,7 @@
 {
-  "name": "ADK Web Application",
-  "short_name": "ADK Web",
-  "description": "ADK Web Application",
+  "name": "ADK Technology",
+  "short_name": "ADK Technology",
+  "description": "ADK Technology",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
