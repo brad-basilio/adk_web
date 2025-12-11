@@ -339,6 +339,42 @@
   letter-spacing: 1px;
 }
 
+/* Team Desktop/Mobile visibility */
+.team-desktop {
+  display: block;
+}
+
+.team-mobile {
+  display: none;
+}
+
+/* Team Swiper styles */
+.team-swiper {
+  width: 100%;
+  padding-bottom: 3rem;
+}
+
+.team-swiper .swiper-slide {
+  height: auto;
+}
+
+.team-swiper .swiper-pagination {
+  bottom: 0;
+}
+
+.team-swiper .swiper-pagination-bullet {
+  background: rgba(0, 102, 255, 0.3);
+  width: 10px;
+  height: 10px;
+  transition: all 0.3s ease;
+}
+
+.team-swiper .swiper-pagination-bullet-active {
+  background: var(--color-blue);
+  width: 30px;
+  border-radius: 5px;
+}
+
 .team-carousel-wrapper {
   position: relative;
   overflow: hidden;
@@ -899,6 +935,15 @@
   .team-header-modern {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  /* Team Desktop/Mobile toggle for mobile */
+  .team-desktop {
+    display: none;
+  }
+
+  .team-mobile {
+    display: block;
   }
 
   .team-grid-modern {

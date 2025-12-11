@@ -230,7 +230,7 @@ const About = ({ indicators = [], staff = [] }) => {
                   <p className="team-subtitle-modern">Experts driving innovation forward</p>
                 </div>
               </div>
-              <div className="team-carousel-controls">
+              <div className="team-carousel-controls !hidden  lg:block">
                 <button
                   className="team-carousel-btn team-carousel-btn-prev"
                   onClick={prevTeamSlide}
@@ -252,77 +252,154 @@ const About = ({ indicators = [], staff = [] }) => {
               </div>
             </div>
 
-            <div className="team-carousel-wrapper">
-              <div className="team-grid-modern">
-                {getVisibleTeamMembers().map((member, index) => (
-                  <motion.div
-                    key={index}
-                    className="team-card-modern"
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={inView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.1 * index }}
-                    whileHover={{ y: 0 }}
-                    onClick={() => setSelectedMember(member)}
-                  >
-                    <div className="team-card-inner">
-                      <div className="team-image-wrapper">
-                        <img
-                          src={member.image}
-                          alt={member.name}
-                          className="team-image-modern"
-                        />
-                        <div className="team-gradient-overlay"></div>
-                        <div className="team-hover-icon">
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
+            {/* Desktop version - Grid manual */}
+            <div className="team-desktop">
+              <div className="team-carousel-wrapper">
+                <div className="team-grid-modern">
+                  {getVisibleTeamMembers().map((member, index) => (
+                    <motion.div
+                      key={index}
+                      className="team-card-modern"
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={inView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.5, delay: 0.1 * index }}
+                      whileHover={{ y: 0 }}
+                      onClick={() => setSelectedMember(member)}
+                    >
+                      <div className="team-card-inner">
+                        <div className="team-image-wrapper">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className="team-image-modern"
+                          />
+                          <div className="team-gradient-overlay"></div>
+                          <div className="team-hover-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </div>
                         </div>
+
+                        <div className="team-content-modern">
+                          <h4 className="team-name-modern">{member.name}</h4>
+                          <p className="team-role-modern">{member.role}</p>
+
+                          <div className="team-expertise">
+                            {member.expertise.slice(0, 2).map((skill, idx) => (
+                              <span key={idx} className="expertise-tag">{skill}</span>
+                            ))}
+                          </div>
+
+                          <div className="team-social">
+                            {member.socials && member.socials.map((social, idx) => {
+                              const IconComponent = social.icon;
+                              return (
+                                <a
+                                  key={idx}
+                                  href={social.link}
+                                  className="social-link"
+                                  onClick={(e) => e.stopPropagation()}
+                                  title={social.name}
+                                >
+                                  <IconComponent size={18} />
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="team-card-border"></div>
                       </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
 
-                      <div className="team-content-modern">
-                        <h4 className="team-name-modern">{member.name}</h4>
-                        <p className="team-role-modern">{member.role}</p>
-
-                        <div className="team-expertise">
-                          {member.expertise.slice(0, 2).map((skill, idx) => (
-                            <span key={idx} className="expertise-tag">{skill}</span>
-                          ))}
-                        </div>
-
-                        <div className="team-social">
-                          {member.socials && member.socials.map((social, idx) => {
-                            const IconComponent = social.icon;
-                            return (
-                              <a
-                                key={idx}
-                                href={social.link}
-                                className="social-link"
-                                onClick={(e) => e.stopPropagation()}
-                                title={social.name}
-                              >
-                                <IconComponent size={18} />
-                              </a>
-                            );
-                          })}
-                        </div>
-                      </div>
-
-                      <div className="team-card-border"></div>
-                    </div>
-                  </motion.div>
+              <div className="team-carousel-indicators">
+                {Array.from({ length: Math.ceil(teamMembers.length / 3) }).map((_, idx) => (
+                  <button
+                    key={idx}
+                    className={`team-indicator ${idx === currentTeamIndex ? 'active' : ''}`}
+                    onClick={() => setCurrentTeamIndex(idx)}
+                    aria-label={`Go to slide ${idx + 1}`}
+                  />
                 ))}
               </div>
             </div>
 
-            <div className="team-carousel-indicators">
-              {Array.from({ length: Math.ceil(teamMembers.length / (isMobile ? 1 : 3)) }).map((_, idx) => (
-                <button
-                  key={idx}
-                  className={`team-indicator ${idx === currentTeamIndex ? 'active' : ''}`}
-                  onClick={() => setCurrentTeamIndex(idx)}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
+            {/* Mobile version - Swiper */}
+            <div className="team-mobile">
+              <Swiper
+                modules={[Autoplay, Pagination]}
+                spaceBetween={20}
+                slidesPerView={1}
+                loop={teamMembers.length > 1}
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{
+                  clickable: true,
+                  dynamicBullets: true,
+                }}
+                className="team-swiper"
+              >
+                {teamMembers.map((member, index) => (
+                  <SwiperSlide key={index}>
+                    <div 
+                      className="team-card-modern"
+                      onClick={() => setSelectedMember(member)}
+                    >
+                      <div className="team-card-inner">
+                        <div className="team-image-wrapper">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className="team-image-modern"
+                          />
+                          <div className="team-gradient-overlay"></div>
+                          <div className="team-hover-icon">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M12 5V19M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </div>
+                        </div>
+
+                        <div className="team-content-modern">
+                          <h4 className="team-name-modern">{member.name}</h4>
+                          <p className="team-role-modern">{member.role}</p>
+
+                          <div className="team-expertise">
+                            {member.expertise.slice(0, 2).map((skill, idx) => (
+                              <span key={idx} className="expertise-tag">{skill}</span>
+                            ))}
+                          </div>
+
+                          <div className="team-social">
+                            {member.socials && member.socials.map((social, idx) => {
+                              const IconComponent = social.icon;
+                              return (
+                                <a
+                                  key={idx}
+                                  href={social.link}
+                                  className="social-link"
+                                  onClick={(e) => e.stopPropagation()}
+                                  title={social.name}
+                                >
+                                  <IconComponent size={18} />
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="team-card-border"></div>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </motion.div>
         )}
