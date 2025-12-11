@@ -330,55 +330,55 @@ const About = ({ indicators = [], staff = [] }) => {
 
       {selectedMember && (
         <motion.div
-          className="team-modal-overlay"
+          className="team-member-modal-overlay"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={() => setSelectedMember(null)}
         >
           <motion.div
-            className="team-modal"
+            className="team-member-modal"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button className="modal-close" onClick={() => setSelectedMember(null)}>
+            <button className="team-member-modal-close" onClick={() => setSelectedMember(null)}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
 
-            <div className="modal-content">
-              <div className="modal-image-section">
+            <div className="team-member-modal-content">
+              <div className="team-member-modal-image">
                 <img src={selectedMember.image} alt={selectedMember.name} />
-                <div className="modal-image-overlay"></div>
+                <div className="team-member-modal-image-overlay"></div>
               </div>
 
-              <div className="modal-info-section">
-                <h3 className="modal-name">{selectedMember.name}</h3>
-                <p className="modal-role">{selectedMember.role}</p>
+              <div className="team-member-modal-info">
+                <h3 className="team-member-modal-name">{selectedMember.name}</h3>
+                <p className="team-member-modal-role">{selectedMember.role}</p>
 
-                <div className="modal-scrollable-content">
-                  <p className="modal-bio">{selectedMember.bio}</p>
+                <div className="team-member-modal-scroll">
+                  <p className="team-member-modal-bio">{selectedMember.bio}</p>
 
-                  <div className="modal-expertise-section">
-                    <h4 className="modal-section-title">Expertise</h4>
-                    <div className="modal-expertise-grid">
+                  <div className="team-member-modal-expertise">
+                    <h4 className="team-member-modal-section-title">Expertise</h4>
+                    <div className="team-member-modal-expertise-grid">
                       {selectedMember.expertise.map((skill, idx) => (
-                        <span key={idx} className="modal-expertise-tag">{skill}</span>
+                        <span key={idx} className="team-member-modal-expertise-tag">{skill}</span>
                       ))}
                     </div>
                   </div>
 
                   {selectedMember.socials && selectedMember.socials.length > 0 && (
-                    <div className="modal-contact-section">
-                      <h4 className="modal-section-title">Connect</h4>
-                      <div className="modal-social-links">
+                    <div className="team-member-modal-contact">
+                      <h4 className="team-member-modal-section-title">Connect</h4>
+                      <div className="team-member-modal-socials">
                         {selectedMember.socials.map((social, idx) => {
                           const IconComponent = social.icon;
                           return (
-                            <a key={idx} href={social.link} className="modal-social-link" target="_blank" rel="noopener noreferrer">
+                            <a key={idx} href={social.link} className="team-member-modal-social-link" target="_blank" rel="noopener noreferrer">
                               <IconComponent size={20} />
                               <span>{social.name}</span>
                             </a>

@@ -143,7 +143,7 @@ const Footer = ({ socials = [], services = [], generals = [] }) => {
             <div className="footer-logo">
               <img
                 src="/assets/img/logo.png"
-                alt="ADK Technology Logo"
+                alt="ADK Technology"
                 width="100px"
                 className="h-14 !w-auto max-w-[100px]"
               />
