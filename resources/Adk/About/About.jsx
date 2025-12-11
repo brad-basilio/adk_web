@@ -44,6 +44,44 @@ const About = ({ indicators = [], staff = [] }) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  // Bloquear scroll del body cuando el modal está abierto
+  React.useEffect(() => {
+    if (selectedMember) {
+      // Guardar posición actual del scroll ANTES de aplicar estilos
+      const scrollY = window.scrollY;
+      
+      // Bloquear scroll en body y html
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${scrollY}px`;
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      // Restaurar scroll
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      document.documentElement.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    }
+
+    return () => {
+      const scrollY = document.body.style.top;
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      document.documentElement.style.overflow = '';
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
+    };
+  }, [selectedMember]);
+
   // Mapeo de redes sociales a iconos
   const socialIcons = {
     facebook: FaFacebook,
@@ -430,6 +468,11 @@ const About = ({ indicators = [], staff = [] }) => {
               <div className="team-member-modal-image">
                 <img src={selectedMember.image} alt={selectedMember.name} />
                 <div className="team-member-modal-image-overlay"></div>
+                {/* Name and role overlay for mobile */}
+                <div className="team-member-modal-image-info">
+                  <h3 className="team-member-modal-image-name">{selectedMember.name}</h3>
+                  <p className="team-member-modal-image-role">{selectedMember.role}</p>
+                </div>
               </div>
 
               <div className="team-member-modal-info">

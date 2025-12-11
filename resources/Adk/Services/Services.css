@@ -323,6 +323,50 @@
   pointer-events: none;
 }
 
+/* Desktop/Mobile visibility toggle */
+.services-desktop {
+  display: block;
+}
+
+.services-mobile {
+  display: none;
+}
+
+/* Services Swiper styles */
+.services-swiper {
+  width: 100%;
+  padding-bottom: 3rem;
+}
+
+.services-swiper .swiper-slide {
+  height: auto;
+}
+
+.services-swiper .swiper-pagination {
+  bottom: 0;
+}
+
+.services-swiper .swiper-pagination-bullet {
+  background: transparent;
+  border: 2px solid rgba(0, 102, 255, 0.3);
+  width: 12px;
+  height: 12px;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.services-swiper .swiper-pagination-bullet:hover {
+  border-color: var(--color-blue);
+  transform: scale(1.2);
+}
+
+.services-swiper .swiper-pagination-bullet-active {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+  width: 40px;
+  border-radius: 6px;
+}
+
 .carousel-indicators {
   display: flex;
   justify-content: center;
@@ -377,6 +421,17 @@
 
   .services-header {
     margin-bottom: 3rem;
+  }
+
+  /* Toggle desktop/mobile */
+  .services-desktop {
+    display: none;
+  }
+
+  .services-mobile {
+    display: block;
+    position: relative;
+    z-index: 1;
   }
 
   .carousel-container {

@@ -1,11 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './ServiceModal.css';
 
 const ServiceModal = ({ service, isOpen, onClose }) => {
+  const scrollYRef = useRef(0);
+
   useEffect(() => {
     if (isOpen) {
+      // Guardar posición actual del scroll ANTES de aplicar estilos
+      scrollYRef.current = window.scrollY;
+      
+      // Bloquear scroll en body y html
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = `-${scrollYRef.current}px`;
+      document.documentElement.style.overflow = 'hidden';
 
       const handleEscape = (e) => {
         if (e.key === 'Escape') {
@@ -16,11 +26,15 @@ const ServiceModal = ({ service, isOpen, onClose }) => {
       document.addEventListener('keydown', handleEscape);
 
       return () => {
-        document.body.style.overflow = 'unset';
+        // Restaurar scroll
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        document.documentElement.style.overflow = '';
+        window.scrollTo(0, scrollYRef.current);
         document.removeEventListener('keydown', handleEscape);
       };
-    } else {
-      document.body.style.overflow = 'unset';
     }
   }, [isOpen, onClose]);
 

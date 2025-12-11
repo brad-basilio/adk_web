@@ -218,17 +218,24 @@
 }
 
 .indicators-swiper .swiper-pagination-bullet {
-  background: rgba(0, 102, 255, 0.3);
-  width: 10px;
-  height: 10px;
+  background: transparent;
+  border: 2px solid rgba(0, 102, 255, 0.3);
+  width: 12px;
+  height: 12px;
   opacity: 1;
   transition: all 0.3s ease;
 }
 
+.indicators-swiper .swiper-pagination-bullet:hover {
+  border-color: var(--color-blue);
+  transform: scale(1.2);
+}
+
 .indicators-swiper .swiper-pagination-bullet-active {
   background: var(--color-blue);
-  width: 24px;
-  border-radius: 5px;
+  border-color: var(--color-blue);
+  width: 40px;
+  border-radius: 6px;
 }
 
 .feature-minimal {
@@ -363,16 +370,24 @@
 }
 
 .team-swiper .swiper-pagination-bullet {
-  background: rgba(0, 102, 255, 0.3);
-  width: 10px;
-  height: 10px;
+  background: transparent;
+  border: 2px solid rgba(0, 102, 255, 0.3);
+  width: 12px;
+  height: 12px;
+  opacity: 1;
   transition: all 0.3s ease;
+}
+
+.team-swiper .swiper-pagination-bullet:hover {
+  border-color: var(--color-blue);
+  transform: scale(1.2);
 }
 
 .team-swiper .swiper-pagination-bullet-active {
   background: var(--color-blue);
-  width: 30px;
-  border-radius: 5px;
+  border-color: var(--color-blue);
+  width: 40px;
+  border-radius: 6px;
 }
 
 .team-carousel-wrapper {
@@ -619,6 +634,9 @@
   justify-content: center;
   z-index: 9999;
   padding: 2rem;
+  overscroll-behavior: contain;
+  touch-action: none;
+  overflow: hidden;
 }
 
 .team-member-modal {
@@ -691,6 +709,35 @@
       transparent 0%,
       rgba(0, 13, 26, 0.3) 50%,
       rgba(0, 13, 26, 0.7) 100%);
+}
+
+/* Name and role overlay on image - hidden by default (desktop) */
+.team-member-modal-image-info {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  z-index: 2;
+}
+
+.team-member-modal-image-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+  font-family: var(--font-tech);
+  margin-bottom: 0.25rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.team-member-modal-image-role {
+  color: var(--color-blue-light);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .team-member-modal-info {
@@ -976,21 +1023,30 @@
   }
 
   .team-member-modal-image {
-    height: 200px;
+    height: 280px;
+  }
+
+  /* Show name/role overlay on image in mobile */
+  .team-member-modal-image-info {
+    display: block;
+  }
+
+  .team-member-modal-image-overlay {
+    background: linear-gradient(180deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(0, 13, 26, 0.95) 100%);
   }
 
   .team-member-modal-info {
     padding: 1.5rem;
-    max-height: 55vh;
+    max-height: 50vh;
   }
 
-  .team-member-modal-name {
-    font-size: 1.5rem;
-  }
-
+  /* Hide the name/role in info section on mobile */
+  .team-member-modal-name,
   .team-member-modal-role {
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
+    display: none;
   }
 
   .team-member-modal-bio {

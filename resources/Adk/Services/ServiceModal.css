@@ -11,6 +11,8 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  overscroll-behavior: contain;
+  touch-action: none;
 }
 
 .service-modal {
