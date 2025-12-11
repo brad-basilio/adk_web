@@ -10,6 +10,7 @@ import ADKAssist from '../Adk/ADKAssist/ADKAssist';
 import Contact from '../Adk/Contact/Contact';
 import Footer from '../Adk/Footer/Footer';
 import Navbar from '../Adk/Navbar/Navbar';
+import FloatingButtons from '../Adk/Components/FloatingButtons';
 import CreateReactScript from './Utils/CreateReactScript';
 import Base from './Components/Tailwind/Base';
 import { createRoot } from 'react-dom/client';
@@ -36,6 +37,7 @@ const Home = ({ services = [], generals = [], sliders = [], indicators = [], sta
       <ADKAssist />
       <Contact services={services} generals={generals} />
       <Footer socials={socials} services={services} generals={generals} />
+      <FloatingButtons generals={generals} />
     </div>
   );
 }
