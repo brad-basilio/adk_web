@@ -41,6 +41,7 @@
 .floating-btn-phone {
   background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
   color: white;
+  position: relative;
 }
 
 .floating-btn-phone:hover {
@@ -51,10 +52,12 @@
 .floating-btn-phone::before {
   content: '';
   position: absolute;
-  width: 100%;
-  height: 100%;
+  top: 0;
+  left: 0;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: inherit;
+  background: #25D366;
   animation: pulse-ring 2s ease-out infinite;
   z-index: -1;
 }
@@ -92,5 +95,10 @@
   .floating-btn svg {
     width: 24px;
     height: 24px;
+  }
+
+  .floating-btn-phone::before {
+    width: 52px;
+    height: 52px;
   }
 }

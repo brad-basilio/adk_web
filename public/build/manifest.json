@@ -3437,7 +3437,7 @@
     ]
   },
   "resources/js/components/Adminto/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-COKCz9DG.js",
+    "file": "assets/CheckboxFormGroup-BM6_LCjb.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/Adminto/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -3457,7 +3457,7 @@
     ]
   },
   "resources/js/components/Adminto/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-COKCz9DG.js",
+    "file": "assets/InputFormGroup-BM6_LCjb.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/Adminto/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -3467,7 +3467,7 @@
     ]
   },
   "resources/js/components/Adminto/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-COKCz9DG.js",
+    "file": "assets/PasswordFormGroup-BM6_LCjb.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/Adminto/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -3519,7 +3519,7 @@
     ]
   },
   "resources/js/components/Adminto/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-BM6_LCjb.js",
+    "file": "assets/TextareaFormGroup-COKCz9DG.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/Adminto/form/TextareaFormGroup.jsx",
     "isEntry": true,
@@ -3756,7 +3756,7 @@
     ]
   },
   "resources/js/components/DataGrid.jsx": {
-    "file": "assets/DataGrid-COKCz9DG.js",
+    "file": "assets/DataGrid-BM6_LCjb.js",
     "name": "DataGrid",
     "src": "resources/js/components/DataGrid.jsx",
     "isEntry": true,
@@ -4123,7 +4123,7 @@
     ]
   },
   "resources/js/components/Tailwind/DataGrid.jsx": {
-    "file": "assets/DataGrid-BM6_LCjb.js",
+    "file": "assets/DataGrid-COKCz9DG.js",
     "name": "DataGrid",
     "src": "resources/js/components/Tailwind/DataGrid.jsx",
     "isEntry": true,
@@ -4387,10 +4387,10 @@
     ]
   },
   "resources/js/components/Test/Email.jsx": {
-    "file": "assets/Email-0iC7Huq4.js",
+    "file": "assets/Email-HsbLSStg.js",
     "name": "Email",
     "src": "resources/js/components/Test/Email.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
@@ -4401,32 +4401,30 @@
     ]
   },
   "resources/js/components/Test/Fragrance.jsx": {
-    "file": "assets/Fragrance-Cf-yCqdy.js",
+    "file": "assets/Fragrance-BM6_LCjb.js",
     "name": "Fragrance",
     "src": "resources/js/components/Test/Fragrance.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
-      "_tippy-react.esm-CIcmk6y-.js",
-      "resources/js/components/TrackingPixels.jsx",
-      "_index-CbrplguO.js"
+      "resources/js/components/TrackingPixels.jsx"
     ]
   },
   "resources/js/components/Test/HairGoals.jsx": {
-    "file": "assets/HairGoals-BBuZ8cAp.js",
+    "file": "assets/HairGoals-BM6_LCjb.js",
     "name": "HairGoals",
     "src": "resources/js/components/Test/HairGoals.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx"
     ]
   },
   "resources/js/components/Test/HairType.jsx": {
-    "file": "assets/HairType-DWnGOmiA.js",
+    "file": "assets/HairType-W2tboi8x.js",
     "name": "HairType",
     "src": "resources/js/components/Test/HairType.jsx",
-    "isEntry": true,
+    "isDynamicEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx",
@@ -4436,10 +4434,10 @@
     ]
   },
   "resources/js/components/Test/Main.jsx": {
-    "file": "assets/Main-DxSzqHu0.js",
+    "file": "assets/Main-BM6_LCjb.js",
     "name": "Main",
     "src": "resources/js/components/Test/Main.jsx",
-    "isDynamicEntry": true,
+    "isEntry": true,
     "imports": [
       "resources/js/Admin/FileViewer.jsx",
       "resources/js/components/TrackingPixels.jsx"
@@ -4563,7 +4561,7 @@
     "isEntry": true
   },
   "resources/js/components/form/CheckboxFormGroup.jsx": {
-    "file": "assets/CheckboxFormGroup-BM6_LCjb.js",
+    "file": "assets/CheckboxFormGroup-COKCz9DG.js",
     "name": "CheckboxFormGroup",
     "src": "resources/js/components/form/CheckboxFormGroup.jsx",
     "isEntry": true,
@@ -4573,7 +4571,7 @@
     ]
   },
   "resources/js/components/form/InputFormGroup.jsx": {
-    "file": "assets/InputFormGroup-BM6_LCjb.js",
+    "file": "assets/InputFormGroup-COKCz9DG.js",
     "name": "InputFormGroup",
     "src": "resources/js/components/form/InputFormGroup.jsx",
     "isEntry": true,
@@ -4583,7 +4581,7 @@
     ]
   },
   "resources/js/components/form/PasswordFormGroup.jsx": {
-    "file": "assets/PasswordFormGroup-BM6_LCjb.js",
+    "file": "assets/PasswordFormGroup-COKCz9DG.js",
     "name": "PasswordFormGroup",
     "src": "resources/js/components/form/PasswordFormGroup.jsx",
     "isEntry": true,
@@ -4625,7 +4623,7 @@
     ]
   },
   "resources/js/components/form/TextareaFormGroup.jsx": {
-    "file": "assets/TextareaFormGroup-COKCz9DG.js",
+    "file": "assets/TextareaFormGroup-BM6_LCjb.js",
     "name": "TextareaFormGroup",
     "src": "resources/js/components/form/TextareaFormGroup.jsx",
     "isEntry": true,
