@@ -268,7 +268,7 @@ const About = ({ indicators = [], staff = [] }) => {
                   <p className="team-subtitle-modern">Experts driving innovation forward</p>
                 </div>
               </div>
-              <div className="team-carousel-controls !hidden  lg:block">
+              <div className="team-carousel-controls hidden lg:flex">
                 <button
                   className="team-carousel-btn team-carousel-btn-prev"
                   onClick={prevTeamSlide}
