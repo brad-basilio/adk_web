@@ -213,7 +213,7 @@ const Contact = ({ services = [], generals = [] }) => {
                     </svg>
                     <div>
                       <div>Fast Response</div>
-                      <span>Shaimaa (Tech Support)</span>
+                      <span>Tech Support</span>
                     </div>
                   </a>
                   <a href="mailto:nicole.zelingher@adktechnology.net" className="badge">
