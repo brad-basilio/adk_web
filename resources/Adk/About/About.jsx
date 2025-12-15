@@ -268,33 +268,20 @@ const About = ({ indicators = [], staff = [] }) => {
                   <p className="team-subtitle-modern">Experts driving innovation forward</p>
                 </div>
               </div>
-              <div className="team-carousel-controls hidden lg:flex">
-                <button
-                  className="team-carousel-btn team-carousel-btn-prev"
-                  onClick={prevTeamSlide}
-                  aria-label="Previous team members"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-                <button
-                  className="team-carousel-btn team-carousel-btn-next"
-                  onClick={nextTeamSlide}
-                  aria-label="Next team members"
-                >
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
             </div>
 
             {/* Desktop version - Grid manual */}
             <div className="team-desktop">
-              <div className="team-carousel-wrapper">
-                <div className="team-grid-modern">
-                  {getVisibleTeamMembers().map((member, index) => (
+              <div className="team-carousel-container">
+                <button className="carousel-btn prev" onClick={prevTeamSlide}>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+
+                <div className="team-carousel-wrapper">
+                  <div className="team-grid-modern">
+                    {getVisibleTeamMembers().map((member, index) => (
                     <motion.div
                       key={index}
                       className="team-card-modern"
@@ -352,6 +339,13 @@ const About = ({ indicators = [], staff = [] }) => {
                     </motion.div>
                   ))}
                 </div>
+              </div>
+
+                <button className="carousel-btn next" onClick={nextTeamSlide}>
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
               </div>
 
               <div className="team-carousel-indicators">
